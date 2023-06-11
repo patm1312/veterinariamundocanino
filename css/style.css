@@ -1,0 +1,201 @@
+/* colores usados */
+:root {
+    --colorprimario: #6A6969;
+    --colorsecundario : #928A8A;
+    --colorterciario : #F9A81B;
+    --colorcuarto: #D28E18;
+    --colorquinto: #9f8e8e;
+    --colorseis:#322f2f;
+  }
+*{
+    list-style: none;
+    font-size: 30px;
+    color: var(--colorprimario);
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family: 'roboto';
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.main{
+    padding-top: 150px;
+}
+.header, .footer{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    align-items: center;
+    background-color: #f6e6e6;
+    box-shadow: 0px 2px 15px #e4d7d7f5;
+    z-index: 100;
+}
+.footer{
+    position: inherit;
+    margin-top: auto;
+}
+.nav__item, .header__boxLogin, .header__boxLogin--p, .enlaces{
+    margin: 2px;
+    display: inline-block;
+    margin-top: auto;
+    font-size: 28px;
+    color: var(--colorprimario);
+}
+.enlaces{
+    font-size: 25px;
+    display: block;
+}
+/* estilos boton cita */
+.main__botonCita{
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    z-index: 100px;
+    bottom: 180px;
+    right: 20px;
+}
+/* posters preview */
+.poster{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    border-radius: 40px;
+    width: 70%;
+    padding: 40px;
+}
+.poster__description{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.poster__description--h1{
+    font-size: 50px;
+    color: var(--colorprimario);
+}
+.poster__description--h1--canva{
+    font-size: 72px;
+}
+.poster__description--span{
+    color: var(--colorterciario);
+    margin: 0;
+    padding: 0;
+}
+.poster__description--span2{
+    color: var(--colorquinto);
+}
+.poster__description--p{
+    margin: 30px 0px;
+}
+.bottom{
+    padding: 10px;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 0;
+    background-color: var(--colorsecundario);
+    color: white;
+}
+.poster__description--a{
+    width: 100%;
+}
+.h2{
+    font-size: 35px;
+}
+.poster__img{
+    width: 40%;
+    object-fit: contain;
+}
+/* poster vacunacion */
+.poster__vacunacion{
+    background: linear-gradient(to right, white, #fcf0d8);
+}
+.poster__description--a--orange{
+    background-color: var(--colorterciario);
+}
+/* poster peluqueria */
+.poster__peluqueria{
+    position: relative;
+    background: linear-gradient(to right, white, #fbeded);
+}
+.poster__description--a--gray{
+    background-color: var(--colorprimario);
+}
+.poster__img--sec{
+    position: absolute;
+    width: 10%;
+    top: 50px;
+    right: -10px;
+    transform: rotate(-35deg);
+}
+/* ifrem */
+/* ubicacion google mapas */
+.ifrem{
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.ifrem--box{
+    display: flex;
+    justify-content: center;
+}
+.section__vacuna--h2-ifrem{
+    margin-bottom: 35px;
+}
+/* formulario */
+.form{
+    max-width: 550px;
+    background-color: #9f8e8e2c;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 50px;
+    border-radius: 50px;
+}
+.form__img{
+    display: flex;
+    justify-content: center;
+}
+.form--text{
+    display: inline-block;
+    margin-bottom: 25px;
+}
+.form--text1{
+    font-size: 22px;
+}
+.form--text-p{
+    margin-left: 15px;
+}
+.form--text-p2{
+    margin-left: 150px;
+}
+.bottom__form{
+    width: 100%;
+}
+.input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 45px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #9f8e8e;
+}
+.form--text-a{
+    margin-right: 10px;
+}
+.form--text-log{
+    margin: 0;
+}
+.form--text-left{
+    margin-top: 20px;
+    margin-left: 25px;
+}
