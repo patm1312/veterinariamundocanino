@@ -16,16 +16,18 @@
 </head>
 <body>
     <header class="header">
-            <img class="header__boxLogo--imgLogo" src="assets/images/logotransp.png" alt="prueba de imagen">
+        <a href="index.php?seccion=home">
+        <img class="header__boxLogo--imgLogo" src="assets/images/logotransp.png" alt="prueba de imagen">
+        </a>
             <nav class="nav">
                 <ul class="nav__ul">
                     <li class="nav__item"><a class="nav__item" href="index.php?seccion=home">Inicio</a></li>
-                    <li class="nav__item"><a class="nav__item" href="index.php?seccion=home">Productos/Servicios</a></li>
+                    <li class="nav__item"><a class="nav__item" href="index.php?seccion=servicios">Productos/Servicios</a></li>
                     <li class="nav__item"><a class="nav__item" href="index.php?seccion=home">Foro</a></li>
-                    <li class="nav__item "><a class="nav__item bottom " href="index.php?seccion=home">Agenda Tu cita</a></li>
+                    <li class="nav__item "><a class="nav__item bottom " href="index.php?seccion=cita">Agenda Tu cita</a></li>
                     <div class="header__boxLogin">
-                            <p class="header__boxLogin--p"><a class="header__boxLogin--p" href="index.php?seccion=login">Registro/Login</a> </p>
-                            <img class="header__boxLogin--img" src="assets/images/user.png" alt="">
+                            <p class="header__boxLogin--p"><a class="header__boxLogin--p" href="index.php?seccion=login">Registro/Login <img class="header__boxLogin--img" src="assets/images/user.png" alt=""></a></p>
+                            
                     </div>
                 </ul>
             </nav>
@@ -41,13 +43,29 @@
                 break;
                 case "logout": include("contenidos/logout.php");
                 break;
+                case "logadd": include("contenidos/logadd.php");
+                break;
+                case "servicios": include("contenidos/servicios.php");
+                break;
+                case "cita": include("contenidos/cita.php");
+                break;
+                case "citaUser": include("contenidos/cita__user.php");
+                break;
+                case "cita__celular": include("contenidos/cita__celular.php");
+                break;
+                case "cita__datos": include("contenidos/cita__datos.php");
+                break;
+                case "cita__fecha": include("contenidos/cita__fecha.php");
+                break;
                 default: 
 					echo "<p class='error'>La sección solicitada ($section), no existe</p>";
 					include( 'contenidos/home.php');
             }
         ?>
-        
+        <a href="index.php?seccion=cita">
         <img class="main__botonCita" src="assets/images/botoncitas.png" alt="asignar  cita">
+        </a>
+        
     </main>
     <footer class="footer">
         <div>

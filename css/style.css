@@ -9,7 +9,7 @@
   }
 *{
     list-style: none;
-    font-size: 30px;
+    font-size: 16px;
     color: var(--colorprimario);
     margin: 0;
     box-sizing: border-box;
@@ -24,9 +24,26 @@ body{
 .main{
     padding-top: 150px;
 }
+.h1{
+    font-size: 35px;
+    color: var(--colorprimario);
+}
+.h1__box{
+    display: flex;
+    flex-direction:column;
+    text-align: center;
+    margin: 30px 0px;
+}
+.h1__box--img{
+    width: 60px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.header{
+    position: fixed;
+}
 .header, .footer{
     width: 100%;
-    position: fixed;
     display: flex;
     justify-content: space-around;
     padding: 20px;
@@ -43,11 +60,11 @@ body{
     margin: 2px;
     display: inline-block;
     margin-top: auto;
-    font-size: 28px;
+    font-size: 20px;
     color: var(--colorprimario);
 }
 .enlaces{
-    font-size: 25px;
+    font-size: 20px;
     display: block;
 }
 /* estilos boton cita */
@@ -56,19 +73,21 @@ body{
     height: 100px;
     position: fixed;
     z-index: 100px;
-    bottom: 180px;
+    bottom: 140px;
     right: 20px;
 }
 /* posters preview */
+.container{
+    margin-right: auto;
+    margin-left: auto;
+    width: 85%;
+}
 .poster{
     margin-top: 50px;
     margin-bottom: 100px;
-    margin-right: auto;
-    margin-left: auto;
     display: flex;
     border-radius: 40px;
-    width: 70%;
-    padding: 40px;
+    padding: 40px
 }
 .poster__description{
     margin-top: auto;
@@ -92,7 +111,7 @@ body{
 .poster__description--p{
     margin: 30px 0px;
 }
-.bottom{
+ .bottom{
     padding: 10px;
     border-radius: 30px;
     text-align: center;
@@ -103,9 +122,7 @@ body{
     background-color: var(--colorsecundario);
     color: white;
 }
-.poster__description--a{
-    width: 100%;
-}
+
 .h2{
     font-size: 35px;
 }
@@ -117,7 +134,7 @@ body{
 .poster__vacunacion{
     background: linear-gradient(to right, white, #fcf0d8);
 }
-.poster__description--a--orange{
+.bottom--orange{
     background-color: var(--colorterciario);
 }
 /* poster peluqueria */
@@ -125,7 +142,7 @@ body{
     position: relative;
     background: linear-gradient(to right, white, #fbeded);
 }
-.poster__description--a--gray{
+.bottom--gray{
     background-color: var(--colorprimario);
 }
 .poster__img--sec{
@@ -150,52 +167,141 @@ body{
 .section__vacuna--h2-ifrem{
     margin-bottom: 35px;
 }
-/* formulario */
+/* parrafo recuperar ususario */
+.enlaces--loadd{
+    margin-bottom: 15px;
+}
+/* servicvios */
+.h2--servicios{
+    font-size: 22px;
+    margin: 10px;
+    color: var(--colorseis);
+}
+.servicios{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-shrink: 12;
+}
+.servicios__box--container{
+    padding: 0px 20px;
+    text-align: center;
+}
+.servicios__box{
+    margin: 8px;
+    width: 35%;
+    max-width: 300px;
+}
+.servicios__img{
+    max-width: 100%;
+}
+.bottom--servicios{
+    width: 100%;
+    margin: 10px 0px 5px 0px;
+}
+.form__header{
+    height: 60px;
+    display: flex;
+    justify-content:space-evenly;
+    align-content: start;
+    padding: 15px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.537);
+}
 .form{
-    max-width: 550px;
-    background-color: #9f8e8e2c;
+    width: 35%;
+    height: auto;
+    margin-bottom: 20px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding: 50px;
-    border-radius: 50px;
+    min-width: 350px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.617);
+    background-color: #f6e6e6;
 }
-.form__img{
-    display: flex;
-    justify-content: center;
+.form__body{
+    padding: 35px;
 }
-.form--text{
-    display: inline-block;
+.box__bottom{
+    margin-top: 20px;
     margin-bottom: 25px;
 }
-.form--text1{
-    font-size: 22px;
+.form__h2{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 40px;
 }
-.form--text-p{
-    margin-left: 15px;
-}
-.form--text-p2{
-    margin-left: 150px;
-}
-.bottom__form{
-    width: 100%;
+.form__header--img{
+    margin-right: auto;
+    margin-left: auto;
 }
 .input{
     width: 100%;
     padding: 10px;
-    margin-bottom: 45px;
     border: none;
+    margin-bottom: 10px;
     background-color: transparent;
     border-bottom: 1px solid #9f8e8e;
 }
-.form--text-a{
-    margin-right: 10px;
+.form__span{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
 }
-.form--text-log{
-    margin: 0;
+.form__boxayuda{
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    padding: 6px;
+    border-radius: 30px;
+    border: 1px solid black;
 }
-.form--text-left{
-    margin-top: 20px;
-    margin-left: 25px;
+.form__boxayuda--img{
+    width: 25px;
+}
+.form__boxayuda--p{
+    display: inline-block;
+    margin-left: 10px;
+}
+.box__bottom--logout{
+    margin-bottom: 10px;
+}
+.box__label{
+    margin-bottom: 25px;
+}
+/* formulario citas */
+.form__header--cita{
+    display: flex;
+    justify-content: space-between;
+}
+.left{
+    width: 25px;
+}
+.form__radio{
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    margin: 10px 0px;
+    border-radius: 11px;
+    box-shadow: 1px 1px 5px rgba(79, 77, 77, 0.617);
+}
+.box__bottom--cita{
+    border-radius: 11px;
+}
+/* seccion de citauser celular */
+.form__p{
+    text-align: center;
+    margin-bottom: 25px;
+}
+/* seccion de validar celular */
+.input_dig{
+    margin: 0px 5px;
+    width: 30px;
+    border-radius: 5px;
+    border: 1px solid rgb(104, 102, 102);
+}
+.box_form_dig{
+    display: flex;
+    justify-content:center
+}
+.h3__form{
+    margin: 30px 0px;
 }
