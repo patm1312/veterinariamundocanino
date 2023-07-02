@@ -53,8 +53,8 @@
         </div>
         <div class="form__body">    
                 <h2 class="form__h2" >Identificate</h2>
-                <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1" href="index.php?seccion=login">Iniciar Sesion</a></span>
-                <p class="form__p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="" href="index.php?seccion=login">inicia sesion</a>.
+                <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1 enlace" href="index.php?seccion=login">Iniciar Sesion</a></span>
+                <p class="form__p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="enlace" href="index.php?seccion=login">inicia sesion</a>.
                 </p> 
                 <input class="input" type="text" placeholder="Ingresa tu celular">
                 <div class="bottom box__bottom box__bottom--logout box__bottom--cita">
@@ -66,7 +66,7 @@
                 <a class="" href="">
                     <div class="form__boxayuda">
                         <img class="form__boxayuda--img" src="assets/images/whatsapp.png" alt="whatsapp">
-                        <p class="form__boxayuda--p">¿Necesitas <br> ayuda?</p>
+                        <p class="form__boxayuda--p enlace">¿Necesitas <br> ayuda?</p>
                     </div>
                 </a>          
         </div>

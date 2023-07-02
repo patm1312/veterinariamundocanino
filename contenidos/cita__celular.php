@@ -27,7 +27,7 @@
                     <a class="bottom box__bottom--logout" href="index.php?seccion=cita__datos">continuar</a>
                 </div>
                 <div class="box__label">
-                    <a class="" href="index.php?seccion=citaUser">Corregir numero de celular</a>
+                    <a class="enlace" href="index.php?seccion=citaUser">Corregir numero de celular</a>
                 </div> 
                 <a class="" href="">
                     <div class="form__boxayuda">

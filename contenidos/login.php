@@ -14,14 +14,15 @@
         </div>
         <div class="form__body">    
                 <h2 class="form__h2" >Iniciar Sesion</h2>
-                <span class="form__span" >¿Eres nuevo? <a class="form--text form--text1" href="index.php?seccion=logout">Registrate</a></span>
+                <span class="form__span" >¿Eres nuevo? <a class="form--text form--text1 enlace" href="index.php?seccion=logout"> Registrate</a></span>
                 <!-- <p class="form__body--p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="form--text form--text1 a_cita" href="index.php?seccion=login">inicia sesion</a>.
                 </p> -->
                 <input class="input" type="text" placeholder="Ingresa tu correo">
                 <input class="input" type="text" placeholder="Ingresa tu contraseña">
-                <div class="bottom box__bottom">
-                    <a class="bottom" href="">continuar</a>
+                <div class="bottom box__bottom box__bottom--login">
+                    <a class="bottom box__bottom--login" href="">continuar</a>
                 </div>
+                <span class="form__span form__span-password" ><a class="form--text form--text1 enlace" href="index.php?seccion=logadd">Recuperar contraseña</a></span>
                 <a class="" href="">
                     <div class="form__boxayuda">
                         <img class="form__boxayuda--img" src="assets/images/whatsapp.png" alt="whatsapp">
@@ -34,7 +35,7 @@
 
 
 
-<section class="section__cita">
+<!-- <section class="section__cita">
     <div class="h1__box">
 
         <h1 class="poster__description--h1 poster__description--h1--canva h1__cita"><span class="poster__description--span poster__description--h1--canva h1__cita">A</span><span class="poster__description--span2 poster__description--h1--canva h1__cita">genda</span><br>una cita con nosotros</h1>
@@ -73,4 +74,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->

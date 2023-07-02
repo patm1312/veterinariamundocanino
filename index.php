@@ -16,9 +16,15 @@
 </head>
 <body>
     <header class="header">
-        <a href="index.php?seccion=home">
-        <img class="header__boxLogo--imgLogo" src="assets/images/logotransp.png" alt="prueba de imagen">
+        <a href="index.php?seccion=home" class="enlace__img__logo">
+            <div class="img__logo--box">
+                <img class="header__boxLogo--imgLogo img__logo--large" src="" alt="prueba de imagen">
+            </div>
         </a>
+        <a class="enlace_hm" href="">
+            <img class="hm__responsive enlace_hm" src="assets/images/menuHm.png" alt="hamburguer">
+        </a>
+        
             <nav class="nav">
                 <ul class="nav__ul">
                     <li class="nav__item"><a class="nav__item" href="index.php?seccion=home">Inicio</a></li>
@@ -68,8 +74,8 @@
         
     </main>
     <footer class="footer">
-        <div>
-            <img src="assets/images/logotransp.png" alt="">
+        <div class="img__footer">
+            <img class="img__footer" src="assets/images/logotransp.png" alt="">
         </div>
         <div class="">
             <h2 class="footer__boxenlaces--h2">Enlaces Utiles:</h2>
@@ -89,5 +95,6 @@
                     
         </div>
     </footer>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
