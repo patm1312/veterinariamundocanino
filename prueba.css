@@ -56,7 +56,12 @@ body{
 }
 /* items del nav */
 .nav{
+    display: flex;
+    align-items: center;
     margin-top: 20px;
+    height: auto;
+    overflow-y: auto;
+    border: 1px solid black;
 }
 .nav__ul{
     margin-top: auto;

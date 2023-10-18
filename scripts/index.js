@@ -1,52 +1,65 @@
+import modal from "./modulos/modal.js";
+import Dig_form from "./modulos/validarFormDig.js";
+import contact_form from "./modulos/validarFormulario.js";
+import responsiveMenu from "./modulos/hm.js";
+ import modalAcciones from "./modulos/modalPerfil.js";
+import slider from "./modulos/slider.js";
+import smallAdd from "./modulos/sliderAdd.js";
+import sliderAdd from "./modulos/sliderAdd.js";
+import perfilResponsive from "./modulos/perfil.js";
+import resizeForSquareAppearance from "./modulos/responsiveDiv.js";
+import filter from "./modulos/filtro.js";
 const d = document;
-//menu  de navegacion version movil
-const nav = d.querySelector(".nav");
-//tamaño del navegador cuando se carga por primera vez el navegador.
-let size =  screen.width;
-const imglogo = d.querySelector(".header__boxLogo--imgLogo");
-const botonCita = d.querySelector(".main__botonCita");
-//contenedor de la imagen grande
-const container = d.querySelector(".container");
-//contenedor de la imagen pequeña
-const poster_container = d.querySelector(".poster__description");
-//imagen grande y pequeña de los poster de lapagina de home.
-const imgPostermayor = d.querySelectorAll(".poster__img--mayor");
-const imgPostermenor = d.querySelectorAll(".poster__img--menor");
+//en la variable seccion guardo el resultado de ver si estoy  ejecutando  el modulo de adopta mascota, si es true  es porque encuentra el input hiodden que esta en la pgina de adopta.php, y ejecuto la funcion modal.
 
-
-d.addEventListener("click", (e)=>{
-    nav.classList.remove("nav_responsive");
-    //si le di click al enlace hm
-    if(e.target.matches('.enlace_hm')){
-        e.preventDefault();
-        nav.classList.toggle("nav_responsive");
+if (d.getElementById("adopta_mascota") != null){
+        //funcion que se ejecuta para la ventana modal del filtro de adopta mascotas, solo  si estoy  en el modulo de adoptar mascota
+        //parametro 1 es el boton de filtrar, el parametro 2, es el  boton de enviar solicitud, el cerrar es la x de cerrar formulario 
+        console.log("se eejcuta modal")
+        modal(".modalOpen", ".modalClose", ".cerrar");
     }
-})
-function responsive(size){
-    botonCita.classList.add("poster__img--menor");
     
-    if(size < 550){   
-        //cuando el tamaño de la ventana del  navegador sea manor a 500muestre la imagen de logo larga
-        imglogo.setAttribute("src", "assets/images/logolarge.png");
-        //muestre la imagen mas pequeña
-        for (let index = 0; index < imgPostermenor.length; index++) {
-           imgPostermenor[index].classList.remove("poster__img--menor")
-        }
-        for (let index = 0; index < imgPostermayor.length; index++) {
-            imgPostermayor[index].classList.add("poster__img--mayor")
-         }
-    }else{
-        imglogo.setAttribute("src", "assets/images/logotransp.png");
-        for (let index = 0; index < imgPostermenor.length; index++) {
-            imgPostermenor[index].classList.add("poster__img--menor")
-         }
-         for (let index = 0; index < imgPostermayor.length; index++) {
-             imgPostermayor[index].classList.remove("poster__img--mayor")
-          }
-    }
+if (d.getElementById("home") != null){
+    slider()
+    sliderAdd()
+    
 }
-responsive(size);
-//cada vez que se redimensiona el tamaño  del navegador se ejecuta la funcion.
-window.addEventListener('resize',(e)=>{
-    responsive(innerWidth)
+// Evento cuando se redimensiona la ventana
+window.addEventListener("resize",(e)=>{
+    if (d.getElementById("producto") != null){
+        resizeForSquareAppearance();
+    }
 })
+// Evento cuando se carga el contenido
+d.addEventListener("DOMContentLoaded",(e)=>{
+    if (d.getElementById("producto") != null){
+        resizeForSquareAppearance();
+    }
+})
+if (d.getElementById("hiddenPerfil") != null){
+    d.addEventListener("scroll",(e)=>{
+        perfilResponsive();
+    })
+}
+if (d.querySelector(".contact-form") != null){
+    contact_form()
+}
+//se eejcuta la funcion de validar formulario, el de escribir  codigo enviado, solo si es diferente a null:
+if (d.querySelector(".formdig") != null){
+    Dig_form();
+}
+    d.addEventListener("click", (e)=>{
+         if(e.target.matches('.accion_perfil')){
+            console.log('modal accions');
+            modalAcciones(e)
+        }else{
+            //si se da click en algun parte del documento se ejecuta esta funcion que sirve para el menu hm y  el menu grande 
+            responsiveMenu(e);
+        }
+        if (d.getElementById("adopta_mascota") != null){
+            //esta funcios se activa solo en el modulo  de adopta mascota para la interaccion con el filtro
+            filter(e);
+        }
+    })
+
+

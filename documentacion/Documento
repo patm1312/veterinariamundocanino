@@ -1,0 +1,7 @@
+1. modal,  cuando se quiere redimensionar el  formulario del filtro, que pasa porque se va a eliminar el formulario y  se va a agregar  a otro lado dl dom,  en cuanto a los datos de formulario diligenciados por el usuario, solo cuando los marca y no los envia pero si redimensiona la ventaa del navegador...
+2. base de datos.
+   tabla usuarios: se le agrega la foto, el estado si esta ctivo, baneado o eliminado.
+3. la base de datos guarda los datos de los productos por categorias, categoria farmacia, de ropa y  accesorios, de juguetes, alimento, cada uno de estos va a tener el stock, precio, detalles, la informacion la va a poder modificar el ususario administrador a travez de un formulario, depende de la categroia se va a modificar lieramente ese formulario para que gestione la informacion de los productos.
+4. la base de datos guarda los datos de todas las publicaciones de la pagina, se va a organizar por categorias, categoria posteo-articulo, posteo-publicidad, posteo-banner, posteo-carrsel, post-nosotros; iguamlemnte va a pode rmodificar esa informacion o gestionarla a travez de un formuloario que se muestra diferente segun la categoria.
+4. vulnerabilidad url:
+   http://localhost/veterinaria/contenidos/login.php

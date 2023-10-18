@@ -1,4 +1,18 @@
+<section class="section__slider">
+    <a href="#" class="previos">&laquo;</a>
+    <a href="#" class="next">&raquo;</a>
+                       <a class="slider-slide active" href="">
+                            <img class="sliderImg" src="assets/images/purplecat.png" alt="">
+                        </a>
+                        <a class="slider-slide" href="">
+                            <img class="sliderImg" src="assets/images/slider_cita.png" alt="ddfd">
+                        </a>
+                        <a class="slider-slide" href="">
+                            <img class="sliderImg" src="assets/images/AdoptaPoster.png" alt="rrrrr">
+                        </a>
+</section>
 <section class="container poster">   
+<input type="hidden" id="home">
         <div class="poster__description">
             <div class="">
                 <h1 class="poster__description--h1 poster__description--h1--canva"><span class="poster__description--span poster__description--h1--canva">M</span><span class="poster__description--span2 poster__description--h1--canva">undo</span><br>Canino</h1>
@@ -6,13 +20,117 @@
             <img class="poster__img poster__img--menor" src="assets/images/lococatHome.png" alt="gato">
             <p class="poster__description--p">Nuestra clinica veterinaria ofrece sus productos  y servicios con calidad en la ciudad de Cucuta, contactanos y conocenos como trabajamos para la salud y  bienestar de tu mascota. </p>
             <div class="bottom">
-
-                <a class="bottom" href="">Hacer una cita</a>
+                <a class="bottom" href="index.php?seccion=cita">Hacer una cita</a>
             </div>
         </div>
     <img class="poster__img poster__img--mayor" src="assets/images/lococatHome.png" alt="gato">
 </section>
-
+<section class="add">
+    <h2 class="h2">!Ahorra con nuestras Ofertas¡</h2>
+    <div class="add__container">
+        <div class="carrusell">
+            <div class="add__container--box add__containerBox--width"   id="box1">
+                <a href="">
+                    <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                    <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                    <div class="add__containerBox--description">
+                        <div class="add__containerBoxDescription">
+                            <p class="add__containerBox--p">$ 25.000</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="add__container--box " id="box2">
+            <a href="">
+                <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                <div class="add__containerBox--description">
+                    <div class="add__containerBoxDescription">
+                        <p class="add__containerBox--p">$ 25.000</p>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="add__container--box " id="box3">
+                <a href="">
+                    <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                    <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                    <div class="add__containerBox--description">
+                        <div class="add__containerBoxDescription">
+                            <p class="add__containerBox--p">$ 25.000</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="add__container--box " id="box4">
+                <a href="">
+                    <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                    <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                    <div class="add__containerBox--description">
+                        <div class="add__containerBoxDescription">
+                            <p class="add__containerBox--p">$ 25.000</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="add__container--box " id="box5">
+                <a class="a__Add" href="">
+                    <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                    <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                    <div class="add__containerBox--description">
+                        <div class="add__containerBoxDescription">
+                            <p class="add__containerBox--p">$ 25.000</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+                <div class="add__container--box " id="box6">
+                    <a href="">
+                        <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                        <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                        <div class="add__containerBox--description">
+                            <div class="add__containerBoxDescription">
+                                <p class="add__containerBox--p">$ 25.000</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="add__container--box " id="box7">
+                    <a href="">
+                            <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                            <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                            <div class="add__containerBox--description">
+                                <div class="add__containerBoxDescription">
+                                    <p class="add__containerBox--p">$ 25.000</p>
+                                </div>
+                            </div>
+                    </a>
+                    </div>
+            <div class="add__container--box " id="box8">
+                <a href="">
+                    <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                    <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                    <div class="add__containerBox--description">
+                        <div class="add__containerBoxDescription">
+                            <p class="add__containerBox--p">$ 25.000</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+                <div class="add__container--box " id="box9">
+                    <a href="">
+                        <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
+                        <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                        <div class="add__containerBox--description">
+                            <div class="add__containerBoxDescription">
+                                <p class="add__containerBox--p">$ 25.000</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </div>
+</section>
 <section class="container poster poster__vacunacion"> 
     <img class="poster__img poster__img--mayor" src="assets/images/pngvacunacion.png" alt="imagen de perro y gato">  
         <div class="poster__description">
@@ -24,8 +142,6 @@
             </div>
         </div>
 </section>
-
-
 <section class=" container poster poster__peluqueria"> 
     <div class="poster__description">
     <img class="poster__img--sec" src="assets/images/secador.png" alt="">
@@ -38,7 +154,6 @@
     </div>
     <img class="poster__img poster__img--mayor" src="assets/images/dogpeluq.png" alt="imagen de perro y gato">  
 </section>
-
 <section>
     <div class="ifrem">
         <div>

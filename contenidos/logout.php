@@ -1,29 +1,32 @@
-<!-- <section class="">
-    <form class="form" action="" method="">
-        <div class="form__img">
-            <img  src="assets/images/word.png" alt="">
-        </div>
-        <div class="">
-            <h2 class="form--text">Iniciar Sesion</h2>
-            <a class="form--text form--text1 form--text-p form--text-p2" href="index.php?seccion=login">Logueate</a>
-        </div>
-            <input class="input" type="text" placeholder="Nombre">
-            <input class="input" type="text" placeholder="Apellido">
-            <input class="input" type="text" placeholder="email">
-            <input class="input" type="text" placeholder="contraseña">
-            <input class="input" type="text" placeholder="confirmar contraseña">
-            <input class="bottom bottom__form" type="submit">
-            
-            <label class="form--text form--text1 "><input class="form--text-a" type="checkbox" id="" value="">Acepto <a class="form--text form--text1" href="">Terminos y  Condiciones</a> </label>
-    </form>
-</section> -->
-
-
+<?php
+    session_start();
+    //si un usuario esta logueado no deberia ver esta pagina.
+    if (isset($_SESSION['user_id'])) {
+        header('Location:index.php');
+      }
+    if(isset($_SESSION['rta'])){
+        if($_SESSION['rta'] = 'ok'){
+            $message = "usuario creado satisfactoriamente";
+            $clase = 'ok';
+        }else{
+            $message = "hubo un error en crear tu  cuente, por favor, intentalo  de nuveo";
+            $clase = 'error';
+        }
+    }else{
+        $message = "";
+        $clase = '';
+    }
+    unset($_SESSION['rta']);
+?>
 <section class="">
     <div class="h1__box">
             <h1 class="poster__description--h1 poster__description--h1--canva h1__cita"><span class="poster__description--span poster__description--h1--canva h1__cita">R</span><span class="poster__description--span2 poster__description--h1--canva h1__cita">egistrate</span><br>con nosotros</h1>
     </div>
-    <form class="form" action="" method="">
+    <?php if(!empty($message)): ?>
+        <p class="<?php echo $clase; ?>"><?php echo $message; ?></p>
+    <?php endif; ?>
+    
+    <form class="form contact-form" action="formularios/registro.php" method="post">
         <div class="form__header">
             <!-- <a href="">
                 <img class="left" src="assets/images/rght.png" alt="flecha">
@@ -36,18 +39,23 @@
         <div class="form__body">    
                 <h2 class="form__h2" >Crea una cuenta</h2>
                 <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1" href="index.php?seccion=login">Iniciar Sesion</a></span>
-                <!-- <p class="form__body--p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="form--text form--text1 a_cita" href="index.php?seccion=login">inicia sesion</a>.
-                </p> -->
-                <input class="input" type="text" placeholder="Nombre">
-                <input class="input" type="text" placeholder="Apellido">
-                <input class="input" type="text" placeholder="email">
-                <input class="input" type="text" placeholder="contraseña">
-                <input class="input" type="text" placeholder="confirmar contraseña">
-                <div class="bottom box__bottom box__bottom--logout">
-                    <a class="bottom box__bottom--logout" href="">continuar</a>
+                <!-- se pueden usar atributos para usar expresiones regulares para validar los inpiut  del formulario, es el atributo patern, donde en su valor pongo la expresion regular que quiero que cumpla el formulario, y con otroatributo llamado tittle , muestro el mensaje que quiero visualizar: -->
+                <input name="name" class="input" type="text" placeholder="Nombre" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                <input name="subname" class="input" type="text" placeholder="Apellido" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                <input name="email" class="input" type="email" placeholder="email" title="Email incorrecto"
+                    pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?" required>
+                <input name="phone" class="input" type="tel" placeholder="telefono" title="numero incorrecto" pattern="[0-9]{7,10}" required>
+                <input id="contrasenia" name="password" class="input" type="password" placeholder="contraseña" title="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+                    pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required>
+                <input id="confirm__contrasenia" name="confirmpassword" class="input" type="password" placeholder="confirmar contraseña" title="La contraseña debe Coincidir con la anterior, debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+                    pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required>
+                <div class="bottom box__bottom--logout">
+                    <button class="submit" type="submit">Enviar</button>
+                    <!-- <input class="bottom box__bottom--logout" type="submit"> -->
+                    <!-- <a class="bottom box__bottom--logout" href="">continuar</a> -->
                 </div>
                 <div class="box__label">
-                    <label class=""><input class="" type="checkbox" id="" value="">Acepto <a class="" href="">Terminos y  Condiciones</a></label>
+                    <label class=""><input class="checkbox" type="checkbox" id="" value="" required >Acepto <a class="" href="">Terminos y  Condiciones</a></label>
                 </div>
                 <a class="" href="">
                     <div class="form__boxayuda">

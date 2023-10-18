@@ -41,7 +41,7 @@
     <div class="h1__box">
             <h1 class="poster__description--h1 poster__description--h1--canva h1__cita"><span class="poster__description--span poster__description--h1--canva h1__cita">A</span><span class="poster__description--span2 poster__description--h1--canva h1__cita">genda</span><br>una cita con nosotros</h1>
     </div>
-    <form class="form" action="" method="">
+    <form class="form contact-form" action="index.php?seccion=cita__celular" method="post">
         <div class="form__header form__header--cita">
             <a href="">
                 <img class="left" src="assets/images/rght.png" alt="flecha">
@@ -54,11 +54,12 @@
         <div class="form__body">    
                 <h2 class="form__h2" >Identificate</h2>
                 <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1 enlace" href="index.php?seccion=login">Iniciar Sesion</a></span>
-                <p class="form__p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="enlace" href="index.php?seccion=login">inicia sesion</a>.
+                <p class="form__p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular o  correo electronico para registrarte, si ya tienes una cuenta, por favor <a class="enlace" href="index.php?seccion=login">inicia sesion</a>.
                 </p> 
-                <input class="input" type="text" placeholder="Ingresa tu celular">
+                <input name="phone" class="input" type="text" placeholder="Ingresa tu celular" title="numero incorrecto" pattern="[0-9]{7,10}" required>
                 <div class="bottom box__bottom box__bottom--logout box__bottom--cita">
-                    <a class="bottom box__bottom--logout" href="index.php?seccion=cita__celular">continuar</a>
+                    <!-- <a class="bottom box__bottom--logout" href="index.php?seccion=cita__celular">continuar</a> -->
+                    <input type="submit" value="Continuar">
                 </div>
                 <!-- <div class="box__label">
                     <label class=""><input class="" type="checkbox" id="" value="">Acepto <a class="" href="">Terminos y  Condiciones</a></label>

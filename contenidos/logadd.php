@@ -16,7 +16,7 @@
     <div class="h1__box">
             <h1 class="poster__description--h1 poster__description--h1--canva h1__cita"><span class="poster__description--span poster__description--h1--canva h1__cita">R</span><span class="poster__description--span2 poster__description--h1--canva h1__cita">ecupera</span><br>tu cuenta</h1>
     </div>
-    <form class="form" action="" method="">
+    <form class="form contact-form" action="" method="">
         <div class="form__header">
             <!-- <a href="">
                 <img class="left" src="assets/images/rght.png" alt="flecha">
@@ -31,7 +31,8 @@
                 <span class="form__span" ><a class="form--text form--text1 enlace" href="index.php?seccion=login">Iniciar Sesion</a></span>
                 <!-- <p class="form__body--p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="form--text form--text1 a_cita" href="index.php?seccion=login">inicia sesion</a>.
                 </p> -->
-                <input class="input" type="text" placeholder="Ingresa tu correo o celular">
+                <input name="email" class="input" type="email" placeholder="Ingresa tu correo o celular" title="revisa tus datos"
+                    pattern="" required>
                 <div class="bottom box__bottom">
                     <a class="bottom" href="">continuar</a>
                 </div>

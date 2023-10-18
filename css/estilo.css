@@ -63,7 +63,9 @@ body{
 }
 /* items del nav */
 .nav{
+    display: flex;
     margin-top: 20px;
+    flex-wrap: nowrap;
 }
 .nav__ul{
     margin-top: auto;

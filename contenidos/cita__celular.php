@@ -2,7 +2,7 @@
     <div class="h1__box">
             <h1 class="poster__description--h1 poster__description--h1--canva h1__cita"><span class="poster__description--span poster__description--h1--canva h1__cita">A</span><span class="poster__description--span2 poster__description--h1--canva h1__cita">genda</span><br>una cita con nosotros</h1>
     </div>
-    <form class="form" action="" method="">
+    <form class="form formdig" action="" method="">
         <div class="form__header form__header--cita">
             <a href="">
                 <img class="left" src="assets/images/rght.png" alt="flecha">
@@ -17,14 +17,19 @@
                 <!-- <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1" href="index.php?seccion=login">Iniciar Sesion</a></span> -->
                 <p class="form__p">Por favor ingresa el codigo  enviado  a tu numero de celular por mensaje de texto
                 </p>
-                <div class="box_form_dig">
-                    <input class="input input_dig" type="text" placeholder="">
-                    <input class="input input_dig" type="text" placeholder="">
-                    <input class="input input_dig" type="text" placeholder="">
-                    <input class="input input_dig" type="text" placeholder="">
+                <div id="form_dig" class="box_form_dig">
+                    <input name="phone__dig" class="input input_dig" type="text" placeholder="" title="numero incorrecto"
+                    pattern="[0-9]{1}" required>
+                    <input name="phone__dig" class="input input_dig" type="text" placeholder="" title="numero incorrecto"
+                    pattern="[0-9]{1}" required>
+                    <input name="phone__dig" class="input input_dig" type="text" placeholder="" title="numero incorrecto"
+                    pattern="[0-9]{1}" required>
+                    <input name="phone__dig" class="input input_dig" type="text" placeholder="" title="numero incorrecto"
+                    pattern="[0-9]{1}" required>
                 </div>
                 <div class="bottom box__bottom box__bottom--logout box__bottom--cita">
-                    <a class="bottom box__bottom--logout" href="index.php?seccion=cita__datos">continuar</a>
+                    <!-- <a class="bottom box__bottom--logout" href="index.php?seccion=cita__datos">continuar</a> -->
+                    <input type="submit" value="continuar">
                 </div>
                 <div class="box__label">
                     <a class="enlace" href="index.php?seccion=citaUser">Corregir numero de celular</a>
