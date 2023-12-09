@@ -1,7 +1,38 @@
 1. modal,  cuando se quiere redimensionar el  formulario del filtro, que pasa porque se va a eliminar el formulario y  se va a agregar  a otro lado dl dom,  en cuanto a los datos de formulario diligenciados por el usuario, solo cuando los marca y no los envia pero si redimensiona la ventaa del navegador...
 2. base de datos.
    tabla usuarios: se le agrega la foto, el estado si esta ctivo, baneado o eliminado.
-3. la base de datos guarda los datos de los productos por categorias, categoria farmacia, de ropa y  accesorios, de juguetes, alimento, cada uno de estos va a tener el stock, precio, detalles, la informacion la va a poder modificar el ususario administrador a travez de un formulario, depende de la categroia se va a modificar lieramente ese formulario para que gestione la informacion de los productos.
-4. la base de datos guarda los datos de todas las publicaciones de la pagina, se va a organizar por categorias, categoria posteo-articulo, posteo-publicidad, posteo-banner, posteo-carrsel, post-nosotros; iguamlemnte va a pode rmodificar esa informacion o gestionarla a travez de un formuloario que se muestra diferente segun la categoria.
+3. la base de datos guarda los datos de los productos por categorias, categoria farmacia, de ropa y  accesorios/juguetes, de , alimento, cada uno de estos va a tener el stock, precio, detalles, la informacion la va a poder modificar el ususario administrador a travez de un formulario, depende de la categroia se va a modificar lieramente ese formulario para que gestione la informacion de los productos.
+4. la base de datos guarda los datos de todas las publicaciones de la pagina, se va a organizar por categorias, categoria Pservicio, padopta; iguamlemnte va a pode rmodificar esa informacion o gestionarla a travez de un formuloario que se muestra diferente segun la categoria.
+cada publicacion, va a tener un espacio en la pagina web, si solo esta en la la pagina de servicios, o  tambien va a aparecer en  el slider de el home(EN ESTE CASO SE REQUIERE UNA 	imagen de ciertas dimensiones.)
+todos los datos de la publicaciones son: 
+    id
+    titulo
+    descripcion
+    imagen
+    precio
+    descuento
+    categoria(Pservicio, Padopta),
+solo una publicacion de categoria Pservicio puede tener varias subpublicaciones con los siguientes datos(se guardan publicaciones de desparacitacon por ejemplo.):
+     titulo
+     subtitulo
+     parrrafo
+     imagen
+     id
+solo una publicacion de categoria Padopta puede tener varias subpublicaciones con los siguientes datos(se guardan publicaciones de las mascotas a adoptar por ejemplo.):
+     id
+     imagen varisa imagenes
+     raza
+     sexo
+     tallla
+     edad
+     esterilizado
+     especie
+     color
+3.5 
 4. vulnerabilidad url:
    http://localhost/veterinaria/contenidos/login.php
+5. error usuario: danpezdavid1312@gmail.com contraseña.
+6.relacion de usuario-productos es de muchos a muchos.
+7. la tabla de productos debe tener un registro donde indiqe en que espacio de la pagina web va a aparecer el producto(slider y/o en el carrusel), lo mismo para la tabla serivicio, por ejejmplo una publicacion a cerca de desparzacitacion, puede aparecer en e l slider y/o en una publicaion masd detallada en pservicios.
+(si una publicacion tiene una imagen slider debe aparecer un diseño espcial.)
+8. probar: http://localhost/veterinaria/admin/index.php?seccion=AdminUsuarios

@@ -9,6 +9,10 @@ import sliderAdd from "./modulos/sliderAdd.js";
 import perfilResponsive from "./modulos/perfil.js";
 import resizeForSquareAppearance from "./modulos/responsiveDiv.js";
 import filter from "./modulos/filtro.js";
+import usuariosAdmin from "./modulos/usuariosAdmin.js";
+import adminPublic from "./modulos/adminPublic.js";
+import openWindowImg from "./modulos/windowOPen.js";
+import { Validar_file } from "./modulos/validar__file.js";
 const d = document;
 //en la variable seccion guardo el resultado de ver si estoy  ejecutando  el modulo de adopta mascota, si es true  es porque encuentra el input hiodden que esta en la pgina de adopta.php, y ejecuto la funcion modal.
 
@@ -27,13 +31,20 @@ if (d.getElementById("home") != null){
 // Evento cuando se redimensiona la ventana
 window.addEventListener("resize",(e)=>{
     if (d.getElementById("producto") != null){
-        resizeForSquareAppearance();
+        console.log('ejecuta la funcion');
+        console.log(d.getElementById("producto"));
+        resizeForSquareAppearance(e);
+    }else{
+        console.log('No');
     }
 })
 // Evento cuando se carga el contenido
 d.addEventListener("DOMContentLoaded",(e)=>{
     if (d.getElementById("producto") != null){
-        resizeForSquareAppearance();
+        console.log(d.getElementById("producto"))
+        resizeForSquareAppearance(e);
+    }else{
+        console.log('no');
     }
 })
 if (d.getElementById("hiddenPerfil") != null){
@@ -60,6 +71,28 @@ if (d.querySelector(".formdig") != null){
             //esta funcios se activa solo en el modulo  de adopta mascota para la interaccion con el filtro
             filter(e);
         }
+        if (d.getElementById("homeAdmin") != null){
+            //esta funcios se activa solo en el modulo  de adopta mascota para la interaccion con el filtro
+            usuariosAdmin(e);
+            //funcion que abre una imagen en nueva pestaña al hacer click en un icono, en la pagina de admin publicaciones
+            openWindowImg(e);
+        }
+        
+        if (d.getElementById("AdminPublic") != null){
+            //esta funcios se activa solo en el modulo  de adopta mascota para la interaccion con el filtro
+            adminPublic(e);
+        }
+        if (d.getElementById("input_file") != null){
+            //esta funcios se activa solo para validar las imagenes o archivos que envia el usuario
+            if(e.target.matches('.input_file--img')){
+                // const validarArchivoDimension = new Validar_file();
+                // validarArchivoDimension.validar_dimension(e);
+            }
+        }
     })
-
-
+    if (d.getElementById("input_file") != null){
+        //esta funcios se activa solo para validar las imagenes o archivos que envia el usuario
+        const validarArchivo = new Validar_file();
+        validarArchivo.validar_tamanio();
+    }
+    

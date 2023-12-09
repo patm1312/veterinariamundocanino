@@ -415,3 +415,108 @@ if (d.querySelector(".formdig") != null){
 }
 
 
+
+export default function usuariosAdmin(e){
+    //este script es para la interaccion de mostarr o ocultar usuario  
+    console.log("se ejecuta usuaios admin")
+    const d = document;
+    //expresion regular para validar que en la clase se va a encontrar un numero que especifica el numero de identificacion de cada usuario
+    var regex = /(\d+)/g;
+//aqui almaceno la funcion
+        let openWindow;
+        let a, b,c,g;
+        //en clase guardo la concatenacion de . + la clase que corresponde a donde le diclick:
+        let clase ;
+        //en clase guardo la primera clase q aparece guardad de el registro que le diclick
+        clase = e.target.classList[0];
+        //en a comprobar guardo ese numero que aparece en la clase que le di click, o  sea el enlace de ver
+        let aComprobar = clase.match(regex);
+        a = '.';
+        a += clase;
+        console.log(a)
+        //obtengo el numero de filtro que le di click, este se almacena en la calse que corresponde a un filtro unico..filyto__1 ...
+        let numFiltro = clase
+        //concateno con down +  el numfiltro para acceder a las flechas de up y down que cambian cuando  el usuario da click
+        let down = '.down__';
+        let up = 'up__';
+        up += aComprobar;
+        down += numFiltro;
+        //en clase__box guardo el selector para seleccionar el div que corresponde a cada enlace de filtro en donde le he dado click, ver array:
+        console.log(up)
+        let clase_box = document.getElementById(aComprobar);
+        console.log(clase_box)
+        b = "block__filter";
+        c = clase_box;
+        g = "";
+    openWindow = function (a,b,c,g,e){
+        console.log(a)
+        console.log(e.target)
+        console.log(d.querySelectorAll(a));
+        if(e.target.matches(a)){
+            e.preventDefault();
+            //al elelmento nav o al input de buscar lo  activo  ponienole la clase b
+            c.classList.toggle(b);
+            //si el div que contiene los input radio esta activado o tiene la clase block__filter, muestro down
+            console.log(d.getElementById(up).innerText)
+            if(d.getElementById(up).innerText == 'Ver'){
+                console.log('es ocultar');
+                console.log(d.getElementById(up).innerText)
+                d.getElementById(up).textContent = "Ocultar";
+                console.log(d.getElementById(up).innerText)
+            }else{
+                console.log('es ver');
+                d.getElementById(up).textContent = 'Ver';
+            }
+            console.log(d.getElementById(up).innerText)
+        }else if(e.target.matches('.header')){
+        
+        }
+}
+//solo si he dado click en un elemento  que contiene en su clase la palabra filtro se va a ejecutar la funcion:
+// if (typeof a === 'number') {
+//     console.log('Es un número');
+//   }else{
+//     console.log('Es un string');
+//   }
+  function isNum(aComprobar){
+    
+    //return !isNaN(a)
+    if(!isNaN(aComprobar)){
+        console.log( aComprobar + 'Es un número');
+        openWindow(a,b,c,g,e);
+    }else{
+        console.log( a + 'Es un string');
+    }
+  }
+  isNum(aComprobar);
+// if(a.includes('f')){
+//     openWindow(a,b,c,g,e);
+// }else{
+    
+
+
+}
+
+
+
+$publicacion = $row["idpublicaciones"];
+    echo $publicacion;
+        $cTextosPservicio = <<<SQL
+        SELECT 
+            *
+        FROM
+            PServicio
+        WHERE
+            publicaciones_idpublicaciones = $publicacion
+        SQL;
+        $stmtS = $pdo->prepare($cTextosPservicio);
+// Especificamos el fetch mode antes de llamar a fetch()
+ $stmtS->setFetchMode(PDO::FETCH_ASSOC);
+ //Ejecutamos
+ $stmtS->execute();
+ if($rowS = $stmtS->fetch()){
+     var_dump($rows);
+     echo "hay resultados en la tabla de Pservicios";
+ }else{
+     echo "NO hay resultados en la tabla Pservicios";
+ }

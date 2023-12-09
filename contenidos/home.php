@@ -4,10 +4,10 @@
                        <a class="slider-slide active" href="">
                             <img class="sliderImg" src="assets/images/purplecat.png" alt="">
                         </a>
-                        <a class="slider-slide" href="">
+                        <a class="slider-slide" href="index.php?seccion=cita">
                             <img class="sliderImg" src="assets/images/slider_cita.png" alt="ddfd">
                         </a>
-                        <a class="slider-slide" href="">
+                        <a class="slider-slide" href="index.php?seccion=adopta">
                             <img class="sliderImg" src="assets/images/AdoptaPoster.png" alt="rrrrr">
                         </a>
 </section>
@@ -30,7 +30,7 @@
     <div class="add__container">
         <div class="carrusell">
             <div class="add__container--box add__containerBox--width"   id="box1">
-                <a href="">
+                <a href="index.php?seccion=productos">
                     <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                     <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                     <div class="add__containerBox--description">
@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div class="add__container--box " id="box2">
-            <a href="">
+            <a href="index.php?seccion=productos">
                 <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                 <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                 <div class="add__containerBox--description">
@@ -52,7 +52,7 @@
             </a>
             </div>
             <div class="add__container--box " id="box3">
-                <a href="">
+                <a href="index.php?seccion=productos">
                     <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                     <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                     <div class="add__containerBox--description">
@@ -63,7 +63,7 @@
                 </a>
             </div>
             <div class="add__container--box " id="box4">
-                <a href="">
+                <a href="index.php?seccion=productos">
                     <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                     <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                     <div class="add__containerBox--description">
@@ -74,7 +74,7 @@
                 </a>
             </div>
             <div class="add__container--box " id="box5">
-                <a class="a__Add" href="">
+                <a class="a__Add" href="index.php?seccion=productos">
                     <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                     <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                     <div class="add__containerBox--description">
@@ -85,7 +85,7 @@
                 </a>
             </div>
                 <div class="add__container--box " id="box6">
-                    <a href="">
+                    <a href="index.php?seccion=productos">
                         <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                         <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                         <div class="add__containerBox--description">
@@ -96,7 +96,7 @@
                     </a>
                 </div>
                 <div class="add__container--box " id="box7">
-                    <a href="">
+                    <a href="index.php?seccion=productos">
                             <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                             <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                             <div class="add__containerBox--description">
@@ -107,7 +107,7 @@
                     </a>
                     </div>
             <div class="add__container--box " id="box8">
-                <a href="">
+                <a href="index.php?seccion=productos">
                     <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                     <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                     <div class="add__containerBox--description">
@@ -118,7 +118,7 @@
                 </a>
             </div>
                 <div class="add__container--box " id="box9">
-                    <a href="">
+                    <a href="index.php?seccion=productos">
                         <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                         <img class="add__containerImg" src="assets/images/guacal.png" alt="">
                         <div class="add__containerBox--description">
@@ -138,7 +138,7 @@
             <img class="poster__img poster__img--menor" src="assets/images/pngvacunacion.png" alt="imagen de perro y gato">  
             <p class="poster__description--p">los gatos y perros son animales de compañia que se integran a tu grupo familiar, cuidarlos es importante para su salud y bienestar, en Mundo  Canino tenemos el programa profesional de vacunacion si tienes alguno  de ellos, obtiene tu  calendario de vacunacion para tu mascota y conoce mas en el boton de abajo.</p>
             <div class="bottom bottom--orange">
-                <a class="bottom bottom--orange" href="">Saber Mas</a>
+                <a class="bottom bottom--orange" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
 </section>
@@ -149,7 +149,7 @@
         <img class="poster__img poster__img--menor" src="assets/images/dogpeluq.png" alt="imagen de perro y gato"> 
         <p class="poster__description--p">La higiene y  aseo en tu mascota es importante para la prevencion de enfermedades y parasitos, ademas ayuda a la estetica de nuestro perro o gato. En Mundo Canino tenemos los mejores servicios de peluqueria y  estetica, dale click abajo y  conoce mas.</p>
         <div class="bottom bottom--gray">
-            <a class="bottom bottom--gray " href="">Saber Mas</a>
+            <a class="bottom bottom--gray " href="index.php?seccion=servicio">Saber Mas</a>
         </div>
     </div>
     <img class="poster__img poster__img--mayor" src="assets/images/dogpeluq.png" alt="imagen de perro y gato">  

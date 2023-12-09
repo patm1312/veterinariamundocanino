@@ -1,10 +1,15 @@
 <?php
-//si un usuario esta logueado no deberia ver esta pagina.
+session_start();
      if (isset($_SESSION['user_id'])) {
-         header('Location:index.php');
+        //header("Location: ../veterinaria/index.php?set=1");
+         //header("Location: .$/veterinaria/index.php");
+         //header("Location: http://localhost/veterinaria/index.php?set=1");
+         echo "<script>window.location.href='/veterinaria/index.php?set=1'</script>";
+         
        }
         //si esta seteado el serverreferer pues vo a laurl que estaba pero si no existe pues voy al index.php:
         $_SESSION['referer'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER']:'../index.php';
+       
 ?>
 <section class="">
     <div class="h1__box">

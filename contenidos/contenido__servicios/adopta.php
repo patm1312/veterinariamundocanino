@@ -20,7 +20,7 @@
                         <a class="filtro__1" href=""> 
                             <div class="filtro__1 section__filter--filtro">
                                 <h3  class="filtro__1 section__filter--h3">Especie:</h3>
-                                 <img class="filtro__1 up up__1 none__filter " src="assets/images/imgup.png" alt="up">
+                                <img class="filtro__1 up up__1 none__filter " src="assets/images/imgup.png" alt="up">
                                 <img class="filtro__1 down down__1" src="assets/images/imgdow.png" alt="up">
                             </div>
                         </a>

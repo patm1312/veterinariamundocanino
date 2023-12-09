@@ -107,6 +107,10 @@
                         <td class="tdVac" ></td>
                         <td class="tdVac tdVac--color" ></td>
                     </tr>
+                    <tr class="trVac">
+                        <th class="thVac thVac--block">Proxima Dosis:</th>
+                        <td class="tdVac" colspan="5" ><span>rabia: fecha</span></td>
+                    </tr>
                     
                 </table>
             </div>
@@ -172,9 +176,12 @@
                         <td class="tdVac tdVac--color" ></td>
                     </tr>
                     <tr class="trVac">
+                        <th class="thVac thVac--block">Proxima Dosis:</th>
+                        <td class="tdVac" colspan="5" ><span>rabia: fecha</span></td>
+                    </tr>
+                    <tr class="trVac">
                         <td class="tdVac tdVac--commit" colspan="6" >* Bajo Condicion Medica.</td>
                     </tr>
-                    
                     
                 </table>
             </div>
@@ -226,6 +233,10 @@
                     <tr class="trVac">
                         <th class="thVac thVac--block">Cada 3 Meses</th>
                         <td class="tdVac" ></td>
+                    </tr>
+                    <tr class="trVac">
+                        <th class="thVac thVac--block">Proxima Dosis:</th>
+                        <td class="tdVac"  ><span>rabia: fecha</span></td>
                     </tr>
                 </table>
         </div>

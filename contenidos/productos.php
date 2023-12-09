@@ -1,11 +1,11 @@
 <section class="container container__block">
 
-    <input type="hidden" id="adopta_mascota">
+    <input type="hidden" id="productos">
             <!-- <div class="poster__description">
                 <h1 class="poster__description--h1 poster__description--h1--canva"><span class="poster__description--span poster__description--h1--canva">A</span>dopta o <span class="poster__description--span2 poster__description--h1--canva">Apadrina</span><br></h1>
                 <p class="poster__description--p">Hemos dispuesto de este grupo  de animalitos que estan esperando un hogar donde reciba mucho  amor, solo  debes buscar el tipo  de mascota que quieres, puedes filtrar por raza, edad, sexo, talla o  si esta esterilizado o no, luego seleccionarlo y  de esta forma nos envias tus datos para contactarte e iniciar el proceso.</p>
             </div> -->
-            <a class="hidden buton modalOpen" href="">         
+            <!-- <a class="hidden buton modalOpen" href="">         
                     <img class="img_preview-poster modalOpen" src="assets/images/filtrar.png" alt="pruebaimagen">
                     <span class="h2--servicios modalOpen">Filtros</span>
             </a>
@@ -121,7 +121,7 @@
                 </form></dialog>
             
              <aside class="aside_hiden"></aside> 
-             <div>
+             <div> -->
                  <h2 class="h2 h2--servicios bottom__gray">productos</h2>
                  <div class="tittle_productos">
                     <h2 class="info_result">Resultado de busqueda: <span class="info_result">x productos encontrados</span></h2>

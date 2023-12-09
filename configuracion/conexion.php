@@ -38,6 +38,5 @@ try{
     //con el atributo atttr que en su primer parametro es lo  que se especifica y en el segundo parametro es lamanera en que uso las consultas, si es con array o con obj(PDO::FETCH_OBJ)
 
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ)
-
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 ?>

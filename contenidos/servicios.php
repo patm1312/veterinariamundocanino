@@ -14,8 +14,7 @@
                 <div class="box__preview">
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante </p>
                 </div>
-                
-                    <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                    <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
                 
             </div>
         </div>
@@ -30,7 +29,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -44,7 +43,7 @@
                     <p  class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -58,7 +57,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -72,7 +71,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -86,7 +85,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -100,7 +99,7 @@
 
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -114,7 +113,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
                     
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -128,7 +127,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -141,7 +140,7 @@
                     <p class="preview">La desparacitacion tanto en felinos y  caninos es importante para evitar parasitos intestinales que pueden ocasionar daños en la salud de tu mascota, conoce mas a cerca de como evitarlos.</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=servicio">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -167,7 +166,7 @@
                     <p class="preview">adopta un perro o gato y  hazlo parte de tu familia, con tu aporte estaras ayudando a que un animalito reciba una alimentacion y unhogar, sobre todo mucho  amor y  compañia....</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="index.php?seccion=adopta">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=productos">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -180,7 +179,7 @@
                     <p class="preview">adopta un perro o gato y  hazlo parte de tu familia, con tu aporte estaras ayudando a que un animalito reciba una alimentacion y unhogar, sobre todo mucho  amor y  compañia....</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="index.php?seccion=adopta">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=productos">Saber Mas</a>
             </div>
         </div>
         <div class="servicios__box">
@@ -193,7 +192,7 @@
                     <p class="preview">adopta un perro o gato y  hazlo parte de tu familia, con tu aporte estaras ayudando a que un animalito reciba una alimentacion y unhogar, sobre todo mucho  amor y  compañia....</p>
 
                 </div>
-                <a class="bottom bottom--servicios" href="index.php?seccion=adopta">Saber Mas</a>
+                <a class="bottom bottom--servicios" href="index.php?seccion=productos">Saber Mas</a>
             </div>
         </div>
     </div>

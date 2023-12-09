@@ -1,12 +1,7 @@
 <?php
 include('../configuracion/conexion.php');
-if (isset($_SESSION['user_id'])) {
-  header('Location:index.php');
-}
-echo"pagina de login formularios";
  if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $url_anterior = $_SESSION['referer'];
-    echo $url_anterior;
     $records = $pdo->prepare('SELECT idusuario,nombre, email, clave, nivelUsuario FROM usuarios WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
     $records->execute();
@@ -17,6 +12,7 @@ echo"pagina de login formularios";
     // var_dump($results);
     if($results){
         if (count($results) > 0 && password_verify($_POST['password'], $results['clave'] ) ) {
+          echo "loginformulario hay resultado ";
             //contraseña verificada
             //almaceno el id del usuario de la consulta en la sesion.
             $_SESSION['user_id'] = $results['idusuario'];
@@ -32,8 +28,11 @@ echo"pagina de login formularios";
     }else{
       $_SESSION['rta'] = "error__session";
       header("Location: http://localhost/veterinaria/index.php?seccion=login");
-
     }
     
+  }
+  if (isset($_SESSION['user_id'])) {
+    header("Location: /veterinaria/index.php");
+    //header('Location:index.php');
   }
 ?>

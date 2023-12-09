@@ -20,6 +20,37 @@ body{
     margin: 0px;
     padding-top: 100px;
 }
+/* posicionado respecto a info__personal */
+
+.paginador{
+    position: absolute;
+    bottom: 35px;
+}
+.info__personal--paginador{
+    position: absolute;
+}
+.info__personal--paginador > .paginador {
+    position: relative;
+    display: flex;
+    justify-content: left;
+    bottom: -35px;
+    margin-bottom: 10px;
+  }
+.paginador__ul{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: center;
+   
+}
+.paginador__li{
+    display: block;
+    margin: 5px;
+} 
+.paginador__li > a{
+    padding: 5px;
+}
+.actual{ background: rgb(138, 138, 251); color: white; }
 /* .header-hm{
     display: flex;
     justify-content: space-between;
@@ -701,7 +732,9 @@ body{
     height:100px;
 } 
 .info__personal{
+    width: 90%;
     margin-bottom: 15px;
+    height: auto;
 }
 .img__portada{
     display: block;
@@ -771,6 +804,10 @@ body{
     display: block;
     width: auto;
     padding: 5px;
+}
+.line__down{
+    border-bottom: 2px solid rgb(98, 235, 86);
+    padding-bottom: 10px;
 }
 .box_linedonwn{
     border-bottom: 2px solid rgb(157, 157, 226);
@@ -925,11 +962,83 @@ display: block
     table-layout: fixed;
     margin: 15px auto;
    
+   
 }
 .trVac{
     background-color: #ffffff;
     width: 10px;
     
+}
+/* table de administracion de publicaciones */
+.aniadir{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+.a__aniadirP{
+    display:inline-block;
+    width: auto;
+    margin: 15px;
+    
+}
+.aniadir-publicacion{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 10rem ;
+    justify-content: start;
+    padding: 10px;
+    align-items: center;
+    border: 1px solid rgb(200, 168, 95);
+    border-radius: 20px;
+}
+.aniadir-publicacion-img{
+    width: 25px;
+    margin-right: 10px;
+}
+/* validar formulario  de aniadir publicaciona */
+.messaje_span{
+    display:block;
+    width: 100%;
+    margin: 2px;
+    padding: 2px;
+    border: thin solid rgb(255, 0, 0);
+}
+.acciones__table{
+    display: flex;
+    justify-content: space-around;
+}
+.acciones__table-editar{
+    display: flex;
+    flex-direction: row;
+    
+}
+.table--admin{
+    border-collapse:collapse;
+    table-layout: fixed;
+    margin: 15px auto;
+}
+.thVac--admin{
+    border: 1px solid black;
+    background-color: #a191ee;
+    color: white;
+    margin: 15px auto;
+}
+.tdVac--admin{
+    background-color: #a091ee31;
+    border: 1px solid black;
+    padding: 0.3em;
+    text-align: center;
+}
+.td__admin--ps{
+    border: 1px solid rgba(0, 0, 0, 0.321);
+    text-align: center;
+}
+.inline{
+    display: inline;
+    margin: 20px 10px;
+    padding: 5px;
+    border: 1px solid rgb(200, 168, 95);
+    border-radius: 20px;
 }
 .tittleTable{
     font-size: 4vw;
@@ -981,6 +1090,14 @@ display: block
     min-width: 50%;
     height: auto;
     border: 1px solid black;
+}
+.foto__servicio{
+    max-width: 500px;
+    height: auto;
+    padding: 90px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid blue;
 }
 .nav__item--products{
     padding: 8px 0px;
@@ -1137,11 +1254,19 @@ display: block
 .none__filter{
     display: none;
 }
-
+.noneUser{
+    display: none;
+    z-index: 150;
+}
 .block__filter{
     display: block;
 }
-
+.block__filter--table{
+    display: table-row;
+}
+.cont{
+    padding: 25px 0px;
+}
 /* media query */
 
 @media(max-width:900px){
@@ -1231,6 +1356,13 @@ display: block
     border-radius: 20px;
     padding: 20px;
 }
+/* estilos de usuariosAdmin */
+.bottom__gray--margin{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    max-width: 90%;
+}
 @media(max-width:775px){
     
     .producto{
@@ -1238,11 +1370,14 @@ display: block
     }
     .foto__producto{
         min-width: 100%;
+        max-width: 300px;
+        height: auto;
         margin-bottom: 15px;
     }
     .img__footer{
         display: none;
     }
+   
 }
 @media(max-width:730px){
     .aside{

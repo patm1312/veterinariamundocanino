@@ -48,10 +48,8 @@ session_start();
                         </th>
                         </thead>
                         </tbody>
-
                     </table>
                     </li>
-                    
                     <!-- <li class="nav__search header-hm none__search">
                         <div class="box__inline">    
                                 <input type="text" name="search" class="search " placeholder="Buscar...">
@@ -77,10 +75,7 @@ session_start();
                         <img class="glass__search" src="assets/images/image6.png" alt="lupa">
                     </a>
                    </li>
-                   
-                    
                 </ul>
-                
                 <div class="block__menu">
                         <h2>Contactanos:</h2>
                         <div class="block__menu--box">
@@ -97,17 +92,15 @@ session_start();
                                 <p>facebbok</p>  
                             </div>
                         </div>
-                        
                    </div>
             </nav>
     </header>
         <main class="main">
-            
         <?php
         //si existe las esion resppuesta que es el mensaje de esito  o no cuando el ususario hace una peticion al sistema
             if(isset($_SESSION['rta'])){
                 //si no pongo  el echo, no valida oksession. invstigar.
-                echo "";
+               // echo "";
                 if($_SESSION['rta'] == 'ok__session'){
                     //echo "si existe la sesion se llama logueado";
                     $message = "usuario logueado satisfactoriamente";
@@ -123,6 +116,9 @@ session_start();
                     $clase = 'error';
                 }else if($_SESSION['rta'] == 'error__email_duplicate'){
                     $message = "este correo electronico ya existe";
+                    $clase = 'error';
+                }else if($_SESSION['rta'] == 'noAutorizado'){
+                    $message = "No autorizado para esta pagina";
                     $clase = 'error';
                 }
             }
@@ -159,12 +155,19 @@ session_start();
                 break;
                 case "producto": include("contenidos/contenido_productos/producto.php");
                 break;
+                case "about": include("contenidos/empresa/about.php");
+                break;
+                case "politica": include("contenidos/empresa/politica.php");
+                break;
+                case "servicio": include("contenidos/contenido__servicios/servicio.php");
+                break;
+                case 'static': include( 'contenidos/static.php'); break;
                 // case "updatePassword": include("contenidos/user/updatePassword.php");
                 //break;
                 // case "updateImage": include("contenidos/user/updateImage.php");
                 // break;
-                // case "pets": include("contenidos/user/mascota/mascota.php");
-                // break;
+                 case "pets": include("contenidos/user/mascota/mascota.php");
+                break;
                 // case "petsAdd": include("contenidos/user/mascota/Addmascota.php");
                 // break;
                 default: 
@@ -172,9 +175,6 @@ session_start();
 					include( 'contenidos/home.php');
             }
         ?>
-        <!-- <a href="index.php?seccion=cita">
-        <img class="main__botonCita" src="assets/images/botoncitas.png" alt="asignar  cita">
-        </a> -->
     </main>
     <footer class="footer">
         <div class="img__footer">
@@ -182,9 +182,21 @@ session_start();
         </div>
         <div class="">
             <h2 class="footer__boxenlaces--h2">Enlaces Utiles:</h2>
-            <a class="enlaces enlaces__footer" href="">Servicios</a>
-            <a class="enlaces enlaces__footer" href="">Acerca de</a>
-            <a class="enlaces enlaces__footer" href="">Politica de Privacidad</a>
+            <a class="enlaces enlaces__footer" href="index.php?seccion=servicios">Servicios</a>
+            <?php
+                //creo el acceso entre php y el directorio 
+				$directorio = opendir( 'institucion' );
+                //recorrer los contenidos 
+				while( $archivo = readdir( $directorio )  ){
+					if( $archivo == '.' || $archivo == '..' ){
+						continue;
+					}
+					$nombre_archivo = pathinfo( $archivo, PATHINFO_FILENAME );
+					echo "<a class='enlaces enlaces__footer' href='index.php?seccion=static&cual=$nombre_archivo'>$nombre_archivo</a>";
+				}
+				//cerramos el recurso
+				closedir($directorio);
+            ?>
         </div>
         <div class="footer__boxcontacto">
             <h2 class="footer__boxcontacto--h2">Información de contacto:</h2>
@@ -195,7 +207,6 @@ session_start();
                 <h2 class="footer__social--h2">Redes sociales:</h2>
                         <img class="footer__social--img" src="assets/images/facebook.svg" alt="social">
                         <img class="footer__social--img" src="assets/images/instagram.svg" alt="social">
-                    
         </div>
     </footer>
     <script src="scripts/index.js" type="module"></script>

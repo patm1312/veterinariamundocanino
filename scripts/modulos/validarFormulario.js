@@ -32,7 +32,7 @@ export default function contact_form(){
                 //operador ternario, si la expresion regular guardad en regex, no valida, (se usa metodo exec de expresiones regulares) si el valor del input no cumple con la expresion regular: localice el span y  active la clase
                 // return !regex.exec($input.value)?d.getElementById($input.name).classList.add("is-active"):d.getElementById($input.name).classList.remove("is-active");
                 if(!regex.exec($input.value)){
-                    //console.log("mal formato");       
+                    console.log("mal formato");       
                      d.getElementById($input.name).classList.add("is-active");
                      
                 }else if(regex.exec($input.value)){
