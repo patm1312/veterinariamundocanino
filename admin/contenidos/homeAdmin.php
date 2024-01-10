@@ -18,6 +18,14 @@
      break;
      case "deleteCita": include("contenidos/usuarios/formularios/deleteC.php");
      break;
+     case "editarH": include("contenidos/usuarios/formularios/editarH.php");
+     break;
+     case "deleteH": include("contenidos/usuarios/formularios/deleteH.php");
+     break;
+     case "addH": include("contenidos/usuarios/formularios/addH.php");
+     break;
+     case "addPac": include("contenidos/usuarios/formularios/addpac.php");
+     break;
      default: 
          echo "<p class='error'>La sección solicitada ($section), no existe</p>";
          include( 'contenidos/usuarios/users.php');

@@ -47,7 +47,7 @@ $stmt->execute();
     <div class="info__personal--info dog">
         <!-- //el id de la tabla corresponde a cada clase de el enlace de ver  que es un usuario, se identifica por un numero -->
         <div>
-            <table class='table--admin' ">
+            <table class='table--admin' >
                 <tr  class=''>
                     <th class='thVac--admin'>Numero</th>
                     <th class='thVac--admin'>Titulo</th>

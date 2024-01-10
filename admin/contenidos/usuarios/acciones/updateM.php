@@ -24,10 +24,6 @@
     //foto del slider que se envia a travez de session , es la ruta de la imagen que esta en la db de la publicacion en cuestion, q se va a modificar.
     //le quito esta ruta, ya que es la ruta almacenada en la DB, y con esa ruta no puedo elimnar la imagen en el servidor.
     $fotoM = str_replace('/contenidos/usuarios/assets/imgMascotas/', '', $foto);
-    echo 'la foto es: ';
-    echo $fotoM;
-    echo '<br>';
-    echo '.';
     unset($_SESSION['foto']);
     $nombre = $_POST['name'];
     $raza = $_POST['raza'];
@@ -37,7 +33,7 @@
     $idM = $_GET['idM'];
     if(($_FILES['imagen']['size'][0] > $maximo) || ($_FILES['imagen']['size'][1] > $maximo)){
         $_SESSION['rta_admin'] = "img_big";
-        echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarM&idM=$idM&idU=$idU'</script>";
+        echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
         }else{
             $c = "UPDATE pacientes set nombre=:nombre, raza=:raza, color=:color, edad=:edad,fechaAlta=now()";
             if(($_FILES['imagen']['size'][0] > 0)){
@@ -83,14 +79,14 @@
                 } catch (PDOException $exception) {
                     echo $exception;
                 }
-                //Si el último identificador insertado es mayor que cero, la inserción funcionó.
-                    $lastInsertId = $pdo->lastInsertId();
-                if($lastInsertId > 0){
-                    $_SESSION['rta_admin'] = "ok_form";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp$id'</script>";
-                }else{
-                    $_SESSION['rta_admin'] = "error";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp$id'</script>";
-                }
+                  //Si el último identificador insertado es mayor que cero, la inserción funcionó.
+                  $count = $stm->rowCount();
+                  if($count > 0){
+                      $_SESSION['rta_admin'] = "ok_form";
+                      echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
+                  }else{
+                      $_SESSION['rta_admin'] = "error";
+                      echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
+                  }
         }
 ?>

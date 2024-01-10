@@ -17,7 +17,7 @@
 
                 <div id="input_file" class="">
                     <p>Elige una imagen acorde  para tu nueva publicacion:</p>
-                    <input class="" id="archivoDefault" type="file" name="imagen[]" accept=".png, .jpg, .jpeg" tittle="La imagen debe ser cuadrada como minimo">
+                    <input class="" id="archivoDefault" type="file" name="imagen[]" accept=".png, .jpg, .jpeg" tittle="La imagen debe ser cuadrada como minimo" required >
                     <span class="messaje_form" id="span_input--default"></span>
                 </div>
                 <div class="">

@@ -22,7 +22,6 @@
         $idM = $_GET['idM'];
         $idU = $_GET['idU'];
         $c = "UPDATE pacientes set estado=:estado, fechaAlta=now() WHERE idpacientes=:idM AND usuario_idusuario=:idU";
-        echo $c;
         $stm = $pdo->prepare($c);
         $stm->bindParam(':idM', $idM, PDO::PARAM_INT);
         $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
@@ -33,15 +32,14 @@
         } catch (\Throwable $th) {
             echo $th;
         }
-        
-        //Si el último identificador insertado es mayor que cero, la inserción funcionó.
-        $lastInsertId = $pdo->lastInsertId();
-        if($lastInsertId > 0){
-            $_SESSION['rta_admin'] = "ok_form";
-            echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminUsuarios'</script>";
-        }else{
-            $_SESSION['rta_admin'] = "error";
-            echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminUsuarios'</script>";
-        }
+                  //Si el último identificador insertado es mayor que cero, la inserción funcionó.
+                  $count = $stm->rowCount();
+                  if($count > 0){
+                      $_SESSION['rta_admin'] = "ok_form";
+                      echo "<script>window.location.href='index.php?seccion=AdminUsuarios'</script>";
+                  }else{
+                      $_SESSION['rta_admin'] = "error";
+                      echo "<script>window.location.href='index.php?seccion=AdminUsuarios'</script>";
+                  }
     }
 ?>

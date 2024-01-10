@@ -1,5 +1,5 @@
 <?php
-session_start();
+include('configuracion/conexion.php');
  $section = isset($_GET['seccion']) ? $_GET['seccion']:'home';
  //cada vez que el usuario  le da click en el logo de login, depende de s esta logueado o no:
  if(isset($_SESSION['user_id'])){
@@ -9,6 +9,20 @@ session_start();
     $nombre = "Login";
     $url_login = 'index.php?seccion=login';
  }
+$cTextos = <<<SQL
+SELECT 
+	*
+FROM
+    publicaciones
+ WHERE usuario_idusuario=?
+SQL;
+$stmt = $pdo->prepare($cTextos);
+// Especificamos el fetch mode antes de llamar a fetch()
+$stmt->setFetchMode(PDO::FETCH_ASSOC);
+// Ejecutamos
+$dato_consulta = 64;
+$stmt->execute([$dato_consulta]);
+$p = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +35,9 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gorditas:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css"/>  
 </head>
 <body>
@@ -126,6 +143,7 @@ session_start();
             ?>
             <p class="<?php echo $clase; ?>"><?php echo $message; ?></p>
             <?php
+            unset($_SESSION[$_SESSION["user_id"]]);
             switch($section){
                 case "home": include("contenidos/home.php");
                 break;
@@ -166,15 +184,13 @@ session_start();
                 //break;
                 // case "updateImage": include("contenidos/user/updateImage.php");
                 // break;
-                 case "pets": include("contenidos/user/mascota/mascota.php");
-                break;
-                // case "petsAdd": include("contenidos/user/mascota/Addmascota.php");
-                // break;
+            
                 default: 
 					echo "<p class='error'>La sección solicitada ($section), no existe</p>";
 					include( 'contenidos/home.php');
             }
         ?>
+        
     </main>
     <footer class="footer">
         <div class="img__footer">

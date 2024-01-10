@@ -25,22 +25,55 @@
         </div>
     <img class="poster__img poster__img--mayor" src="assets/images/lococatHome.png" alt="gato">
 </section>
+<?php
+$cTextosProductos = <<<SQL
+SELECT 
+	*
+FROM
+    productos
+ WHERE espacio=?
+SQL;
+$stmtProd = $pdo->prepare($cTextosProductos);
+// Especificamos el fetch mode antes de llamar a fetch()
+$stmtProd->setFetchMode(PDO::FETCH_ASSOC);
+// Ejecutamos
+$dato_consulta = 'ad';
+$stmtProd->execute([$dato_consulta]);
+//$productos = $stmtProd->fetchAll();
+//var_dump($productos);
+?>
 <section class="add">
     <h2 class="h2">!Ahorra con nuestras Ofertas¡</h2>
     <div class="add__container">
         <div class="carrusell">
+<?php
+$imagen_oferta = 'assets/iconos/oferta.png';
+while ($rowProductos = $stmtProd->fetch()) {
+
+    $precio = $rowProductos["precio"];
+    $descuento = $rowProductos["descuento"];
+    $img = $rowProductos["foto"];
+    $id = $rowProductos["idproductos"];
+?>
             <div class="add__container--box add__containerBox--width"   id="box1">
-                <a href="index.php?seccion=productos">
-                    <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
-                    <img class="add__containerImg" src="assets/images/guacal.png" alt="">
+                <img class="oferta__descuento--img ad__oferta" src="<?php echo $imagen_oferta; ?>" alt="oferta">
+                <p class="oferta__descuento ad__desc" >
+                <?php echo $descuento;?></p>
+                <span class="oferta__descuento--dto ad__span">D.to</span>
+                <a href="index.php?seccion=producto&idProd=<?php echo $id; ?>" class="a__ad">
+                
+                    <img class="ad__img" src="admin/<?php echo $img; ?>" alt="imagenProducto">
                     <div class="add__containerBox--description">
                         <div class="add__containerBoxDescription">
-                            <p class="add__containerBox--p">$ 25.000</p>
+                            <p class="add__containerBox--p">$<?php echo $precio; ?></p>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="add__container--box " id="box2">
+<?php
+        };
+?>
+            <!-- <div class="add__container--box " id="box2">
             <a href="index.php?seccion=productos">
                 <img class="add__containerOfert--img" src="assets/images/20.png" alt="">
                 <img class="add__containerImg" src="assets/images/guacal.png" alt="">
@@ -127,33 +160,53 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
     </div>
 </section>
-<section class="container poster poster__vacunacion"> 
-    <img class="poster__img poster__img--mayor" src="assets/images/pngvacunacion.png" alt="imagen de perro y gato">  
+
+<?php
+$cTextosPreview = <<<SQL
+SELECT 
+	*
+FROM
+    publicaciones
+WHERE categoria = :categoria 
+OR  idpublicaciones =:id1
+OR idpublicaciones =:id2
+SQL;
+$id1 = 54;
+$id2 = 56;
+$stmtpreview = $pdo->prepare($cTextosPreview);
+// Especificamos el fetch mode antes de llamar a fetch()
+$stmtpreview->setFetchMode(PDO::FETCH_ASSOC);
+// Ejecutamos
+$stmtpreview->bindParam(':categoria', $categroia, PDO::PARAM_STR);
+$stmtpreview->bindParam(':id1', $id1, PDO::PARAM_STR);
+$stmtpreview->bindParam(':id2', $id2, PDO::PARAM_STR);
+try {
+    $stmtpreview->execute();
+    //code...
+} catch (\Throwable $th) {
+    echo $th;
+}
+while ($rowpreview = $stmtpreview->fetch()){
+    $tituloP = $rowpreview['titulo'];
+    $descripcionP = $rowpreview['descripcion'];
+    $idP = $rowpreview['idpublicaciones'];
+?>
+    <section class="container poster poster__vacunacion"> 
         <div class="poster__description">
-            <h2 class="h2">Vacunacion</h2>
-            <img class="poster__img poster__img--menor" src="assets/images/pngvacunacion.png" alt="imagen de perro y gato">  
-            <p class="poster__description--p">los gatos y perros son animales de compañia que se integran a tu grupo familiar, cuidarlos es importante para su salud y bienestar, en Mundo  Canino tenemos el programa profesional de vacunacion si tienes alguno  de ellos, obtiene tu  calendario de vacunacion para tu mascota y conoce mas en el boton de abajo.</p>
+            <h2 class="h2"><?php echo $tituloP; ?></h2>
+            <p class="poster__description--p"><?php echo $descripcionP; ?></p>
             <div class="bottom bottom--orange">
-                <a class="bottom bottom--orange" href="index.php?seccion=servicio">Saber Mas</a>
+                <a class="bottom bottom--orange" href="index.php?seccion=servicio&id=<?php echo $idP; ?>">Saber Mas</a>
             </div>
         </div>
-</section>
-<section class=" container poster poster__peluqueria"> 
-    <div class="poster__description">
-    <img class="poster__img--sec" src="assets/images/secador.png" alt="">
-        <h2 class="h2">Peluqueria</h2>
-        <img class="poster__img poster__img--menor" src="assets/images/dogpeluq.png" alt="imagen de perro y gato"> 
-        <p class="poster__description--p">La higiene y  aseo en tu mascota es importante para la prevencion de enfermedades y parasitos, ademas ayuda a la estetica de nuestro perro o gato. En Mundo Canino tenemos los mejores servicios de peluqueria y  estetica, dale click abajo y  conoce mas.</p>
-        <div class="bottom bottom--gray">
-            <a class="bottom bottom--gray " href="index.php?seccion=servicio">Saber Mas</a>
-        </div>
-    </div>
-    <img class="poster__img poster__img--mayor" src="assets/images/dogpeluq.png" alt="imagen de perro y gato">  
-</section>
+    </section>
+<?php
+};
+?>
 <section>
     <div class="ifrem">
         <div>

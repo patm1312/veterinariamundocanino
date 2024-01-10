@@ -12,5 +12,6 @@
     }
    echo $src;
 ?>
+<img src=" contenidos/publicaciones/assets/default/default.jpg" alt="prueba2">
 <p>titulo de prueba</p>
 <img src="<?php echo $src; ?>" alt="foto">   

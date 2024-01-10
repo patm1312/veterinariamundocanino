@@ -37,7 +37,7 @@ $stmt->execute();
 ?>
 <div class="info__personal"> 
     <input type="hidden" id="homeAdmin">
-    <a class="a__aniadirP" href="index.php?seccion=AdminPublicaciones&accion=addP">
+    <a class="a__aniadirP" href="index.php?seccion=AdminPublicaciones&accion=addM">
         <div class='aniadir-publicacion'>
             <img class="aniadir-publicacion-img" src="../assets/images/mas.png" alt="mas">
             <p>Añadir Nueva Mascota</p>
@@ -57,8 +57,7 @@ $stmt->execute();
                     <th class='thVac--admin'>Talla</th>
                     <th class='thVac--admin'>Esterilizado</th>
                     <th class='thVac--admin'>Color</th>
-                    <th class='thVac--admin'>Favorito</th>
-                    <th class='thVac--admin'>Espacio</th>
+                    <th class='thVac--admin'>foto</th>
                     <th class='thVac--admin'>Acciones</th>
                 </tr>
 <?php
@@ -78,19 +77,24 @@ $stmt->execute();
                     <td class='tdVac--admin' ><?php echo $row["talla"];  ?></td>
                     <td class='tdVac--admin' ><?php echo $row["esterelizado"];  ?></td>
                     <td class='tdVac--admin' ><?php echo $row["color"];  ?></td>
-                    <td class='tdVac--admin' ><?php echo $row["favorito"];  ?></td>
-                    <td class='tdVac--admin' ><?php echo $row["espacio"];  ?></td>
+                    <td class='tdVac--admin' >
+                        <a class="openImg" href="" >
+                            <!-- //pongo el icono de una imagen, cuando el usuario  le di click se recupera la ruta guardada en el input oculto que se abre la imagen  -->
+                            <img class="openImg" src="contenidos/publicaciones/assets/default/img.png" alt="preview">
+                            <input  type="hidden" value="<?php echo $row['foto'];?>">
+                        </a>
+                    </td>
                     <td class='tdVac--admin' >
                         <div class="acciones__table">
                             <div class="acciones__table-editar" >
-                                <a href="">
+                                <a href="index.php?seccion=AdminPublicaciones&accion=editarm&id=<?php echo $row["idPAdopta"] ;?>">
                                     <img src="../assets/images/lapiz.png" alt="lapiz">
                                     
                                 </a>
                                 
                             </div>
                             <div class="acciones__table-eliminar" >
-                                <a href="">
+                                <a href="index.php?seccion=AdminPublicaciones&accion=eraseM&id=<?php echo $row["idPAdopta"] ;?>">
                                     <img src="../assets/images/cruz.png" alt="cruz">
                                     
                                 </a>
@@ -119,7 +123,7 @@ $stmt->execute();
 					echo 'class="actual" ';
 				}
                 // http://localhost/veterinaria/admin/index.php?seccion=AdminUsuarios
-				echo "href='index.php?seccion=AdminPublicaciones&p=$i'>pág. $i</a></li>";
+				echo "href='index.php?seccion=AdminPublicaciones&accion=listadoM&p=$i'>pág. $i</a></li>";
 			};
         ?>	
 	    </ul>

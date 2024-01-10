@@ -5,7 +5,7 @@
         $idUser = $_GET['idU'];
     }else{
         $_SESSION['rta_admin'] == 'DateNull';
-        echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS'</script>";
+        echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota'</script>";
     }
     //consulto la bd con la publicacion a la que quiero editar para autocomplear en el formulario:
     $c = "SELECT nombre, color, raza, edad, certificados, estado, foto FROM pacientes WHERE idpacientes= :idM AND usuario_idusuario= :idU";
@@ -29,8 +29,6 @@
              $foto =  $r->foto;
             }
     $_SESSION['foto'] =  $foto;
-    echo  $edad;
-    echo  $nombre;
 ?>
 <input type="hidden" id="homeAdmin">
 <form enctype="multipart/form-data" class="form contact-form" action="contenidos/usuarios/acciones/updateM.php?idU=<?php echo $idUser;?>&idM=<?php echo $dato_consultaM;?>" method="post">
@@ -51,7 +49,7 @@
                 <p>Edita el color de su mascota:</p>
                 <input name="color" class="input" type="text" value=" <?php echo $color; ?>" placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>Edita la edad:</p>
-                <input value="<?php echo $edad; ?>" name="edad" class="input" type="tel" placeholder="edad" title="numero incorrecto" pattern="[0-9]{7,10}" required>
+                <input value="<?php echo $edad; ?>" name="edad" class="input" type="tel" placeholder="edad" title="numero incorrecto"  required>
 
                 <div id="input_file" class="">
                     <p>Actualiza imagen de su mascota:</p>

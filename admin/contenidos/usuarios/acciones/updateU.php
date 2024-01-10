@@ -26,8 +26,6 @@
     //le quito esta ruta, ya que es la ruta almacenada en la DB, y con esa ruta no puedo elimnar la imagen en el servidor.
     $fotoDB = str_replace('/contenidos/usuarios/assets/imgPerfil/', '', $foto);
     $fotoSDB = str_replace('/contenidos/usuarios/assets/imgPortada/', '', $fotoPortada);
-    echo $fotoDB;
-    echo $fotoSDB;
     unset($_SESSION['foto']);
     unset($_SESSION['fotoP']);
     $nombre = $_POST['name'];
@@ -87,16 +85,14 @@
                     $stm->bindParam(':nombre', $nombre, PDO::PARAM_STR);
                     $stm->bindParam(':apellido', $apellido, PDO::PARAM_STR);
                     $stm->bindParam(':direccion', $direccion, PDO::PARAM_STR);
-                    $stm->bindParam(':telefono', $telefono, PDO::PARAM_STR);
-                    $stm->bindParam(':telefonosecundario', $telefonosecundario, PDO::PARAM_STR);
-                    $stm->bindParam(':foto', $path1DB, PDO::PARAM_STR);
-                    $stm->bindParam(':fotoPortada', $path2DB, PDO::PARAM_STR);
+                    $stm->bindParam(':telefono', $telefono, PDO::PARAM_INT);
+                    $stm->bindParam(':telefonosecundario', $telefono2, PDO::PARAM_INT );
                     $stm->bindParam(':id', $id);
                     if($_FILES['imagen']['size'][0] > 0){
                         $stm->bindParam(':foto', $path1DB);
                     }
                     if($_FILES['imagen']['size'][1] > 0){
-                        $stm->bindParam(':fotoS', $path2DB);
+                        $stm->bindParam(':fotoPortada', $path2DB);
                     }
                     //ejecutar la consulta:
                     $stm->execute();
@@ -104,13 +100,13 @@
                     echo $exception;
                 }
                 //Si el último identificador insertado es mayor que cero, la inserción funcionó.
-                    $lastInsertId = $pdo->lastInsertId();
-                if($lastInsertId > 0){
+                $count = $stm->rowCount();
+                if($count > 0){
                     $_SESSION['rta_admin'] = "ok_form";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp$id'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarUser&id=$id'</script>";
                 }else{
                     $_SESSION['rta_admin'] = "error";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp$id'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarUser&id=$id'</script>";
                 }
         }
 ?>

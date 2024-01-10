@@ -1,127 +1,37 @@
+<?php
+session_start();
+include('configuracion/conexion.php');
+    //pagina quese envia a travez de get cuando plso sobre la numeracion de  lapagina al final. (pag.1, pag.2 ...)
+    $pagina_actual = isset( $_GET['p'] ) ? $_GET['p'] : 1;
+    $cantPorPagina = 9;
+    //devuelve la cantidad de usuarios 
+    $cTextos2 = "SELECT COUNT(idproductos) AS TOTAL FROM productos";
+    try {
+    $stmt2 = $pdo->prepare($cTextos2);
+    // Especificamos el fetch mode antes de llamar a fetch()
+    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+    // Ejecutamos
+    
+        $stmt2->execute();
+    } catch (\Throwable $th) {
+        echo  $th;
+    }
+   
+    $row2 = $stmt2->fetch();
+    $cantResultados = $row2['TOTAL'];
+    echo $cantResultados;
+    //cuantas paginas son que debo mostar de acuerdo  a la cantidad de usuarios dividido  entre la cantidad por pagina que quiero mostrar
+    $cantPaginas = ceil($cantResultados / $cantPorPagina);
+    if( $pagina_actual > $cantPaginas ){
+        $pagina_actual = $cantPaginas;
+    }
+    if( $pagina_actual < 1 ){
+        $pagina_actual = 1;
+    }
+    $dondeInicio = ($pagina_actual - 1) * $cantPorPagina;
+?>
 <section class="container container__block">
-
     <input type="hidden" id="productos">
-            <!-- <div class="poster__description">
-                <h1 class="poster__description--h1 poster__description--h1--canva"><span class="poster__description--span poster__description--h1--canva">A</span>dopta o <span class="poster__description--span2 poster__description--h1--canva">Apadrina</span><br></h1>
-                <p class="poster__description--p">Hemos dispuesto de este grupo  de animalitos que estan esperando un hogar donde reciba mucho  amor, solo  debes buscar el tipo  de mascota que quieres, puedes filtrar por raza, edad, sexo, talla o  si esta esterilizado o no, luego seleccionarlo y  de esta forma nos envias tus datos para contactarte e iniciar el proceso.</p>
-            </div> -->
-            <!-- <a class="hidden buton modalOpen" href="">         
-                    <img class="img_preview-poster modalOpen" src="assets/images/filtrar.png" alt="pruebaimagen">
-                    <span class="h2--servicios modalOpen">Filtros</span>
-            </a>
-            <div class="description">
-            <dialog class="filter__responsiveFather dialog"><form class="filter__responsive" action=""> 
-                <div class="filter__responsive__tittle">
-                    <h2 class="h2 section__filter">Filtrar:</h2>
-                    <a href="" class="modalClose cerrar">
-                        <img class="cerrar hidden filter__responsive__tittle--close"  src="assets/images/close.png" alt="up">
-                    </a>
-                </div>
-                   <a href=""> 
-                        <div class="section__filter">
-                            <div class="section__filter--filtro">
-                                <h3  class="section__filter--h3">Especie:</h3>
-                                <img class="up" src="assets/images/up.png" alt="up">
-                            </div>
-                                </a>
-                                    <div class="section__filter--box">
-                                        <label class="option">Perro</label>
-                                        <input class="option" type="radio">
-                                    </div>
-                                    <div class="section__filter--box">
-                                        <label class="">Gato:</label>
-                                        <input class="" type="radio">
-                                    </div>
-                        </div>
-                        <a href=""> 
-                        <div class="section__filter">
-                            <div class="section__filter--filtro">
-                                <h3  class="section__filter--h3">Edad:</h3>
-                                <img class="up" src="assets/images/up.png" alt="up">
-                            </div>
-                                </a>
-                                    <div class="section__filter--box">
-                                        <label class="option">Adulto</label>
-                                        <input class="option" type="radio">
-                                    </div>
-                                    <div class="section__filter--box">
-                                        <label class="">Cachorro:</label>
-                                        <input class="" type="radio">
-                                    </div>
-                        </div>
-                    
-                        <a href=""> 
-                        <div class="section__filter">
-                            <div class="section__filter--filtro">
-                                <h3  class="section__filter--h3">Sexo:</h3>
-                                <img class="up" src="assets/images/up.png" alt="up">
-                            </div>
-                                </a>
-                                    <div class="section__filter--box">
-                                        <label class="option">Hembra</label>
-                                        <input class="option" type="radio">
-                                    </div>
-                                    <div class="section__filter--box">
-                                        <label class="">Macho:</label>
-                                        <input class="" type="radio">
-                                    </div>
-                        </div>
-                        <a href=""> 
-                        <div class="section__filter">
-                            <div class="section__filter--filtro">
-                                <h3  class="section__filter--h3">Talla:</h3>
-                                <img class="up" src="assets/images/up.png" alt="up">
-                            </div>
-                                </a>
-                                    <div class="section__filter--box">
-                                        <label class="option">Mediano</label>
-                                        <input class="option" type="radio">
-                                    </div>
-                                    <div class="section__filter--box">
-                                        <label class="">Pequeño:</label>
-                                        <input class="" type="radio">
-                                    </div>
-                        </div>
-                        <a href=""> 
-                        <div class="section__filter">
-                            <div class="section__filter--filtro">
-                                <h3  class="section__filter--h3">Esterelizado:</h3>
-                                <img class="up" src="assets/images/up.png" alt="up">
-                            </div>
-                                </a>
-                                    <div class="section__filter--box">
-                                        <label class="option">Si</label>
-                                        <input class="option" type="radio">
-                                    </div>
-                                    <div class="section__filter--box">
-                                        <label class="">No</label>
-                                        <input class="" type="radio">
-                                    </div>
-                        </div>
-                        <a href=""> 
-                        <div class="section__filter">
-                            <div class="section__filter--filtro">
-                                <h3  class="section__filter--h3">Raza</h3>
-                                <img class="up" src="assets/images/up.png" alt="up">
-                            </div>
-                                </a>
-                                    <div class="section__filter--box">
-                                        <label class="option">Raza 1</label>
-                                        <input class="option" type="radio">
-                                    </div>
-                                    <div class="section__filter--box">
-                                        <label class="">Raza 2</label>
-                                        <input class="" type="radio">
-                                    </div>
-                        </div>
-                        <div class="bottom__box">
-                        <input class="bottom bottom__aside modalClose" type="submit" value="Aplicar">
-
-                    </div>
-                </form></dialog>
-            
-             <aside class="aside_hiden"></aside> 
-             <div> -->
                  <h2 class="h2 h2--servicios bottom__gray">productos</h2>
                  <div class="tittle_productos">
                     <h2 class="info_result">Resultado de busqueda: <span class="info_result">x productos encontrados</span></h2>
@@ -139,81 +49,54 @@
                     </p>
                  </div>
                  <div class="description_services">
-                    <div class="description_service--box">
-                        <a href="index.php?seccion=producto">
-                            <div class="description_services--img">
-                                <img class="img_preview-poster" src="assets/images/guacal.png" alt="">
-                            </div>
-                                <div class="description_services--descr">
-                                    <!-- <h2 class="nav__item nav__item--color">perro</h2> -->
-                                    <p class="p_posterPreview">aqui va la descripcion del producto</p>
-                                    <h2 class="nav__item nav__item--products nav__item--color">$20.000</h2>
-                                </div>
-                        </a>
-                   </div>
-                   <div class="description_service--box">
-                        <a href="index.php?seccion=producto">
-                            <div class="description_services--img">
-                                <img class="img_preview-poster" src="assets/images/guacal.png" alt="">
-                            </div>
-                                <div class="description_services--descr">
-                                    <!-- <h2 class="nav__item nav__item--color">perro</h2> -->
-                                    <p class="p_posterPreview">aqui va la descripcion del producto</p>
-                                    <h2 class="nav__item nav__item--products nav__item--color">$20.000</h2>
-                                </div>
-                        </a>
-                   </div>
-                   <div class="description_service--box">
-                        <a href="index.php?seccion=producto">
-                            <div class="description_services--img">
-                                <img class="img_preview-poster" src="assets/images/guacal.png" alt="">
-                            </div>
-                                <div class="description_services--descr">
-                                    <!-- <h2 class="nav__item nav__item--color">perro</h2> -->
-                                    <p class="p_posterPreview">aqui va la descripcion del producto</p>
-                                    <h2 class="nav__item nav__item--products nav__item--color">$20.000</h2>
-                                </div>
-                        </a>
-                   </div>
-                   <div class="description_service--box">
-                        <a href="index.php?seccion=producto">
-                            <div class="description_services--img">
-                                <img class="img_preview-poster" src="assets/images/guacal.png" alt="">
-                            </div>
-                                <div class="description_services--descr">
-                                    <!-- <h2 class="nav__item nav__item--color">perro</h2> -->
-                                    <p class="p_posterPreview">aqui va la descripcion del producto</p>
-                                    <h2 class="nav__item nav__item--products nav__item--color">$20.000</h2>
-                                </div>
-                        </a>
-                   </div>
-                   <div class="description_service--box">
-                        <a href="index.php?seccion=producto">
-                            <div class="description_services--img">
-                                <img class="img_preview-poster" src="assets/images/guacal.png" alt="">
-                            </div>
-                                <div class="description_services--descr">
-                                    <!-- <h2 class="nav__item nav__item--color">perro</h2> -->
-                                    <p class="p_posterPreview">aqui va la descripcion del producto</p>
-                                    <h2 class="nav__item nav__item--products nav__item--color">$20.000</h2>
-                                </div>
-                        </a>
-                   </div>
-                   <div class="description_service--box">
-                        <a href="index.php?seccion=producto">
-                            <div class="description_services--img">
-                                <img class="img_preview-poster" src="assets/images/guacal.png" alt="">
-                            </div>
-                                <div class="description_services--descr">
-                                    <!-- <h2 class="nav__item nav__item--color">perro</h2> -->
-                                    <p class="p_posterPreview">aqui va la descripcion del producto</p>
-                                    <h2 class="nav__item nav__item--products nav__item--color">$20.000</h2>
-                                </div>
-                        </a>
-                   </div>
-                 
-            </div>
+
+                 <?php
+                $cTextosProd = <<<SQL
+                SELECT * FROM productos
+                LIMIT $dondeInicio, $cantPorPagina
+                SQL;
+                try {
+                $stmtProd = $pdo->prepare($cTextosProd);
+                // Especificamos el fetch mode antes de llamar a fetch()
+                $stmtProd->setFetchMode(PDO::FETCH_ASSOC);
+                // Ejecutamos
+               
+                    $stmtProd->execute();
+                } catch (\Throwable $th) {
+                   
+                    echo $th;
+                   
+                }
+                //$rowProd = $stmtProd->fetch();
+                if($stmtProd){
+                    include("contenidos/vistas/vista_productos.php");
+                }else{
+                    echo 'aqui aparecen los productos asociados a cada usuario';
+                }
+            ?>
+
+                 </div>
              </div>
                 
             </div>
+            <?php 
+    if( $cantPaginas > 1 ):
+?>
+        <div class="paginador">
+            <ul class="paginador__ul">
+            <?php 
+                for( $i = 1; $i <= $cantPaginas; $i++ ){
+                    echo "<li class='paginador__li'><a ";
+                    if( $pagina_actual == $i ){
+                        echo 'class="actual" ';
+                    }
+                    // echo "href='index.php?seccion=AdminUsuarios&p=$i'>pág. $i</a></li>";
+                    echo "href='index.php?seccion=productos&p=$i'>pág. $i</a></li>";
+                };
+            ?>	
+            </ul>
+        </div>
+        <?php 
+        endif; 	
+        ?>  
 </section>

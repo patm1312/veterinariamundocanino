@@ -16,14 +16,11 @@
         $_SESSION['rta'] = 'noAutorizado';
         //echo "<script>window.location.href='/veterinaria/index.php'</script>";
     }
-
     if(isset( $_GET['idPc'] ) && isset( $_GET['idC'] )){
         $estado = 0;
         $idPc = $_GET['idPc'];
         $idC = $_GET['idC'];
-        echo $idPc;
         $c = "UPDATE cita set estado=:estado, fechaAlta=now() WHERE pacientes_idpacientes=:idPc AND idcita=:idC";
-        echo $c;
         $stm = $pdo->prepare($c);
         $stm->bindParam(':idPc', $idPc, PDO::PARAM_INT);
         $stm->bindParam(':idC', $idC, PDO::PARAM_INT);
@@ -34,17 +31,16 @@
         } catch (\Throwable $th) {
             echo $th;
         }
-        
         //Si el último identificador insertado es mayor que cero, la inserción funcionó.
-        $lastInsertId = $pdo->lastInsertId();
-        if($lastInsertId > 0){
+        $count = $stm->rowCount();
+        if($count > 0){
             $_SESSION['rta_admin'] = "ok_form";
-            //echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminUsuarios'</script>";
+            echo "<script>window.location.href='index.php?seccion=AdminUsuarios'</script>";
         }else{
             $_SESSION['rta_admin'] = "error";
-            //echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminUsuarios'</script>";
+            echo "<script>window.location.href='index.php?seccion=AdminUsuarios'</script>";
         }
     }else{
-        echo 'no';
+        
     }
 ?>

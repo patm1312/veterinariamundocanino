@@ -18,22 +18,29 @@
     }
 
     if(isset( $_GET['id'] )){
-        $estado = 0;
-        $idP = $_GET['id'];
-        $c = "UPDATE publicaciones set estado=:estado, fechaAlta=now() WHERE idpublicaciones=:id";
-        $stm = $pdo->prepare($c);
-        $stm->bindParam(':id', $idP, PDO::PARAM_INT);
-        $stm->bindParam(':estado', $estado, PDO::PARAM_INT);
-        //ejecutar la consulta:
-        $stm->execute();
-        //Si el último identificador insertado es mayor que cero, la inserción funcionó.
-        $lastInsertId = $pdo->lastInsertId();
-        if($lastInsertId > 0){
-            $_SESSION['rta_admin'] = "ok_form";
-            echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminPublicaciones'</script>";
+        if(!empty($_GET['id'])){
+            $estado = 0;
+            $idP = $_GET['id'];
+            $c = "UPDATE publicaciones set estado=:estado, fechaAlta=now() WHERE idpublicaciones=:id";
+            $stm = $pdo->prepare($c);
+            $stm->bindParam(':id', $idP, PDO::PARAM_INT);
+            $stm->bindParam(':estado', $estado, PDO::PARAM_INT);
+            //ejecutar la consulta:
+            $stm->execute();
+            //Si el último identificador insertado es mayor que cero, la inserción funcionó.
+            $count = $stm->rowCount();
+            if($count > 0){
+                $_SESSION['rta_admin'] = "ok_form";
+                echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminPublicaciones'</script>";
+            }else{
+                $_SESSION['rta_admin'] = "error";
+                echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminPublicaciones'</script>";
+            }
         }else{
-            $_SESSION['rta_admin'] = "error";
-            echo "<script>window.location.href='/veterinaria/admin/index.php?seccion=AdminPublicaciones'</script>";
+            
         }
+       
+    }else{
+
     }
 ?>

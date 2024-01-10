@@ -21,27 +21,25 @@
         $foto = $_SESSION['foto'];
     }else{
     }
-    echo $foto;
     //foto del slider que se envia a travez de session , es la ruta de la imagen que esta en la db de la publicacion en cuestion, q se va a modificar.
     $fotoS = $_SESSION['fotoS'];
     //le quito esta ruta, ya que es la ruta almacenada en la DB, y con esa ruta no puedo elimnar la imagen en el servidor.
     $fotoDB = str_replace('/contenidos/publicaciones/assets/ContenidoPServ', '', $foto);
     unset($_SESSION['foto']);
     if(isset($_POST['tittle'])){
+        $idPS = $_GET['idPS'];
+        $idp = $_GET['idp'];
         if(!empty($_POST['tittle'])){
-            echo '?no vacio';
             $titulo = $_POST['tittle'];
             $titulo = $_POST['subtittle'];
             $descripcion = $_POST['textarea'];
-            $idPS = $_GET['idPS'];
-            $idp = $_GET['idp'];
         }else{
             $_SESSION['rta_admin'] = "error";
-            echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";
+            echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS&idp=$idp&idPS=$idPS'</script>";
         }
         if(($_FILES['imagen']['size'][0] > 1024)){
             $_SESSION['rta_admin'] = "img_big";
-            //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";
+            echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS&idp=$idp&idPS=$idPS'</script>";
         }else{
             $c = "UPDATE PServicio set titulo=:titulo, subtitulo=:subtitulo, fechaAlta=now(), parrafo=:descripcion, estado=1";
             if(($_FILES['imagen']['size'][0] > $maximo)){
@@ -67,9 +65,6 @@
                 }
             }
            $c = $c .  " WHERE idPservicio=:idPS AND publicaciones_idpublicaciones=:idp";
-           echo '<br>';
-           echo 'consulñta';
-           echo $c;
                 try {
                     //preparar la consulta:
                     $stm = $pdo->prepare($c);
@@ -85,20 +80,18 @@
                         $stm->bindParam(':foto', $path1DB);
                     }
                     //ejecutar la consulta:
-                    echo '<br>';
-                    echo 'titulo ' . $titulo . ' subtitulo ' . $subtitulo . ' descripcion ' . $descripcion . ' idPS ' . $idPS . ' idp ' . $idp . ' foto ' . $path1DB
-;                    $stm->execute();
+                    $stm->execute();
                 } catch (PDOException $exception) {
                     echo $exception;
                 }
                 //Si el último identificador insertado es mayor que cero, la inserción funcionó.
-                    $lastInsertId = $pdo->lastInsertId();
-                if($lastInsertId > 0){
+                $count = $stm->rowCount();
+                if($count > 0){
                     $_SESSION['rta_admin'] = "ok_form";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp$id'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS&idp=$idp&idPS=$idPS'</script>";
                 }else{
                     $_SESSION['rta_admin'] = "error";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editar_pS&idPS=$idPS&idp=$idp'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS&idp=$idp&idPS=$idPS'</script>";
                 }
         }
     }

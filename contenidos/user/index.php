@@ -6,6 +6,25 @@ include('./configuracion/conexion.php');
     }else{
         $clase = "noneUser";  
     }
+    $idU =  $_SESSION['user_id'];
+    $cTextosUser = <<<SQL
+    SELECT 
+        *
+    FROM
+        usuarios
+    WHERE idusuario =?
+    SQL;
+    $stmtM = $pdo->prepare($cTextosUser);
+    // Especificamos el fetch mode antes de llamar a fetch()
+    //$stmt->fetch(PDO::FETCH_ASSOC);
+    $stmtM->setFetchMode(PDO::FETCH_ASSOC);
+    // Ejecutamos
+    $stmtM->execute([$idU]);
+    $rowU = $stmtM->fetch();
+    $fotoperfil = $rowU['foto'];
+    $fotoPortada = $rowU['fotoPortada'];
+    $_SESSION['fotoperfil'] =  $fotoperfil;
+    $_SESSION['fotoPortada'] =  $fotoPortada;
   }else{
         echo "<script>window.location.href='/veterinaria/index.php?set=1'</script>";
   }
@@ -24,17 +43,16 @@ include('./configuracion/conexion.php');
                     <p class="closeModal__acciones">Inicio</p>
                 </a>
                 <a class=" <?php echo $clase;?> " href="index.php?seccion=perfil&seccionUser=UserAdmin">
-                    <p class="closeModal__acciones"><?php echo $_SESSION['nivel_usuario'] ; ?></p>
+                    <p class="closeModal__acciones"><?php echo $rowU['nivelUsuario']; ?></p>
                 </a>
                 <a class="enlace_acciones" href="contenidos/user/logout.php">
                     <p class="closeModal__acciones">Logout</p>
-                </a>
-                                    
+                </a>              
             </div>
                 <div class="acciones">
                    <a class="<?php echo $clase; ?>" href="index.php?seccion=perfil&seccionUser=UserAdmin">
                         <div class="acciones--user">
-                            <p class=" accion_perfil--p responsive"><?php echo $_SESSION['nivel_usuario'] ; ?>
+                            <p class=" accion_perfil--p responsive"><?php echo $rowU['nivelUsuario']; ; ?>
                             </p>
                         </div>
                     </a>
@@ -58,13 +76,13 @@ include('./configuracion/conexion.php');
                         </div>
                     </a>
                 </div>
-                <img class="img__portada" src="assets/images/portadadogs.jpg" alt="">
+                <img class="img__portada" src="<?php echo $rowU['fotoPortada']; ?>" alt="fotoportada">
                 <div class="preview_portada">
-                    <img class="previewperfil" src="assets/images/userperfil.png" alt="foto_preview">
+                    <img class="previewperfil" src="<?php echo $rowU['foto']; ?> " alt="foto_perfil">
                     <div class="previewperfil--info">
-                        <h1 class="h2">Nombre usuario usuario </h1>
-                        <p>Usuario</p>
-                        <p>telefono</p>
+                        <h1 class="h2"><?php echo $rowU['nombre']; ?> </h1>
+                        <p><?php echo $rowU['nivelUsuario']; ?></p>
+                        <p><?php echo $rowU['telefono']; ?></p>
                     </div>
                 </div>
         </div>
@@ -81,11 +99,15 @@ include('./configuracion/conexion.php');
                     break;
                     case "updateUser": include("contenidos/user/update.php");
                     break;
-                    case "updateMascota": include("contenidos/user/mascota/Addmascota.php");
+                    case "petsAdd": include("contenidos/user/mascota/Addmascota.php");
+                    break;
+                    case "updateMascota": include("contenidos/user/mascota/updateMascota.php");
                     break;
                     case "mascota": include("contenidos/user/mascota/mascota.php");
                     break;
                     case "UserAdmin": include("contenidos/user/loginAdmin.php");
+                    break;
+                    case "pets": include("contenidos/user/mascota/mascota.php");
                     break;
                     default: 
                         echo "<p class='error'>La sección solicitada ($sectionUser), no existeeee</p>";

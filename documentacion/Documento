@@ -36,3 +36,11 @@ solo una publicacion de categoria Padopta puede tener varias subpublicaciones co
 7. la tabla de productos debe tener un registro donde indiqe en que espacio de la pagina web va a aparecer el producto(slider y/o en el carrusel), lo mismo para la tabla serivicio, por ejejmplo una publicacion a cerca de desparzacitacion, puede aparecer en e l slider y/o en una publicaion masd detallada en pservicios.
 (si una publicacion tiene una imagen slider debe aparecer un diseño espcial.)
 8. probar: http://localhost/veterinaria/admin/index.php?seccion=AdminUsuarios
+9. ERRORES==> 
+    ==>cuando no hay pacientes registrado  en la pagina de admin, no aparece nada, ver usuario cuadno lbd d edatos esta vacia.
+    ==>areglar los enlaces de admin.
+    ==>algunos input no correpsonden a su funcion, mensajes de error o validacion de textos o numeros.
+    ==>
+    
+cuando  se crea un usuario se debe crear su plan de desparacitacion y vacunacion al paciente.
+

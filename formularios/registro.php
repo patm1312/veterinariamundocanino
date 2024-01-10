@@ -7,7 +7,9 @@
     $clave = $_POST['password'];
     //funcion password hash, ver explicacion en word, parametrod, la clave que me llego, el metood o algoritmo par aencryptar y  el costo, que es el numero  de vecs que se genera una encryptacion sobre el resultado cada vez q se envia.
     $password_encrypt = password_hash($clave, PASSWORD_DEFAULT, ['cost' => 10] );
-        $c = "INSERT INTO usuarios ( nombre,apellido,email,clave,fechaAlta) VALUES(:nombre, :apellido, :email, :clave, NOW())";
+        $c = "INSERT INTO usuarios ( nombre,apellido,email,clave,fechaAlta, foto, fotoPortada) VALUES(:nombre, :apellido, :email, :clave, NOW(), :foto, :fotoP)";
+        $foto = 'contenidos/user/assets/img/default/perfil.jpg';
+        $fotoP = 'contenidos/user/assets/img/default/portada.png';
        
             try {
                     //preparar la consulta:
@@ -18,6 +20,8 @@
                 $stm->bindParam(':nombre', $nombre, PDO::PARAM_STR);
                 $stm->bindParam(':apellido', $apellido, PDO::PARAM_STR);
                 $stm->bindParam(':email', $email, PDO::PARAM_STR);
+                $stm->bindParam(':foto', $foto, PDO::PARAM_STR);
+                $stm->bindParam(':fotoP', $fotoP, PDO::PARAM_STR);
                 $stm->bindParam(':clave', $password_encrypt, PDO::PARAM_STR);
                     //ejecutar la consulta:
                     $stm->execute();

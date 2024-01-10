@@ -12,6 +12,7 @@ import filter from "./modulos/filtro.js";
 import usuariosAdmin from "./modulos/usuariosAdmin.js";
 import adminPublic from "./modulos/adminPublic.js";
 import openWindowImg from "./modulos/windowOPen.js";
+import form_calendario from "./modulos/calendario.js";
 import { Validar_file } from "./modulos/validar__file.js";
 const d = document;
 //en la variable seccion guardo el resultado de ver si estoy  ejecutando  el modulo de adopta mascota, si es true  es porque encuentra el input hiodden que esta en la pgina de adopta.php, y ejecuto la funcion modal.
@@ -95,4 +96,7 @@ if (d.querySelector(".formdig") != null){
         const validarArchivo = new Validar_file();
         validarArchivo.validar_tamanio();
     }
-    
+    if (d.getElementById("calendario") != null){
+        //este escript sirve para  activar o desactivar botn de envio cuando el usuario hace un cambio en los chechbox de pland e vacnacion o desparacitacion
+        form_calendario();
+    }

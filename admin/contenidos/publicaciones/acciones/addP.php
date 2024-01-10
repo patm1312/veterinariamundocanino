@@ -68,7 +68,7 @@
                 $path2DB = '/contenidos/publicaciones/assets/imgSlider/'. $fileImg2;
                 move_uploaded_file($tmp2_dir,$upload_dir2.$fileImg2);
             }else{
-                $path2DB = '/contenidos/publicaciones/assets/default/default.jpg';
+                $path2DB = 'contenidos/publicaciones/assets/default/slider.png';
             }
             $categoria =  'Pservicio';
             $c = "INSERT INTO publicaciones (titulo,fechaAlta,descripcion,estado,usuario_idusuario,espacio, categoria, foto, fotoSlider) VALUES(:titulo, now(), :descripcion, :estado,:idusuario,:espacio, :categoria, :foto, :fotoSlider)";
@@ -95,14 +95,14 @@
                     $lastInsertId = $pdo->lastInsertId();
                 if($lastInsertId > 0){
                     $_SESSION['rta_admin'] = "ok_form";
-                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addP$id'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones'</script>";
                 }else{
                     $_SESSION['rta_admin'] = "error";
-                   echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addP$id'</script>";
+                   //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addP$id'</script>";
                 };
         }else{
             $_SESSION['rta_admin'] = "error";
-            echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addP$id'</script>";
+            //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addP$id'</script>";
         }
     }
     

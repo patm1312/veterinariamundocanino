@@ -1,9 +1,39 @@
+<?php
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+    }else{
+        $_SESSION['rta_admin'] = "error";
+        echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";
+    }
+    $cTextosMascota = <<<SQL
+    SELECT 
+        *
+    FROM
+        pacientes
+    WHERE idpacientes =?
+    SQL;
+try {
+    $stmtM = $pdo->prepare($cTextosMascota);
+    // Especificamos el fetch mode antes de llamar a fetch()
+    //$stmt->fetch(PDO::FETCH_ASSOC);
+    $stmtM->setFetchMode(PDO::FETCH_ASSOC);
+    // Ejecutamos
+    $stmtM->execute([$id]);
+    //$rowM = $stmtM->fetch();
+    //var_dump($rowM);
+    $rowM = $stmtM->fetch();
+} catch (\Throwable $th) {
+    echo $th;
+}
+?>
 
+
+    
 <div class="info__personal">
             <div>
                 <div class="box_linedonwn">
                     <h1 class="h2 h2__perfil">Datos de Mascota</h1>
-                    <a href="">
+                    <a href="index.php?seccion=perfil&seccionUser=updateMascota&id=<?php echo $id; ?>">
                         <div class="box_linedonwn--editar">
                             <p class="h2__perfil">Editar</p>
                             <img src="assets/images/editar.png" alt="editar">
@@ -12,30 +42,42 @@
                     
                 </div>
                 <div class="img_perfil">
-                    <img class="img_perfil--img" src="assets/images/userperfil.png" alt="pencil editar">
+                    <img class="img_perfil--img" src="admin<?php echo $rowM['foto'];?>" alt="pencil editar">
                 </div>
             </div>
             <div class="info__personal--info">
                 <table class="table">
                     <tr  class="tr">
                         <th class="th">NOMBRE</th>
-                        <td class="td" >1</td>
+                        <td class="td" ><?php echo $rowM["nombre"];  ?></td>
                     </tr>
                     <tr class="tr">
                         <th class="th">Edad</th>
-                        <td class="td" >2tttttttttt</td>
+                        <td class="td" ><?php echo $rowM['edad'] . ' años y ' . $rowM['edad'] . ' meses';?></td>
                     </tr>
                     <tr class="tr">
                         <th class="th">Raza</th>
-                        <td class="td" >2tttttttt ttttttttt ttttt</td>
+                        <td class="td" ><?php echo $rowM['raza'];?></td>
+                    </tr>
+                    <tr class="tr">
+                        <th class="th">Sexo:</th>
+                        <td class="td" ><?php echo $rowM['sexo'];?></td>
                     </tr>
                     <tr class="tr">
                         <th class="th">Color</th>
-                        <td class="td" >2ttttttt</td>
+                        <td class="td" ><?php echo $rowM['color'];?></td>
                     </tr>
                     <tr class="tr">
                         <th class="th">Tamaño</th>
-                        <td class="td" >2ttttttttttt</td>
+                        <td class="td" ><?php echo $rowM['tamanio'];?></td>
+                    </tr>
+                    <tr class="tr">
+                        <th class="th">Especie:</th>
+                        <td class="td" ><?php echo $rowM['especie'];?></td>
+                    </tr>
+                    <tr class="tr">
+                        <th class="th">Esterilizado:</th>
+                        <td class="td" ><?php echo $rowM['esterilizado'];?></td>
                     </tr>
                     
                 </table>
@@ -45,150 +87,81 @@
             <div class="box_linedonwn">
                 <h1 class="h2 h2__perfil">Plan de Vacunacion</h1>
             </div>
-            <div class="info__personal--info dog">
-                <table class="tableVac">
-                    <tr  class="trVac">
-                        <th class="thVac" rowspan="3">
-                            <img class="imgVac" src="assets/images/dogVac.png" alt="dog">
-                        </th>
-                        <th class="thVac thVac--tittle" colspan="5">
-                            <span class="tittleTable poster__description--span poster__description--h1--canva">C</span><span class="tittleTable poster__description--span2 poster__description--h1--canva">alendario  de Vacunacion</span>
-
-                        </th>
-                        
-                    </tr>
-                    <tr>
-                        <th class="thVac thVac--color" colspan="5">Semana</th>
-                    </tr>
-                    <tr  class="trVac">
-                        <th class="thVac thVac--color">6-8</th>
-                        <th class="thVac thVac--color">8-10</th>
-                        <th class="thVac thVac--color">12-14</th>
-                        <th class="thVac thVac--color">3 Meses</th>
-                        <th class="thVac thVac--color">Anual</th>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Parvovirus-Moquillo</th>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Refuerzo y Hepatitis para la influenza</th>
-                        <td class="tdVac " ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Tercer Refuerzo- Leptospira</th>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Rabia</th>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Polivalente-Refuerzo Anual</th>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Proxima Dosis:</th>
-                        <td class="tdVac" colspan="5" ><span>rabia: fecha</span></td>
-                    </tr>
-                    
-                </table>
-            </div>
-            <div class="info__personal--info dog">
-                <table class="tableVac">
-                    <tr  class="trVac">
-                        <th class="thVac" rowspan="3">
-                            <img class="imgVac" src="assets/images/catVac.png" alt="dog">
-                        </th>
-                        <th class="thVac thVac--tittle" colspan="5">
-                            <span class="tittleTable poster__description--span poster__description--h1--canva">C</span><span class="tittleTable poster__description--span2 poster__description--h1--canva">alendario  de Vacunacion</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th class="thVac thVac--color" colspan="5">Semana</th>
-                    </tr>
-                    <tr  class="trVac">
-                        <th class="thVac thVac--color">6-8</th>
-                        <th class="thVac thVac--color">8-10</th>
-                        <th class="thVac thVac--color">10-12</th>
-                        <th class="thVac thVac--color">12-14</th>
-                        <th class="thVac thVac--color">Anual</th>
-                        
-                    </tr>
-                    <tr class="trVac ">
-                        <th class="thVac thVac--block">Triple Felina</th>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Refuerzo Triple Felina</th>
-                        <td class="tdVac " ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Leucemia Felina *</th>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Refuerzo Leucemia Felina *</th>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac " ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Rabia</th>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac" ></td>
-                        <td class="tdVac tdVac--color" ></td>
-                    </tr>
-                    <tr class="trVac">
-                        <th class="thVac thVac--block">Proxima Dosis:</th>
-                        <td class="tdVac" colspan="5" ><span>rabia: fecha</span></td>
-                    </tr>
-                    <tr class="trVac">
-                        <td class="tdVac tdVac--commit" colspan="6" >* Bajo Condicion Medica.</td>
-                    </tr>
-                    
-                </table>
-            </div>
+            <div class="producto">
+                <?php 
+                    $variable = $rowM["especie"];
+                    if($variable == 'gato'){
+                        $cTextosV = <<<SQL
+                        SELECT 
+                            *
+                        FROM
+                            PlanVacunacion
+                        WHERE idpacientes =?
+                        SQL;
+                        $stmtV = $pdo->prepare($cTextosV);
+                        // Especificamos el fetch mode antes de llamar a fetch()
+                        //$stmtV->fetch(PDO::FETCH_ASSOC);
+                        $stmtV->setFetchMode(PDO::FETCH_ASSOC);
+                          // Ejecutamos
+                          $stmtV->execute([$id]);
+                            $rowV = $stmtV->fetch();
+                            $tituloTabla;
+                        if( $rowV){
+                            $tituloTablaV = ' de ' . $rowV["nombre"];
+                        }else{
+                            $tituloTablaV = '';
+                        }
+                        include("institucion/estandarVacunacion/vacunaciongato.php");
+                    }else if($variable == 'perro'){
+                        $cTextosH = <<<SQL
+                        SELECT 
+                            *
+                        FROM
+                            PlanVacunacion
+                        WHERE idpacientes =?
+                        SQL;
+                        $stmtV = $pdo->prepare($cTextosH);
+                        // Especificamos el fetch mode antes de llamar a fetch()
+                        //$stmtV->fetch(PDO::FETCH_ASSOC);
+                        $stmtV->setFetchMode(PDO::FETCH_ASSOC);
+                        // Ejecutamos
+                            $stmtV->execute([$id]);
+                            $rowV = $stmtV->fetch();
+                            $tituloTablaV;
+                        if( $rowV){
+                            $tituloTablaV = ' de ' . $rowV["nombre"];
+                        }else{
+                            $tituloTablaV = '';
+                        }
+                        include("institucion/estandarVacunacion/vacunacionperro.php");
+                    }
+                ?>
+                </div>
             <div class="box_linedonwn">
                 <h1 class="h2 h2__perfil">Plan de Desparacitacion</h1>
             </div>
-            <table class="tableVac">
+            <?php 
+                $cTextosDesp = <<<SQL
+                SELECT 
+                    *
+                FROM
+                    PlanDesparacitacion
+                WHERE pacientes_idpacientes = ?
+                SQL;
+                $stmtDesp = $pdo->prepare($cTextosDesp);
+                // Especificamos el fetch mode antes de llamar a fetch()
+                //$stmtV->fetch(PDO::FETCH_ASSOC);
+                $stmtDesp->setFetchMode(PDO::FETCH_ASSOC);
+                // Ejecutamos
+                try {
+                    $stmtDesp->execute([$id]);
+                } catch (\Throwable $th) {
+                    echo $th;
+                }
+                    $rowDesp = $stmtDesp->fetch();
+                    include("institucion/estandarVacunacion/desparacitacion.php");
+                ?>
+            <!-- <table class="tableVac">
                     <tr  class="trVac">
                         <th class="thVac" >
                             <img class="imgVac" src="assets/images/catVac.png" alt="dog">
@@ -238,8 +211,9 @@
                         <th class="thVac thVac--block">Proxima Dosis:</th>
                         <td class="tdVac"  ><span>rabia: fecha</span></td>
                     </tr>
-                </table>
+                </table> -->
         </div>
         <div class="box_linedonwn">
                 <h1 class="h2 h2__perfil">Certificados</h1>
             </div>
+

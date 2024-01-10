@@ -51,7 +51,7 @@ session_start();
                     </table>
                     <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminUsuarios">Usuarios</a></li>
                     <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminPublicaciones">Publicaciones</a></li>
-                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=servicios">Productos</a></li>
+                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminProductos">Productos</a></li>
                    <li class="nav__none nav__item ">
                    <a href="">
                         <img class="glass__search" src="../assets/images/image6.png" alt="lupa">
@@ -111,7 +111,7 @@ session_start();
                 case "AdminUsuarios": include("contenidos/homeAdmin.php");
                 break;
                 //pagina que se encarga de administrar a los productos
-                case "AdminProductos": include("contenidos/login.php");
+                case "AdminProductos": include("contenidos/productos/productos.php");
                 break;
                 //pagina que se encarga de administrar a los productos
                 case "AdminPublicaciones": include("contenidos/publicaciones/adminPublic.php");

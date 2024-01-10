@@ -74,10 +74,10 @@
                     $lastInsertId = $pdo->lastInsertId();
                 if($lastInsertId > 0){
                     $_SESSION['rta_admin'] = "ok_form";
-                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addpServ&p=$idPublicacionS'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones'</script>";
                 }else{
                     $_SESSION['rta_admin'] = "error__consulta";
-                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addpServ&p=$idPublicacionS'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones'</script>";
                     
                 };
         }else{

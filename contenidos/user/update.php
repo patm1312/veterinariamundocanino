@@ -1,44 +1,73 @@
-<section>
-    <div class="h1__box">
-            <h1 class="poster__description--h1 poster__description--h1--canva h1__cita"><span class="poster__description--span poster__description--h1--canva h1__cita">A</span><span class="poster__description--span2 poster__description--h1--canva h1__cita">ctualiza</span><br>tus datos <span class="poster__description--span2 poster__description--h1--canva h1__cita">Nombre</span></h1>
-    </div>
-    <form class="form contact-form" action="" method="post">
+<?php
+ if(isset($_SESSION['user_id'])){
+    $id = $_SESSION['user_id'];
+
+ }else{
+    $_SESSION['rta_admin'] == 'DateNull';
+    echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarUser&id=$dato_consulta'</script>";
+ }
+    //consulto la bd con la publicacion a la que quiero editar para autocomplear en el formulario:
+    $c = "SELECT nombre, apellido, email, direccion,telefono,telefonosecundario FROM usuarios WHERE idusuario=?";
+    //preparar la consulta:
+    try {
+            $stmt = $pdo->prepare($c);
+        // Especificamos el fetch mode antes de llamar a fetch()
+        //uso metodo execute con el metodo array para vincular el parametro a consultar:
+        $stmt->execute([$id]);
+        // $row = $stmt->fetch();
+        $p = $stmt->fetchAll();
+    } catch (\Throwable $th) {
+        echo $th;
+    }
+   $nombre;
+   $apellido;
+   $email;
+   $direccion;
+   $telefono;
+   $telefonosecundario;
+   $nivelUsuario;
+   $fechaAlta;
+   $fotoPortada;
+   $foto;
+   $estado;
+     foreach($p as $r){
+        $nombre =  $r->nombre;
+        $apellido =  $r->apellido;
+        $email  =  $r->email;
+        $direccion  =  $r->direccion;
+        $telefono  =  $r->telefono;
+        $telefonosecundario  =  $r->telefonosecundario;
+        $nivelUsuario  =  $r->nivelUsuario;
+        $fechaAlta  =  $r->fechaAlta;
+        $fotoPortada  =  $r->fotoPortada;
+        $foto  =  $r->foto;
+        $estado  =  $r->estado;
+    }
+   
+?>
+<input type="hidden" id="homeAdmin">
+<form enctype="multipart/form-data" class="form contact-form" action="contenidos/user/acciones/updateUser.php?id=<?php echo $id;?>" method="post">
         <div class="form__header">
-            <!-- <a href="">
-                <img class="left" src="assets/images/rght.png" alt="flecha">
-            </a> -->
-            <img class="form__header--img" src="assets/images/logolarge.png" alt="">
+            <img class="form__header--img" src="assets/images/logolarge.png" alt="imagen logo">
             <div>
-                
             </div>
         </div>
         <div class="form__body">    
-                <h2 class="form__h2" >Datos Personales</h2>
-                <!-- <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1" href="index.php?seccion=login">Iniciar Sesion</a></span> -->
-                <!-- <p class="form__body--p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="form--text form--text1 a_cita" href="index.php?seccion=login">inicia sesion</a>.
-                </p> -->
-                <input name="name" class="input" type="text" placeholder="Nombre"  title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
-                <input class="input" type="text" placeholder="Apellido" name="subname" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
-                <input class="input" type="email" name="email" placeholder="email" title="Email incorrecto"
-                    pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
-                <input name="phone" class="input" type="text" placeholder="Telefono" title="numero incorrecto"
-                    pattern="[0-9]{7,10}" required>
-                <input class="input" type="text" placeholder="Telefono Secundario">
-                <input class="input" type="text" placeholder="Direccion">
-                <!-- <input class="input" type="text" placeholder="confirmar contraseña"> -->
-                <div class="bottom box__bottom box__bottom--logout">
-                    <input type="submit" value="actualizar">
-                    <!-- <a class="bottom box__bottom--logout" href="">Actualizar</a> -->
+                <h2 class="form__h2" >Datos de Usuario:</h2>
+                <p>Edita nombre de Usuario:</p>
+                <input name="name" class="input" type="text" value=" <?php echo $nombre; ?>" placeholder="nombre de usuario" title="nombre Invalido Invalido" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                <p>Edita apellido de Usuario:</p>
+                <input name="subname" class="input" type="text" value=" <?php echo $apellido; ?>" placeholder="Apellido de usuario" title="nombre Invalido Invalido" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                <p>Email:</p>
+                <input name="email" class="input" type="email" placeholder="email" title="Email incorrecto"
+                    pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?" value="<?php echo $email; ?>" required>
+                <p>Edita telefono de Usuario:</p>
+                <input value="<?php echo $telefono; ?>" name="phone" class="input" type="tel" placeholder="telefono" title="numero incorrecto" pattern="[0-9]{7,10}" required>
+                <p>Edita telefono secundario de Usuario:</p>
+                <input value="<?php echo $telefonosecundario; ?>" name="phone2" class="input" type="tel" placeholder="telefono" title="numero incorrecto" pattern="[0-9]{7,10}" required>
+                <p>Edita direccion de Usuario:</p>
+                <input name="direccion" class="input" type="text" value=" <?php echo $direccion; ?>" placeholder="Direccion" required>
+                <div class="bottom box__bottom box__bottom--login">
+                    <input id="submit" class="" type="submit" value="Continuar">        
                 </div>
-                <!-- <div class="box__label">
-                    <label class=""><input class="" type="checkbox" id="" value="">Acepto <a class="" href="">Terminos y  Condiciones</a></label>
-                </div> -->
-                <a class="" href="">
-                    <div class="form__boxayuda">
-                        <img class="form__boxayuda--img" src="assets/images/whatsapp.png" alt="whatsapp">
-                        <p class="form__boxayuda--p">¿Necesitas <br> ayuda?</p>
-                    </div>
-                </a>          
-        </div>
     </form>
-</section>

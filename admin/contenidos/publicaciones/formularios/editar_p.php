@@ -64,7 +64,7 @@
                     <div>
                         <a href="" class="openImg">
                             <img class="openImg" src="contenidos/publicaciones/assets/default/img.png" alt="foto">
-                            //aqu guardo la rutade la imagen para recuperarla, se puede mostar haciendo click en la imagen visualizar, se usa js. y readIumg.php abre la imagen.
+                            <!-- //aqu guardo la rutade la imagen para recuperarla, se puede mostar haciendo click en la imagen visualizar, se usa js. y readIumg.php abre la imagen. -->
                             <input  type="hidden" value="<?php echo $foto;?>">
                         </a>
                     </div>
@@ -73,7 +73,8 @@
                 <div class="">
                     <div>
                         <label>
-                            <input <?php echo $espacio; ?> name="espacio" type="checkbox" id="slider" value="slider" />Actualiza imagen slide de tu publicacion, esta se cargara en la seccion de slider, como  en la imagend e abajo:
+                            <input <?php echo $espacio; ?> name="espacio" type="checkbox" id="slider" value="slider" />
+                            Actualiza imagen slide de tu publicacion, esta se cargara en la seccion de slider, como  en la imagend e abajo:
                         </label>
                         
                     </div>
@@ -84,10 +85,7 @@
                             <img class="openImg" src="contenidos/publicaciones/assets/default/img.png" alt="fotoS">
                             <input  type="hidden" value="<?php echo $fotoS;?>">
                         </a>
-                        <!-- <a href="" class="eraseImg">
-                            <img class="eraseImg cerrar" src="../assets//images/close.png" alt="fotoS">
-                            <input  type="hidden" value="<?php echo $fotoSlider;?>">
-                        </a> -->
+
                     </div>
                     
                     <span class="messaje_form" id="span_input--slider"></span>
