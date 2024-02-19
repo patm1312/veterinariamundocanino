@@ -1,5 +1,15 @@
 <?php
+include('function/function.php');
+//variable de seguridad para solo la pagina de navegacion de un usuario comun y no administrador de contenidos
+
 include('configuracion/conexion.php');
+$_SESSION['seguridad_modificar'] = 'false';
+if(isset($_SESSION['seguridad_modificar'])){
+    
+}else{
+    echo 'NO existe';
+}
+
  $section = isset($_GET['seccion']) ? $_GET['seccion']:'home';
  //cada vez que el usuario  le da click en el logo de login, depende de s esta logueado o no:
  if(isset($_SESSION['user_id'])){
@@ -58,7 +68,7 @@ $p = $stmt->fetchAll();
                         <thead>
                         <th class="tr_flex">
                         <td class="celda__border"><input type="text" name="search" class="search " placeholder="Buscar...">
-                            <a href="">
+                            <a class="lupa_buscador" href="">
                                     <img class="glass" src="assets/images/image6.png" alt="lupa">
                             </a>
                         </td>
@@ -79,7 +89,7 @@ $p = $stmt->fetchAll();
                     <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=home">Inicio</a></li>
                     <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=productos">Productos</a></li>
                     <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=servicios">Servicios</a></li>
-                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=home">Blog</a></li>
+                    <!-- <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=home">Blog</a></li> -->
                     <li class="li__bottom nav__none nav__item nav__item--border "><a class="nav__item bottom bottom__responsive " href="index.php?seccion=cita">Agenda Tu cita</a></li>
                     <!-- mdulode iniciar sesion -->
                     <li class="nav__none nav__item nav__item--border">
@@ -88,7 +98,7 @@ $p = $stmt->fetchAll();
                         </div>
                     </li>
                    <li class="nav__none nav__item ">
-                   <a href="">
+                   <a class="lupa_buscador" href="">
                         <img class="glass__search" src="assets/images/image6.png" alt="lupa">
                     </a>
                    </li>
@@ -98,15 +108,23 @@ $p = $stmt->fetchAll();
                         <div class="block__menu--box">
                             <div  class="block__menu--item">
                                 <img class="icon_hm" src="assets/images/whats.png" alt="whatsapp">
-                                <p>numero de telefono</p>  
+                                <p class="block__menu--p">3153704398</p>  
                             </div>
                             <div class="block__menu--item">
                                 <img class="icon_hm" src="assets/images/email.png" alt="email">
-                                <p>correo</p>  
+                                <p class="block__menu--p">vetmundocanin07@gmail.com</p>  
+                            </div>
+                        
+                            <div class="block__menu--item">
+                                <a class="block__menu--item" href="https://web.facebook.com/Vetmundocanin0" target="_blank">
+                                    <img class="icon_hm" src="assets/images/facebook.svg" alt="">
+                                    <p class="block__menu--p">facebbok</p> 
+                                </a>
+
                             </div>
                             <div class="block__menu--item">
-                                <img class="icon_hm" src="assets/images/facebook.svg" alt="">
-                                <p>facebbok</p>  
+                                <!-- <img class="icon_hm" src="assets/images/email.png" alt="email"> -->
+                                <p class="block__menu--p">Avenida 3e # 7- 46 Brr. Popular <br> Cucuta, Norte de Santander</p>  
                             </div>
                         </div>
                    </div>
@@ -159,7 +177,7 @@ $p = $stmt->fetchAll();
                 break;
                 case "citaUser": include("contenidos/cita__user.php");
                 break;
-                case "cita__celular": include("contenidos/cita__celular.php");
+                case "cita__email": include("contenidos/cita__email.php");
                 break;
                 case "cita__datos": include("contenidos/cita__datos.php");
                 break;
@@ -174,7 +192,6 @@ $p = $stmt->fetchAll();
                 case "producto": include("contenidos/contenido_productos/producto.php");
                 break;
                 case "about": include("contenidos/empresa/about.php");
-                break;
                 case "politica": include("contenidos/empresa/politica.php");
                 break;
                 case "servicio": include("contenidos/contenido__servicios/servicio.php");
@@ -190,7 +207,8 @@ $p = $stmt->fetchAll();
 					include( 'contenidos/home.php');
             }
         ?>
-        
+         <button class="scrol scrol-show"  data-scroll-spytype="button">&#11014   
+    </button>
     </main>
     <footer class="footer">
         <div class="img__footer">

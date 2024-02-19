@@ -3,7 +3,7 @@
     //este scrip es para procesar los datos enviados por formulario para editar informacion de historias medicas: 
     $_SESSION['rta_admin'];
     //seguridad de la pagina.
-    $maximo = 2 * 1024 * 1024; //Tamaño en MB
+    $maximo = 1 * 1024 * 1024; //Tamaño en MB,  a bytes
     if(isset($_SESSION['user_id'])){
         if($_SESSION['nivel_usuario'] == 'administrador'){
             //echo "<script>window.location.href='/veterinaria/admin/index.php'</script>";
@@ -25,7 +25,42 @@
         $fechaI = $_POST['fechaI'];
         $fechaA = $_POST['fechaA'];
         $prescripciones = $_POST['prescripciones'];
+        if(($_FILES['doc']['size'] < $maximo)){
+            if(isset($_SESSION['documento'])){
+                $documento = $_SESSION['documento'];
+                    //le quito esta ruta, ya que es la ruta almacenada en la DB, y con esa ruta no puedo elimnar la imagen en el servidor.
+    $documentoDB = str_replace('/contenidos/usuarios/assets/documents/', '', $documento);
+            }else{
+            }
+        }else{
+            $_SESSION['rta_admin'] = "img_big";
+           echo "<script>window.location.href='../../../index.php'</script>";
+        }
         $c = "UPDATE HistorialMedico set diagnostico=:diagnostico, hospitalizacion=:hospitalizacion, prescripciones=:prescripciones, fechaUpdate=now()";
+          if(($_FILES['doc']['size'] > 0)){
+                //hay imagen de Pservicio cargada 
+                $imagenuno = $_FILES['doc']['name'];
+                $tmp1_dir = $_FILES['doc']['tmp_name'];
+                //este es el recurso q se guarda en la carpeta del servidor
+                $upload_diruno = '../assets/documents/'; // upload directory
+                $img1Ext = strtolower(pathinfo($imagenuno,PATHINFO_EXTENSION)); 
+                $fotoErase = $upload_diruno . $documentoDB;
+                $fileImguno = time( ).rand(1,1000).".".$img1Ext;
+                //esta es la ruta que se guarda en la bd para acceder a ella desde readImg.php
+                $path1DB = '/contenidos/usuarios/assets/documents/'. $fileImguno;
+                //concateno la consulta,
+                $c = $c . ", documentos=:documentos";
+                try {
+                    //elimino la img del servidor
+                    echo 'ruta a eliminar es  ' .  $fotoErase;
+                    unlink($fotoErase);
+                    //cargo la nueva imagen en el servidor.
+                    move_uploaded_file($tmp1_dir,$upload_diruno.$fileImguno);
+                } catch (\Throwable $th) {
+                    echo $th;
+                }
+            }
+        
         if($fechaI != ''){
             $c = $c .  ",fechaIngreso=:fechaI";
         }
@@ -34,6 +69,7 @@
             $c = $c .  ",fechaAlta=:fechaA";
         }
         $c = $c .  " WHERE idHistorialMedico=:idHM";
+        echo $c;
 
 try {
     //preparar la consulta:
@@ -49,6 +85,9 @@ try {
     if($fechaA != ''){
         $stm->bindParam(':fechaA', $fechaA, PDO::PARAM_STR);
     }
+    if(($_FILES['doc']['size'] > 0)){
+        $stm->bindParam(':documentos', $path1DB, PDO::PARAM_STR);
+    }
     $stm->bindParam(':prescripciones', $prescripciones);
     $stm->bindParam(':idHM', $idH);
     //ejecutar la consulta:
@@ -60,10 +99,10 @@ try {
     $count = $stm->rowCount();
     if($count > 0){
     $_SESSION['rta_admin'] = "ok_form";
-    echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarH&idH=$idH'</script>";
+    //echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarH&idH=$idH'</script>";
     }else{
     $_SESSION['rta_admin'] = "error";
-    echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarH&idH=$idH'</script>";
+    //echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarH&idH=$idH'</script>";
     }
     }
    

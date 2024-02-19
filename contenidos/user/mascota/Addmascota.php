@@ -15,19 +15,18 @@
         <div class="form__body">    
                 <h2 class="form__h2" >Datos de tu Mascota:</h2>
                 <p>Nombre:</p>
-                <input name="name" class="input" type="text" value="" placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
+                <input name="name" class="input" type="text" value="" placeholder="Nombre" title="nombre Invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>Raza  de su mascota:</p>
-                <input name="raza" class="input" type="text" value="" placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
+                <input name="raza" class="input" type="text" value="" placeholder="Raza" title="raza Invalida" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>Color de su mascota:</p>
-                <input name="color" class="input" type="text" value=" " placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
+                <input name="color" class="input" type="text" value=" " placeholder="Color" title="color Invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>
                     Especie:<br>
                     <input type="radio" name="especie" value="gato"> Gato<br>
                     <input type="radio" name="especie" value="perro"> Perro
                 </p>
-                <p>Edad de mascota:</p>
-                <input name="edad" class="input" type="text" pattern="^(0|[1-9]|d\d|20)$" value="" placeholder="Años" title="año Invalido" required>
-                <input name="edadMes" class="input" type="text" pattern="^(0?[1-9]|1[0-2])$" placeholder="Meses" title="Mes invalido" required>
+                <p>Fecha Nacimiento:</p>
+                <input name="fechaN" class="input" type="datetime-local" required>
                 <p>
                     sexo:<br>
                     <input type="radio" name="sexo" value="Macho" >Macho<br>

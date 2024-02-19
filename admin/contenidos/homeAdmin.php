@@ -1,6 +1,12 @@
 <?php
  //seccionque se va a cargar en la pagina de homeadmin como pagina de control, controla los usuarios,. si no hay ningun dato por get entonces por defecro  cargo la administracion de usuarios
  $section = isset($_GET['accion']) ? $_GET['accion']:'user';
+ if(isset($_GET['s'])){
+    if($_GET['s'] == 0){
+        unset($_SESSION['search']);
+    }
+ }
+
  switch($section){
      //pagina que se encarga de administrar a los usuarios
      case "user": include("contenidos/usuarios/users.php");

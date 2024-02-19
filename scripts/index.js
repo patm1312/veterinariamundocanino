@@ -2,6 +2,7 @@ import modal from "./modulos/modal.js";
 import Dig_form from "./modulos/validarFormDig.js";
 import contact_form from "./modulos/validarFormulario.js";
 import responsiveMenu from "./modulos/hm.js";
+import responsiveHistorial from "./responsiveHistorial.js";
  import modalAcciones from "./modulos/modalPerfil.js";
 import slider from "./modulos/slider.js";
 import smallAdd from "./modulos/sliderAdd.js";
@@ -14,6 +15,11 @@ import adminPublic from "./modulos/adminPublic.js";
 import openWindowImg from "./modulos/windowOPen.js";
 import form_calendario from "./modulos/calendario.js";
 import { Validar_file } from "./modulos/validar__file.js";
+import sendF from "./modulos/send_form.js";
+import search from "./modulos/habilitar_search.js";
+import scroll from "./modulos/scoll.js";
+import radio from "./modulos/inputRadio.js";
+search();
 const d = document;
 //en la variable seccion guardo el resultado de ver si estoy  ejecutando  el modulo de adopta mascota, si es true  es porque encuentra el input hiodden que esta en la pgina de adopta.php, y ejecuto la funcion modal.
 
@@ -27,23 +33,30 @@ if (d.getElementById("adopta_mascota") != null){
 if (d.getElementById("home") != null){
     slider()
     sliderAdd()
-    
+    resizeForSquareAppearance();
 }
 // Evento cuando se redimensiona la ventana
 window.addEventListener("resize",(e)=>{
     if (d.getElementById("producto") != null){
         console.log('ejecuta la funcion');
         console.log(d.getElementById("producto"));
-        resizeForSquareAppearance(e);
+        resizeForSquareAppearance();
     }else{
         console.log('No');
     }
 })
 // Evento cuando se carga el contenido
 d.addEventListener("DOMContentLoaded",(e)=>{
+    scroll(".scrol");
+    //si edtoy en en el admin, pagina de muestra de contenido d eususario, con el fin de cargar las tablas d emanera responsive, tablade historial medico:id="Hmedico"
+    if (d.getElementById("Hmedico") != null){
+        console.log('estoy  en historial medico')
+       responsiveHistorial();
+    }
+
     if (d.getElementById("producto") != null){
         console.log(d.getElementById("producto"))
-        resizeForSquareAppearance(e);
+        resizeForSquareAppearance();
     }else{
         console.log('no');
     }
@@ -60,7 +73,10 @@ if (d.querySelector(".contact-form") != null){
 if (d.querySelector(".formdig") != null){
     Dig_form();
 }
-    d.addEventListener("click", (e)=>{
+d.addEventListener("click", (e)=>{
+    if(d.querySelector(".form_radio") != null){
+        radio(e);
+    }
          if(e.target.matches('.accion_perfil')){
             console.log('modal accions');
             modalAcciones(e)
@@ -99,4 +115,42 @@ if (d.querySelector(".formdig") != null){
     if (d.getElementById("calendario") != null){
         //este escript sirve para  activar o desactivar botn de envio cuando el usuario hace un cambio en los chechbox de pland e vacnacion o desparacitacion
         form_calendario();
+    }
+// SOLO  SE ACTIVA LA FUNCION SI LA PAGINA DE PRODUCTOS ESTA ACTIVA:
+    if(d.getElementById("input_send_form") != null){
+        sendF();
+    }
+    console.log('s eejcuta los scripts');
+
+    function data(){
+        console.log('?se ejecuta alpnie');
+        return{
+            open: null,
+            start(){
+                this.open = false;
+            },
+            isOpen(){
+                this.open = !this.open
+            },
+            close(){
+                this.open = false
+            }
+        }
+    }
+    //si estoy  en la apgina de home de adopta, debo deshabilitar los filtros en caso de que no haya ningun registro o mascota en adiopcion
+    if(d.getElementById("filtroHidden") != null){
+       function  filtroHidden(){
+            console.log('filtro hidden');
+            if(d.getElementById("habilitarFiltro") != null){
+                console.log('NO hay resultado');
+                const $filter = d.querySelectorAll('.hiddenFilter');
+                console.log($filter);
+                $filter.forEach(element => {
+                    element.classList.add('noneH');
+                });
+            }else{
+                console.log('hay resultado')
+            }
+        }
+        filtroHidden();
     }

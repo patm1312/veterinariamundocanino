@@ -21,9 +21,22 @@ if(file_exists($ruta)){
 }
 ?>
 <section class="container container__block ">
-    <div class="poster__description">
-        <h1 class="poster__description--h1 poster__description--h1--canva"><span class="poster__description--span poster__description--h1--canva"><?php echo $rest; ?></span><span class="poster__description--span2 poster__description--h1--canva"><?php echo $first; ?></span><br></h1>
+    <div class="poster__description postes_quienes">
+       
+        <div class="quienes__box">
+            <h1 class="poster__description--h1 poster__description--h1--canva"><span class="poster__description--span poster__description--h1--canva"><?php echo $rest; ?></span><span class="poster__description--span2 poster__description--h1--canva"><?php echo $first; ?></span><br></h1>
+        </div>
+        <?php
+            if($archivo == 'quienes somos'){
+
+           ?>
+        <div class="quienes__box2">
+            <img class="quienes__box2--img" src="assets/images/veterinaria/somos.png" alt="veterinario">
+        </div>
+        <?php
+    }
+        ?>
     </div>
 
-    <p class="cont" ><?php echo $contenido; ?></p>
+    <div class="quienes__box3" ><?php echo $contenido; ?></div>
 </section>

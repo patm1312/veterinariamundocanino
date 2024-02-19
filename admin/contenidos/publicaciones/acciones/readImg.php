@@ -10,8 +10,9 @@
         //     $src = 'contenidos/publicaciones/assets/ContenidoPServ/' . $pic;
         // }
     }
-   echo $src;
 ?>
-<img src=" contenidos/publicaciones/assets/default/default.jpg" alt="prueba2">
-<p>titulo de prueba</p>
-<img src="<?php echo $src; ?>" alt="foto">   
+<section class="section__img">
+<p>Imagen Cargada</p>
+<img class="section__img--img" src="<?php echo $src; ?>" alt="foto"> 
+</section>
+  

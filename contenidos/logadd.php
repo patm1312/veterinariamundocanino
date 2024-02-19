@@ -27,15 +27,13 @@
             </div>
         </div>
         <div class="form__body">    
-                <h2 class="form__h2" >Recuperar Usuario</h2>
-                <span class="form__span" ><a class="form--text form--text1 enlace" href="index.php?seccion=login">Iniciar Sesion</a></span>
+                <h2 class="form__h2 poster__description--h1" >Recuperar Usuario</h2>
+                <span class="form__span poster__description--h1" ><a class="form--text form--text1 enlace poster__description--h1 enlace__form" href="index.php?seccion=login">Iniciar Sesion</a></span>
                 <!-- <p class="form__body--p">Para agendar tu cita con nosotros es necesario  que te identifiques, por favor ingresa tu numero de celular para registrarte, si ya tienes una cuenta, por favor <a class="form--text form--text1 a_cita" href="index.php?seccion=login">inicia sesion</a>.
                 </p> -->
-                <input name="email" class="input" type="email" placeholder="Ingresa tu correo o celular" title="revisa tus datos"
-                    pattern="" required>
-                <div class="bottom box__bottom">
-                    <a class="bottom" href="">continuar</a>
-                </div>
+                <input name="email" class="input" type="email" placeholder="Ingresa tu correo o celular" title="revisa tus datos" pattern="" required>
+               
+                <input class=" box__bottom bottom bottom__big--a bottom__big bottom--orange " type="submit" value="Continuar">
                 <!-- <span class="form__span form__span-password" ><a class="form--text form--text1" href="index.php?seccion=logout">Recuperar contraseña</a></span> -->
                 <a class="" href="">
                     <div class="form__boxayuda">

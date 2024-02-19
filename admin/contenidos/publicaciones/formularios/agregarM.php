@@ -14,10 +14,9 @@
                     <input type="radio" name="especie" value="perro"> Perro
                 </p>
                 <p>Raza de mascota:</p>
-                <input name="raza" class="input" type="name"  placeholder="Titulo de Publicacion" title="Raza Invalida" pattern="[a-zA-Z ]{1,40}$" required>
-                <p>Edad de mascota:</p>
-                <input name="edad" class="input" type="text" pattern="^(0|[1-9]|d\d|20)$" placeholder="Años" title="año Invalido" required>
-                <input name="edadMes" class="input" type="text" pattern="^(0?[1-9]|1[0-2])$" placeholder="Meses" title="Mes invalido" required>
+                <input name="raza" class="input" type="name"  placeholder="raza mascota" title="Raza Invalida" pattern="[a-zA-Z ]{1,40}$" required>
+                <p>Fecha Nacimiento:</p>
+                <input name="fechaN" class="input" type="datetime-local" required>
                 <input name="color" class="input" type="name"  placeholder="Color" title="color invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>
                     sexo:<br>

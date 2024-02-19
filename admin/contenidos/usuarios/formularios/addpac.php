@@ -22,9 +22,10 @@ $id = $_GET['id'];
                     <input type="radio" name="especie" value="gato"> Gato<br>
                     <input type="radio" name="especie" value="perro"> Perro
                 </p>
-                <p>Edad de mascota:</p>
-                <input name="edad" class="input" type="text" pattern="^(0|[1-9]|d\d|20)$" placeholder="Años" title="año Invalido" required>
-                <input name="edadMes" class="input" type="text" pattern="^(0?[1-9]|1[0-2])$" placeholder="Meses" title="Mes invalido" required>
+                <p>Fecha Nacimiento:</p>
+                <input name="fechaN" class="input" type="datetime-local" required>
+                <!-- <input name="edadMes" class="input" type="text" pattern="^(0?[1-9]|1[0-2])$" placeholder="Meses" title="Mes invalido" required> -->
+
                 <input name="color" class="input" type="name"  placeholder="Color" title="color invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>
                     sexo:<br>
@@ -43,7 +44,7 @@ $id = $_GET['id'];
                     <input type="radio" name="esterilizado" value="no">No<br>
                 </p>
                 <input name="raza" class="input" type="text" placeholder="raza">
-                <textarea name="caract" class="textarea" name="textarea" rows="5" cols="" placeholder="caraceristicas adicionales"></textarea>
+                <!-- <textarea name="caract" class="textarea" name="textarea" rows="5" cols="" placeholder="caraceristicas adicionales"></textarea> -->
                 
                     <div id="input_file" class="">
                     <p>Sube una foto:</p>

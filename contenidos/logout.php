@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="form__body">    
-                <h2 class="form__h2" >Crea una cuenta</h2>
-                <span class="form__span" >¿Tienes una cuenta? <a class="form--text form--text1" href="index.php?seccion=login">Iniciar Sesion</a></span>
+                <h2 class="form__h2 poster__description--h1" >Crea una cuenta</h2>
+                <span class="form__span poster__description--h1" >¿Tienes una cuenta? <a class="form--text form--text1 poster__description--h1" href="index.php?seccion=login">Iniciar Sesion</a></span>
                 <!-- se pueden usar atributos para usar expresiones regulares para validar los inpiut  del formulario, es el atributo patern, donde en su valor pongo la expresion regular que quiero que cumpla el formulario, y con otroatributo llamado tittle , muestro el mensaje que quiero visualizar: -->
                 <input name="name" class="input" type="text" placeholder="Nombre" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
                 <input name="subname" class="input" type="text" placeholder="Apellido" title="Nombre sólo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
@@ -49,13 +49,9 @@
                     pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required>
                 <input id="confirm__contrasenia" name="confirmpassword" class="input" type="password" placeholder="confirmar contraseña" title="La contraseña debe Coincidir con la anterior, debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
                     pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required>
-                <div class="bottom box__bottom--logout">
-                    <button class="submit" type="submit">Enviar</button>
-                    <!-- <input class="bottom box__bottom--logout" type="submit"> -->
-                    <!-- <a class="bottom box__bottom--logout" href="">continuar</a> -->
-                </div>
+                    <input class="bottom bottom__big--a bottom__big bottom--orange " type="submit" value="Continuar">
                 <div class="box__label">
-                    <label class=""><input class="checkbox" type="checkbox" id="" value="" required >Acepto <a class="" href="">Terminos y  Condiciones</a></label>
+                    <label class=""><input class="checkbox" type="checkbox" id="" value="" required >Acepto <a class="" href="index.php?seccion=static&cual=terminos y condiciones">Terminos y  Condiciones</a></label>
                 </div>
                 <a class="" href="">
                     <div class="form__boxayuda">

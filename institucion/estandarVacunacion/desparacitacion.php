@@ -1,6 +1,5 @@
 <?php
     $idPdes = $rowDesp['idPlanDesparacitacion'];
-    
 ?>
 <form method="post" id="calendario" action="contenidos/usuarios/acciones/updateDesp.php?idPdes=<?php echo $idPdes;?>" class="calendario border_prueba__table">
 <table class="tableVac ">
@@ -75,7 +74,18 @@
                 </p>
                 <input name="fechaP" type="hidden" value="<?php echo $rowDesp['ProximaDosisF'];?>"/>
                 <input name="Dosis" type="hidden" value="<?php echo $rowDesp['proximaDosisD'];?>"/>
-                <input class="input_desparacitacion<?php echo $rowM["idpacientes"];  ?> none__filter aplicarPlan" type="submit" value="Aplicar">
+                <?php
+                   if($_SESSION['nivel_usuario'] == 'administrador'){
+                    if($_SESSION['seguridad_modificar'] == 'true'){
+                ?>
+                 <input class="input_desparacitacion<?php echo $rowM["idpacientes"];  ?> none__filter aplicarPlan" type="submit" value="Aplicar">
+                 <?php
+                    }
+                   }else{
+                    echo 'no admin';
+                   }
+                ?>
+               
             </td>
         </tr>
     </table>

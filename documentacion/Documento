@@ -44,3 +44,10 @@ solo una publicacion de categoria Padopta puede tener varias subpublicaciones co
     
 cuando  se crea un usuario se debe crear su plan de desparacitacion y vacunacion al paciente.
 
+cita(elige servicio)==>
+(crea la sesion de cita donde guarda)==>citauser(se debe identificar el ussuario con correo)==>validaremail(se valida el email y  se guarad en las sessioncita.,  aqui se envia el codigo  al correo==>citaemail(AQUI 	va  a pedir el codigo )==>codigoemail.php(aqui s evalida si le codigo es correcto delemail, y comprueba si exsten las sesione santeriores, para luego seguir pidiendo datos.)==>)
+fallo  alas citas, es decita acciones cir cuando un usuario pide una cita se le pide q ingrese correo, ete se validara, y  si se valida y existe la session que guarda informacion d la cita enviada en formularios anteriores puede continuar, pero la accion vunerable sucede cuando se crea la session  y  el ususario no sigue los passo, o  va a otra pagina  a  navegar, entonces la session va a quedar viva, y no se va a matar, esta sesion de cita deberia estar activa solo unos minutos ,
+
+
+==> formulario de agenda pocos pasos, la flecha de atras, debe dirigirse al formulario de escribir coreonueva mente para poder validarlo  otra vez, mostrar alerta al usuario que si retrocede, se le volveera a modificar y validar el correo
+

@@ -3,13 +3,6 @@
     //este scrip es para procesar los datos enviados por formulario para crear nueva publicacion: no esta inlcuida en el index, por lo  que la seguridad la repito aqui:
     $_SESSION['rta_admin'];
     if(isset($_SESSION['user_id'])){
-        // if($_SESSION['nivel_usuario'] == 'administrador'){
-        //     //echo "<script>window.location.href='/veterinaria/admin/index.php'</script>";
-        // }else{
-        //     //echo "No existe usuario administrador";
-        //     $_SESSION['rta'] = 'noAutorizado';
-        //     echo "<script>window.location.href='/veterinaria/index.php?seccion=perfil'</script>";
-        // }
     }else{
         //echo "existe usuario";
         $_SESSION['rta'] = 'noAutorizado';
@@ -19,11 +12,10 @@
         if(!empty($_POST['name'])){
             $idU =  $_SESSION['user_id'];
             $maximo = 2 * 1024 * 1024; //Tamaño en MB
-            $titulo = $_POST['tittle'];
+            $titulo = $_POST['name'];
             $especie = $_POST['especie'];
             $raza = $_POST['raza'];
-            $edadAnios = $_POST['edad'];
-            $edadMeses = $_POST['edadMes'];
+            $fechaNac = $_POST['fechaN'];
             $color = $_POST['color'];
             $sexo = $_POST['sexo'];
             $talla = $_POST['talla'];
@@ -62,7 +54,7 @@
                 //si no  se subio nunguna imagen se va a generar una imagen por defecto
                 $path1DB = '/contenidos/usuarios/assets/imgDefault/pets.png';
             }
-            $c = "INSERT INTO pacientes (nombre, raza, color, certificados, usuario_idusuario, estado, edad, fechaAlta,  especie, esterilizado, sexo, talla, foto) VALUES(:nombre, :raza, :color, :certificado, :usuario, :estado, :edad, now(), :especie, :esterilizado, :sexo, :talla, :foto)";
+            $c = "INSERT INTO pacientes (nombre, raza, color, certificados, usuario_idusuario, estado, fechaAlta,  especie, esterilizado, sexo, talla, foto, fechaNac) VALUES(:nombre, :raza, :color, :certificado, :usuario, :estado, now(), :especie, :esterilizado, :sexo, :talla, :foto, :fechaN)";
                 try {
                     //preparar la consulta:
                     $stm = $pdo->prepare($c);
@@ -75,7 +67,7 @@
                     $stm->bindParam(':certificado', $certificado, PDO::PARAM_STR);
                     $stm->bindParam(':usuario', $idU, PDO::PARAM_STR);
                     $stm->bindParam(':estado', $estado, PDO::PARAM_STR);
-                    $stm->bindParam(':edad', $edadAnios);
+                    $stm->bindParam(':fechaN', $fechaNac);
                     $stm->bindParam(':especie', $especie, PDO::PARAM_STR);
                     $stm->bindParam(':esterilizado', $esterilizado, PDO::PARAM_STR);
                     $stm->bindParam(':sexo', $sexo, PDO::PARAM_STR);

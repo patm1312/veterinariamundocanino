@@ -1,19 +1,10 @@
 <?php
     include('../../../configuracion/conexion.php');
-    echo $prueba;
-
     //este scrip es para procesar los datos enviados por formulario para editar informacion de usuario: 
     $_SESSION['rta_admin'];
     //seguridad de la pagina.
     $maximo = 2 * 1024 * 1024; //Tamaño en MB
     if(isset($_SESSION['user_id'])){
-        // if($_SESSION['nivel_usuario'] == 'administrador'){
-        //     //echo "<script>window.location.href='/veterinaria/admin/index.php'</script>";
-        // }else{
-        //     //echo "No existe usuario administrador";
-        //     $_SESSION['rta'] = 'noAutorizado';
-        //     echo "<script>window.location.href='/veterinaria/index.php?seccion=perfil'</script>";
-        // }
     }else{
         //echo "existe usuario";
         $_SESSION['rta'] = 'noAutorizado';
@@ -34,15 +25,15 @@
     $sexo = $_POST['sexo'];
     $esterilizado= $_POST['esterilizado'];
     $raza = $_POST['raza'];
-    $edad = $_POST['edad'];
     $color = $_POST['color'];
     $especie = $_POST['especie'];
+    $fechaN = $_POST['fechaN'];
     $idM = $_GET['id'];
     if(($_FILES['imagen']['size'][0] > $maximo)){
         $_SESSION['rta_admin'] = "img_big";
-        //echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
+        echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
         }else{
-            $c = "UPDATE pacientes set nombre=:nombre, raza=:raza, color=:color, edad=:edad, esterilizado=:esterilizado, sexo=:sexo, especie=:especie, talla=:talla";
+            $c = "UPDATE pacientes set nombre=:nombre, raza=:raza, color=:color, fechaNac=:fechaN, esterilizado=:esterilizado, sexo=:sexo, especie=:especie, talla=:talla";
             if(($_FILES['imagen']['size'][0] > 0)){
                 //hay imagen de Pservicio cargada 
                 $imagenuno = $_FILES['imagen']['name'][0];
@@ -67,18 +58,17 @@
             }
             echo '<img class="" src="../../../admin/contenidos/usuarios/assets/imgMascotas/170474918742.png" alt="imagen logo">';
            $c = $c .  " WHERE idpacientes=:idM";
-           echo '<br>';
-           echo $c;
                 try {
                     //preparar la consulta:
                     $stm = $pdo->prepare($c);
                     //ejecutar la consulta:
                     //vincular los dats con bimparams(recomendado):
                     //primer argumento es el argumento  que especifico  en la consulta, el segundo parametro es la variable recibida  en el formuario, y  el tercer parametro es el tipo  de dato(PDO::PARAM_STR(es dato string)):
+                        echo 'talla es ' . $talla;
                     $stm->bindParam(':nombre', $nombre, PDO::PARAM_STR);
                     $stm->bindParam(':raza', $raza, PDO::PARAM_STR);
                     $stm->bindParam(':color', $color, PDO::PARAM_STR); 
-                    $stm->bindParam(':edad', $edad);
+                    $stm->bindParam(':fechaN', $fechaN);
                     $stm->bindParam(':esterilizado', $esterilizado);
                     $stm->bindParam(':sexo', $sexo);
                     $stm->bindParam(':especie', $especie);
@@ -96,17 +86,19 @@
                   $count = $stm->rowCount();
                   if($count > 0){
                       $_SESSION['rta_admin'] = "ok_form";
-                      //echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
+                      echo "<script>window.location.href='../../../index.php?seccion=perfil'</script>";
                   }else{
                       $_SESSION['rta_admin'] = "error";
-                      //echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios&accion=editarMascota&idM=$idM&idU=$idU'</script>";
+                      echo "<script>window.location.href='../../../index.php?seccion=perfil&seccionUser=pet&id=$idM '</script>";
                   }
         }
         }else{
-
+            $_SESSION['rta_admin'] = "error";
+            echo "<script>window.location.href='../../../index.php?seccion=perfil'</script>";
         }
     }else{
-
+        $_SESSION['rta_admin'] = "error";
+        echo "<script>window.location.href='../../../index.php?seccion=perfil'</script>";
     }
    
 ?>

@@ -1,25 +1,66 @@
 <?php
 session_start();
 include('configuracion/conexion.php');
+if((isset($_POST['producto']))){
+    if((!empty($_POST['producto']))){
+        //si hay alguna opcion que no esta vacio y  q ademas existe:
+        $cTextosCantidadProd = "SELECT * FROM productos";
+        $cTextosCantidadProd = $cTextosCantidadProd . ' WHERE ';
+
+        $producto = isset($_POST['producto']) ? $_POST['producto']: $_SESSION['producto'];
+        $_SESSION['producto'] = $producto;
+        if($producto != ''){
+            $filtro1 = " categoria=:producto AND ";
+        }else{
+            $filtro1 = '';
+        }
+        $filtros = $filtro1;
+        //lo convierto en array para luego quitarekle el and que sobra al final
+        $subC = explode(" ", $filtros);
+        array_splice($subC, -2);
+        $subCS = implode(" ", $subC); 
+        $cTextosCantidadProd = $cTextosCantidadProd . $subCS;
+        $cTextosCantidadProd . ' AND estado=1';
+        $_SESSION['consultaProd'] = $cTextosCantidadProd;
+        if($producto == 'todos'){
+            $cTextosCantidadProd =  "SELECT * FROM productos WHERE estado=1";
+            unset($_SESSION['consultaProd']);
+        }
+    }else{
+        //cuando no tiene filtros hago una consulta general
+        $cTextosCantidadProd = !empty($_SESSION['consultaProd']) ? $_SESSION['consultaProd']: "SELECT * FROM productos WHERE estado=1";
+    }
+}else{
+    //cuando no tiene filtros hago una consulta general
+    $cTextosCantidadProd = !empty($_SESSION['consultaProd']) ? $_SESSION['consultaProd']: "SELECT * FROM productos WHERE estado=1";
+}
     //pagina quese envia a travez de get cuando plso sobre la numeracion de  lapagina al final. (pag.1, pag.2 ...)
     $pagina_actual = isset( $_GET['p'] ) ? $_GET['p'] : 1;
     $cantPorPagina = 9;
-    //devuelve la cantidad de usuarios 
-    $cTextos2 = "SELECT COUNT(idproductos) AS TOTAL FROM productos";
     try {
-    $stmt2 = $pdo->prepare($cTextos2);
+    $stmt2 = $pdo->prepare($cTextosCantidadProd);
     // Especificamos el fetch mode antes de llamar a fetch()
     $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+    // Ejecutamos, antes verificamos la informacion enviada o reservada en la session.
+    $producto = isset($_POST['producto']) ? $_POST['producto']: $_SESSION['producto'];
+    if($producto == 'todos'){
+        $producto = '';
+    }
+    if($producto != ''){
+        echo 'existe producto' . $producto;
+        $stmt2->bindParam(':producto', $producto, PDO::PARAM_STR);
+    }
     // Ejecutamos
-    
         $stmt2->execute();
     } catch (\Throwable $th) {
         echo  $th;
     }
-   
-    $row2 = $stmt2->fetch();
-    $cantResultados = $row2['TOTAL'];
-    echo $cantResultados;
+    $cantidad = 0;
+    while ($rowCantp = $stmt2 ->fetch()){   
+        $cantidad  += 1;
+    }
+    $cantResultados = $cantidad;
+    //esta consulta anterior se da para verificar la cantidad de resultados devueltos por el filtro, para lograr haer el paginadr con esso filtros
     //cuantas paginas son que debo mostar de acuerdo  a la cantidad de usuarios dividido  entre la cantidad por pagina que quiero mostrar
     $cantPaginas = ceil($cantResultados / $cantPorPagina);
     if( $pagina_actual > $cantPaginas ){
@@ -29,55 +70,72 @@ include('configuracion/conexion.php');
         $pagina_actual = 1;
     }
     $dondeInicio = ($pagina_actual - 1) * $cantPorPagina;
+    $limites = ' LIMIT '. $dondeInicio .', '. $cantPorPagina;
+    //aqui se hace la consulta real para mostrar los resultados
+    $cTextosCantidadProd = $cTextosCantidadProd . $limites;
+$stmtProd = $pdo->prepare($cTextosCantidadProd);
+// Especificamos el fetch mode antes de llamar a fetch()
+$stmtProd->setFetchMode(PDO::FETCH_ASSOC);
+if($producto == 'todos'){
+    $producto = '';
+}
+if($producto != ''){
+    $stmtProd->bindParam(':producto', $producto, PDO::PARAM_STR);
+}
+try {
+    $stmtProd->execute();
+} catch (\Throwable $th) {
+    echo $th;
+}
 ?>
 <section class="container container__block">
+    <input type="hidden" id="input_send_form">
     <input type="hidden" id="productos">
                  <h2 class="h2 h2--servicios bottom__gray">productos</h2>
                  <div class="tittle_productos">
-                    <h2 class="info_result">Resultado de busqueda: <span class="info_result">x productos encontrados</span></h2>
-                    <p>
+                    <h2 class="info_result">Resultado de busqueda: <span class="info_result"><?php echo $cantidad; ?> productos encontrados</span></h2>
+                    <form action="" method="post" class="filtro_productos">
+                        <p class="poster__description--h1">
                             Ordenar:
-                            <select name="ordenar">
-                            <option>Selecciona:</option>
-                            <option>precio</option>
-                            <option>Farmacia</option>
-                            <option>Juguetes</option>
-                            <option>Alimento</option>
-                            <option>Ropa y Accesorios</option>
-                            <option>varios</option>
+                            <select name="producto">
+                                <option class="filter_prod" >todos</option>
+                                <option class="filter_prod" >alimento</option>
+                                <option class="filter_prod" >farmacia</option>
+                                <option class="filter_prod" >accesorios/juguetes</option>
+                                <option class="filter_prod" >ropa</option>
                             </select>
-                    </p>
+                        </p>
+                        <!-- <input class="bottom bottom__aside modalClose" type="submit" value="Aplicar"> -->
+                    </form>
                  </div>
                  <div class="description_services">
 
                  <?php
-                $cTextosProd = <<<SQL
-                SELECT * FROM productos
-                LIMIT $dondeInicio, $cantPorPagina
-                SQL;
-                try {
-                $stmtProd = $pdo->prepare($cTextosProd);
-                // Especificamos el fetch mode antes de llamar a fetch()
-                $stmtProd->setFetchMode(PDO::FETCH_ASSOC);
-                // Ejecutamos
+                // $cTextosProd = <<<SQL
+                // SELECT * FROM productos
+                // LIMIT $dondeInicio, $cantPorPagina
+                // SQL;
+                // try {
+                // $stmtProd = $pdo->prepare($cTextosProd);
+                // // Especificamos el fetch mode antes de llamar a fetch()
+                // $stmtProd->setFetchMode(PDO::FETCH_ASSOC);
+                // // Ejecutamos
                
-                    $stmtProd->execute();
-                } catch (\Throwable $th) {
+                //     $stmtProd->execute();
+                // } catch (\Throwable $th) {
                    
-                    echo $th;
+                //     echo $th;
                    
-                }
-                //$rowProd = $stmtProd->fetch();
+                // }
+                // //$rowProd = $stmtProd->fetch();
                 if($stmtProd){
                     include("contenidos/vistas/vista_productos.php");
                 }else{
                     echo 'aqui aparecen los productos asociados a cada usuario';
                 }
             ?>
-
                  </div>
              </div>
-                
             </div>
             <?php 
     if( $cantPaginas > 1 ):

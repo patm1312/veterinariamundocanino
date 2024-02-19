@@ -3,18 +3,54 @@
 //pagina quese envia a travez de get cuando plso sobre la numeracion de  lapagina al final. (pag.1, pag.2 ...)
 $pagina_actual = isset( $_GET['p'] ) ? $_GET['p'] : 1;
 $cantPorPagina = 2;
+$search;
 //devuelve la cantidad de usuarios 
-$cTextos2 = "SELECT COUNT(idpublicaciones) AS TOTAL FROM publicaciones";
+if(isset($_POST['search']) || (isset($_SESSION['search']))){
+    echo 'search existe';
+    if((!empty($_POST['search'])) || (!empty($_SESSION['search']))){
+        echo 'search no vacio';
+        if(!empty($_POST['search'])){
+            $search = $_POST['search'];
+            $_SESSION['search'] = $search;
+            $search = '%' . $search . '%';
+        }
+        if(!empty($_SESSION['search'])){
+            $search = $_SESSION['search'];
+            $search = '%' . $search . '%';
+        }
+        $cTextos2 = <<<SQL
+            SELECT COUNT(idpublicaciones) AS TOTAL FROM publicaciones 
+            WHERE descripcion LIKE :descripcion 
+            OR categoria LIKE :descripcion 
+            OR titulo LIKE :descripcion
+        SQL;
+    }else{
+        $cTextos2 = "SELECT COUNT(idpublicaciones) AS TOTAL FROM publicaciones WHERE estado=1";
+    }
+}else{
+    echo 'no existe search';
+    $cTextos2 = "SELECT COUNT(idpublicaciones) AS TOTAL FROM publicaciones WHERE estado=1";
+}
 $stmt2 = $pdo->prepare($cTextos2);
 // Especificamos el fetch mode antes de llamar a fetch()
 $stmt2->setFetchMode(PDO::FETCH_ASSOC);
 // Ejecutamos
-$stmt2->execute();
+if(!empty($search)){
+    $stmt2->bindParam(':descripcion', $search, PDO::PARAM_STR);
+    $stmt2->bindParam(':descripcion', $search, PDO::PARAM_STR);
+    $stmt2->bindParam(':descripcion', $search, PDO::PARAM_STR);
+}
+try {
+    $stmt2->execute();
+    //code...
+} catch (\Throwable $th) {
+    echo  $th;
+}
 $row2 = $stmt2->fetch();
 $cantResultados = $row2['TOTAL'];
+
 //cuantas paginas son que debo mostar de acuerdo  a la cantidad de usuarios dividido  entre la cantidad por pagina que quiero mostrar
 $cantPaginas = ceil($cantResultados / $cantPorPagina);
-
 if( $pagina_actual > $cantPaginas ){
 	$pagina_actual = $cantPaginas;
 }
@@ -23,20 +59,60 @@ if( $pagina_actual < 1 ){
 }
 
 $dondeInicio = ($pagina_actual - 1) * $cantPorPagina;
-$cTextos = <<<SQL
+if(isset($_POST['search']) || (isset($_SESSION['search']))){
+    if((!empty($_POST['search'])) || (!empty($_SESSION['search']))){
+        if(!empty($_POST['search'])){
+            $search = $_POST['search'];
+            $_SESSION['search'] = $search;
+        }
+        if(!empty($_SESSION['search'])){
+            $search = $_SESSION['search'];
+        }
+        $_SESSION['search'] = $search;
+        $search = '%' . $search . '%';
+        $cTextos = <<<SQL
+        SELECT 
+            *
+        FROM
+            publicaciones
+        WHERE descripcion LIKE :descripcion OR categoria LIKE :descripcion OR titulo LIKE :descripcion
+        LIMIT $dondeInicio, $cantPorPagina
+        SQL;
+    }else{
+        $cTextos = <<<SQL
+        SELECT 
+            *
+        FROM
+            publicaciones WHERE estado=1
+        LIMIT $dondeInicio, $cantPorPagina
+        SQL;
+    }
+}else{
+    $cTextos = <<<SQL
 SELECT 
 	*
 FROM
-    publicaciones
+    publicaciones WHERE estado=1
 LIMIT $dondeInicio, $cantPorPagina
 SQL;
+}
 $stmt = $pdo->prepare($cTextos);
 // Especificamos el fetch mode antes de llamar a fetch()
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 // Ejecutamos
-$stmt->execute();
+if(!empty($search)){
+    $stmt->bindParam(':descripcion', $search, PDO::PARAM_STR);
+    $stmt->bindParam(':descripcion', $search, PDO::PARAM_STR);
+    $stmt->bindParam(':descripcion', $search, PDO::PARAM_STR);
+}
+try {
+    $stmt->execute();
+    //code...
+} catch (\Throwable $th) {
+    echo $th;
+}
 ?>
-<div class="info__personal"> 
+<div id="search" class="info__personal"> 
     <input type="hidden" id="homeAdmin">
     <a class="a__aniadirP" href="index.php?seccion=AdminPublicaciones&accion=addP">
         <div class='aniadir-publicacion'>

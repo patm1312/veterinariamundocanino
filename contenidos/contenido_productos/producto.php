@@ -42,14 +42,14 @@ while ($rowProductos = $stmtProd->fetch()) {
             <p>inicio <span>/<?php echo $categoria; ?></span></p>
         </div>
         <!-- producto categoria varios -->
-        <div class="producto">
+        <div class="producto producto__view">
             <div class="foto__producto responsiveDiv">
                 <img class="foto" src="admin/<?php echo $img; ?>" alt="imagen">
             </div>
             <div class="descripcion__producto">
-                <h2 class="h2"><?php echo $nombre; ?></h2>
+                <h2 class="h2 poster__description--h1 "><?php echo $nombre; ?></h2>
                 <p class="nav__item nav__item--product nav__item--color"><?php echo $precio; ?></p>
-                <p><?php echo $descripcion; ?></p>
+                <p class="poster__description--h1 "><?php echo $descripcion; ?></p>
                 <div class="talla">
                     <p class="bottom__gray">confirma el tamaño:</p>
                     <div class="medidas">
@@ -78,23 +78,23 @@ while ($rowProductos = $stmtProd->fetch()) {
             <h2 class="h2 h2--servicios">Descripcion:</h2>
             <p><?php echo $descripcion; ?></p>
             <div class="description--product">
-                <h3>Color:</h3>
-                <p><?php echo $color; ?></p>
+                <h3 class="poster__description--h1">Color:</h3>
+                <p class=""><?php echo $color; ?></p>
             </div>
             <div class="description--product">
-                <h3>Material:</h3>
+                <h3 class="poster__description--h1">Material:</h3>
                 <p><?php echo $material; ?></p>
             </div>
             <div class="description--product">
-                <h3>Presentacion:</h3>
+                <h3 class="poster__description--h1">Presentacion:</h3>
                 <p>Material</p>
             </div>
             <div class="description--product">
-                <h3>Marca:</h3>
+                <h3 class="poster__description--h1">Marca:</h3>
                 <p><?php echo $marca; ?></p>
             </div>
             <div class="description--product">
-                <h3>Medidas tamaño pequeño:</h3>
+                <h3 class="poster__description--h1">Medidas tamaño pequeño:</h3>
                 <ul>
                     <li>alto: xcm</li>
                     <li>largo: xcm</li>
@@ -103,7 +103,7 @@ while ($rowProductos = $stmtProd->fetch()) {
                 </ul>
             </div>
             <div class="description--product">
-                <h3>Medidas tamaño mediano:</h3>
+                <h3 class="poster__description--h1">Medidas tamaño mediano:</h3>
                 <ul>
                     <li>alto: xcm</li>
                     <li>largo: xcm</li>
@@ -112,7 +112,7 @@ while ($rowProductos = $stmtProd->fetch()) {
                 </ul>
             </div>
             <div class="description--product">
-                <h3>Medidas tamaño grande:</h3>
+                <h3 class="poster__description--h1">Medidas tamaño grande:</h3>
                 <ul>
                     <li>alto: xcm</li>
                     <li>largo: xcm</li>

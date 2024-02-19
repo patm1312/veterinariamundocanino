@@ -22,13 +22,12 @@
             $titulo = $_POST['tittle'];
             $especie = $_POST['especie'];
             $raza = $_POST['raza'];
-            $edadAnios = $_POST['edad'];
-            $edadMeses = $_POST['edadMes'];
             $color = $_POST['color'];
             $sexo = $_POST['sexo'];
             $talla = $_POST['talla'];
             $esterilizado = $_POST['esterilizado'];
-            $caracter = $_POST['caract'];
+            $fechaN = $_POST['fechaN'];
+            //$caracter = $_POST['caract'];
             $publicacion = 55;
             $imagenuno;
             $tmp1_dir;
@@ -62,25 +61,26 @@
                 //si no  se subio nunguna imagen se va a generar una imagen por defecto
                 $path1DB = '/contenidos/usuarios/assets/default/default.jpg';
             }
-            $c = "INSERT INTO pacientes (nombre, raza, color, certificados, usuario_idusuario, estado, edad, fechaAlta,  especie, esterilizado, sexo, talla, foto) VALUES(:nombre, :raza, :color, :certificado, :usuario, :estado, :edad, now(), :especie, :esterilizado, :sexo, :talla, :foto)";
+            $c = "INSERT INTO pacientes (nombre, raza, color, certificados, usuario_idusuario, estado, fechaAlta,  especie, esterilizado, sexo, talla, foto, fechaNac) VALUES(:nombre, :raza, :color, :certificado, :usuario, :estado, now(), :especie, :esterilizado, :sexo, :talla, :foto, :fechaN)";
                 try {
                     //preparar la consulta:
                     $stm = $pdo->prepare($c);
                     //ejecutar la consulta:
                     //vincular los dats con bimparams(recomendado):
                     //primer argumento es el argumento  que especifico  en la consulta, el segundo parametro es la variable recibida  en el formuario, y  el tercer parametro es el tipo  de dato(PDO::PARAM_STR(es dato string)):
+                        echo $fechaN;
                     $stm->bindParam(':nombre', $titulo, PDO::PARAM_STR);
                     $stm->bindParam(':raza', $raza);
                     $stm->bindParam(':color', $color, PDO::PARAM_STR);
                     $stm->bindParam(':certificado', $certificado, PDO::PARAM_STR);
                     $stm->bindParam(':usuario', $id, PDO::PARAM_STR);
                     $stm->bindParam(':estado', $estado, PDO::PARAM_STR);
-                    $stm->bindParam(':edad', $edad);
                     $stm->bindParam(':especie', $especie, PDO::PARAM_STR);
                     $stm->bindParam(':esterilizado', $esterilizado, PDO::PARAM_STR);
                     $stm->bindParam(':sexo', $sexo, PDO::PARAM_STR);
                     $stm->bindParam(':talla', $talla, PDO::PARAM_STR);
                     $stm->bindParam(':foto', $path1DB);
+                    $stm->bindParam(':fechaN', $fechaN, PDO::PARAM_STR);
 
                     //ejecutar la consulta:
                     $stm->execute();
@@ -91,21 +91,21 @@
                     $lastInsertId = $pdo->lastInsertId();
                 if($lastInsertId > 0){
                     $_SESSION['rta_admin'] = "ok_form";
-                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones'</script>";
+                    //echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios'</script>";
                 }else{
                     $_SESSION['rta_admin'] = "error";
-                   echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones'</script>";
+                   //cho "<script>window.location.href='../../../index.php?seccion=AdminUsuarios'</script>";
                 };
         
     }
         }else{
             $_SESSION['rta_admin'] = "DateNull";
-            echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addPac'</script>";
+            echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios'</script>";
         }
             
     }else{
         $_SESSION['rta_admin'] = "DateNull";
-            echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=addPac'</script>";
+            echo "<script>window.location.href='../../../index.php?seccion=AdminUsuarios'</script>";
     }
     
     

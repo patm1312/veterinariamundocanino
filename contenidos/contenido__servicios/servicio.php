@@ -84,32 +84,48 @@ $letra1 ;
             $parrafo;
             if($stmtPs){
                 try {
-                    $rowPs = $stmtPs->fetch();
+                    // $rowPs = $stmtPs->fetch();
                     //var_dump($rowPs);
                 } catch (\Throwable $th) {
                     echo $th;
                 }
-                foreach ($rowPs as $key => $value) {
-                    $titulo =  $rowPs['titulo'];
-                    $subtitulo=  $rowPs['subtitulo'];
-                    $foto =  $rowPs['imagen'];
-                    $parrafo =  $rowPs['parrafo'];
+                // foreach ($rowPs as $key => $value) {
+                //     $titulo =  $rowPs['titulo'];
+                //     $subtitulo=  $rowPs['subtitulo'];
+                //     $foto =  $rowPs['imagen'];
+                //     $parrafo =  $rowPs['parrafo'];
                    
-                };
-                if($rowPs > 0){
+                // };
+                $syle  = 0;
+                while ( $rowPs = $stmtPs->fetch()){
+                // if($rowPs > 0){
+                    $style += 1;
+                  
             
                 
             ?>
           
-                    <article class="container container__block">
-                        <h2 class="h2 line__down"><?php echo $titulo; ?></h2>
-                                <h2 class="h2--servicios "><?php echo $subtitulo; ?></h2>
+                    <article class="container container__block subservicio <?php echo $resultado =  $style%2==0  ? '' : 'subservicio__bg'; ?>">
+                    <?php
+                    if($style%2==0){
+                        
+                    ?>
+                    
+                    <?php
+                    }else{
+                        ?>
+                    <img class="subservicio__hueso" src="assets/ilustracion/hueso.png" alt="imagen">
+                    <?php
+                    }
+                    ?>
+                        <h2 class="h2 line__down"><?php echo $rowPs['titulo']; ?></h2>
+                                <h2 class="h2--servicios "><?php echo $rowPs['subtitulo']; ?></h2>
                         <div class="producto">   
-                            <div class="foto__producto responsiveDiv foto__servicio">
-                                    <img class="foto" src="admin/<?php echo $foto; ?>" alt="imagen">
+                            <div class="foto__producto responsiveDiv">
+                                    <img class="foto" src="admin/<?php echo $rowPs['imagen']; ?>" alt="imagen">
                             </div> 
                             <div class="descripcion__producto">  
-                                <p><?php echo $parrafo ?></p>
+                                <p class="poster__description--p poster__description--serv" ><?php echo $rowPs['parrafo']; ?></p>
                             </div>
                         </div>
                     </article>

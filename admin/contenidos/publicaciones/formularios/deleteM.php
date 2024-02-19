@@ -42,7 +42,7 @@
                 echo "<script>window.location.href='index.php?seccion=AdminPublicaciones&accion=listadoM'</script>";
             }else{
                 $_SESSION['rta_admin'] = "error";
-                //echo "<script>window.location.href='index.php?seccion=AdminPublicaciones&accion=listadoM'</script>";
+                echo "<script>window.location.href='index.php?seccion=AdminPublicaciones&accion=listadoM'</script>";
             }
         }else{
             $_SESSION['rta_admin'] = "DateNull";

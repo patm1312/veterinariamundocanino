@@ -25,7 +25,7 @@
             $fechaI = $_POST['fechaI'];
             $fechaA = $_POST['fechaA'];
             $prescripciones = $_POST['prescripciones'];
-            $c = " INSERT INTO HistorialMedico  (pacientes_idpacientes, diagnostico, hospitalizacion, prescripciones, fechaUpdate, fechaIngreso";
+            $c = " INSERT INTO HistorialMedico  (pacientes_idpacientes, diagnostico, hospitalizacion, prescripciones, fechaIngreso, fechaRegistro";
            
             if($fechaA != ''){
                 $c = $c .  ",fechaAlta";
@@ -33,7 +33,7 @@
             }else{
                 $consulta_value = ')';
             }
-            $consulta = ') VALUES (:paciente, :diagnostico, :hospitalizacion, :prescripciones, now(), :fechaI';
+            $consulta = ') VALUES (:paciente, :diagnostico, :hospitalizacion, :prescripciones, :fechaI, now()';
             $c =  $c . $consulta .  $consulta_value;
     try {
         //preparar la consulta:

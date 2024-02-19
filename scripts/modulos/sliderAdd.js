@@ -6,6 +6,9 @@ export default function sliderAdd(){
     const boxes = document.querySelectorAll('.add__container--box')
     const boxObserver = document.querySelector('.add__container')
     //array que contiene las cajas que se van interceptadno
+    //el utlimo elemento es, para que cuando llegue hasta el, se se mueva hacia atras:
+    let box = boxes.length;
+    let ultimateBox = 'box' + box;
     let boxIntercepted = [];
     //funcion que se ejecuta en la instancia de intersection observer y  recivbe los parametros de los elementos que tiene que vigilar, en este caso cada una de las cajas
     const callback = (entries) => {
@@ -41,10 +44,13 @@ export default function sliderAdd(){
         intervalo = setInterval(function () {
             // carrusel-scrollleft desde el comienzo  es 0, porque no  se ha desplazado nada hacia la izquierda.  a eso le sumo el mismo mas 1 pixel
             carrusell.scrollLeft = carrusell.scrollLeft + step;
-            console.log("s eeje")
+            console.log('el valor de step es :  ' + step)
+     
             //si en el array esta guardado box9, significa que ya lo intercepto y por ello invierto a restar con -1 al valor del carrusel carrusell.scrollLeft
-            if (boxIntercepted[0] == 'box9' ) {
+            //si ya recorrio todo el carruse o ya llego hasta el ultim, entonvces debe invertirse la cuenta para que recorra hacia atras y se mueva hacia atras:
+            if (boxIntercepted[0] == ultimateBox ) {
                 step = step * -1;
+             
                 //luego lo elimino  a box9 del array ara quen no se vuelva a cumplir y n ose invierta la resta a suma
                 boxIntercepted.shift()
             }else if(boxIntercepted[0] == 'box1'){
@@ -67,7 +73,6 @@ export default function sliderAdd(){
       const callback2 = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                console.log("ya esta viendose el anuncio")
                 stop()
                 start();
             }else{

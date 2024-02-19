@@ -10,7 +10,7 @@
         <div class="form__body">  
                 <h2 class="form__h2" >Datos de Publicacion:</h2>
                 <p>Elige un titulo corto para tu nueva publicacion:</p>
-                <input name="tittle" class="input" type="name"  placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
+                <input name="tittle" class="input" type="name"  placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜ\s]{1,55}$" required>
                
                 <p>Elige una descripcion acorde  para tu nueva publicacion:</p>
                 <textarea placeholder="Descripcion" name="textarea" rows="10" cols=""></textarea>

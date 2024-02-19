@@ -1,6 +1,8 @@
 <?php
 session_start();
+$_SESSION['seguridad_modificar'] = 'true';
     include('../configuracion/conexion.php');
+    include('../function/function.php');
     //seccionque se va a cargar en la pagina de index como pagina de control, controla las publicaciones, los usuarios y los productos. si no hay ningun dato por get entonces por defecro  cargo la administracion de usuarios
     $section = isset($_GET['seccion']) ? $_GET['seccion']:'AdminUsuarios';
     //aqui  es la seguridad de la lapgina, si nio hay niugun dato de un usuario  administrador guardado  en una sesion, entonces no dbeeria ver esta pagina, lo redirijo  a loguearse o a lapagina de index raiz.
@@ -23,6 +25,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>  
+    <!-- //libreria del framework alpnie.js, lo agrego a mi pagina de index.php para que se cargue en los modulos por medio  de un link cdn.,  -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="../scripts/alpine.js"></script>
 </head>
 <body>
 <header class="header">
@@ -39,21 +44,25 @@ session_start();
                     <tbody>
                         <thead>
                         <th class="tr_flex">
-                        <td class="celda__border"><input type="text" name="search" class="search " placeholder="Buscar...">
-                            <a href="">
+                        <td class="celda__border">
+                            <form method="post" action="">
+                                <input type="text" name="search" class="search " placeholder="Buscar...">
+                                <a class="lupa_buscador" href="">
                                     <img class="glass" src="../assets/images/image6.png" alt="lupa">
                             </a>
+                            </form>
+                            
                         </td>
                         </th>
                         </thead>
                         </tbody>
 
                     </table>
-                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminUsuarios">Usuarios</a></li>
-                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminPublicaciones">Publicaciones</a></li>
-                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminProductos">Productos</a></li>
+                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminUsuarios&s=0">Usuarios</a></li>
+                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminPublicaciones&s=0">Publicaciones</a></li>
+                    <li class="nav__none nav__item nav__item--border"><a class="nav__item" href="index.php?seccion=AdminProductos&s=0">Productos</a></li>
                    <li class="nav__none nav__item ">
-                   <a href="">
+                   <a class="lupa_buscador"  href="">
                         <img class="glass__search" src="../assets/images/image6.png" alt="lupa">
                     </a>
                    </li>

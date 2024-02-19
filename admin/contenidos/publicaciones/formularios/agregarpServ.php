@@ -18,8 +18,8 @@ if(isset($_GET['p'])){
         </div>
         <div class="form__body">    
                 <h2 class="form__h2" >Datos de Publicacion:</h2>
-                <input name="tittle" class="input" type="name" placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
-                <input name="subtittle" class="input" type="name" placeholder="Subtitulo de Publicacion" title="Subtitulo Invalido" pattern="[a-zA-Z ]{1,40}$" required>
+                <input name="tittle" class="input" type="name" placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜ\s]{1,55}$" required>
+                <input name="subtittle" class="input" type="name" placeholder="Subtitulo de Publicacion" title="Subtitulo Invalido" pattern="^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜ\s]{1,55}$" required>
                 <textarea placeholder="Descripcion" name="textarea" rows="10" cols=""></textarea>
                 <h2>Foto:</h2>
                 <div id="input_file" class="">

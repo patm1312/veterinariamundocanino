@@ -28,19 +28,20 @@
     if(isset($_POST['tittle'])){
         if(!empty($_POST['tittle'])){
             $nombre = $_POST['tittle'];
+            $estado = $_POST['eliminar'];
             $marca = $_POST['marca'];
             $precio = $_POST['price'];
             $color = $_POST['color'];
             $descuento = $_POST['descuento'];
             $descripcion = $_POST['textarea'];
             $categoria = $_POST['categoria'];
-            $estado = $_POST['estado'];
+            $espacio = $_POST['espacio'];
             $id = $_GET['id'];
             if(($_FILES['imagen']['size'][0] > $maximo)){
                 $_SESSION['rta_admin'] = "img_big";
                 echo "<script>window.location.href='../../../index.php?seccion=AdminProductos'</script>";
             }else{
-                $c = "UPDATE productos set nombre=:nombre, descripcion=:descripcion, categoria=:categoria, precio=:precio, color=:color, marca=:marca, descuento=:descuento, estado=:estado";
+                $c = "UPDATE productos set nombre=:nombre, descripcion=:descripcion, categoria=:categoria, precio=:precio, color=:color, marca=:marca, descuento=:descuento, estado=:estado, espacio=:espacio";
                 if(($_FILES['imagen']['size'][0] > 0)){
                     //hay imagen de Pservicio cargada 
                     $imagenuno = $_FILES['imagen']['name'][0];
@@ -78,7 +79,8 @@
                         $stm->bindParam(':color', $color, PDO::PARAM_STR);
                         $stm->bindParam(':marca', $marca, PDO::PARAM_STR);
                         $stm->bindParam(':descuento', $descuento, PDO::PARAM_STR);
-                        $stm->bindParam(':estado', $estado, PDO::PARAM_STR);
+                        $stm->bindParam(':estado', $estado);
+                        $stm->bindParam(':espacio', $espacio, PDO::PARAM_STR);
                         $stm->bindParam(':idProducto', $id);
                         if($_FILES['imagen']['size'][0] > 0){
                             $stm->bindParam(':foto', $path1DB);

@@ -1,10 +1,16 @@
-<a href="/veterinaria/admin/index.php?seccion=AdminProductos">
+<a  href="/veterinaria/admin/index.php?seccion=AdminProductos">
 <div>
 <h2 class="h2 h2--servicios inline" >Listado de Productos</h2>
 </div>
 </a>
 
 <?php
+//este sirve para cuando este valos sea ceor, entonces elimine el buscador y  muestre tosod los resultados nuevamente y sin filtro.
+ if(isset($_GET['s'])){
+    if($_GET['s'] == 0){
+        unset($_SESSION['search']);
+    }
+ }
  //seccionque se va a cargar en la pagina de homeadmin como pagina de control, controla los usuarios,. si no hay ningun dato por get entonces por defecro  cargo la administracion de usuarios
  $section = isset($_GET['accion']) ? $_GET['accion']:'productosIndex';
  switch($section){

@@ -1,29 +1,85 @@
+<?php
+$cTextosSlider = <<<SQL
+SELECT 
+	*
+FROM
+    publicaciones
+WHERE  espacio = :espacio
+SQL;
+$espacio = 'slider';
+$stmtSlider = $pdo->prepare($cTextosSlider);
+// Especificamos el fetch mode antes de llamar a fetch()
+$stmtSlider->setFetchMode(PDO::FETCH_ASSOC);
+// Ejecutamos
+$stmtSlider->bindParam(':espacio', $espacio, PDO::PARAM_STR);
+try {
+    $stmtSlider->execute();
+    //code...
+} catch (\Throwable $th) {
+    echo $th;
+}
+?>
 <section class="section__slider">
     <a href="#" class="previos">&laquo;</a>
     <a href="#" class="next">&raquo;</a>
-                       <a class="slider-slide active" href="">
-                            <img class="sliderImg" src="assets/images/purplecat.png" alt="">
+    <?php
+    $enlace;
+    while ($rowSlider = $stmtSlider->fetch()){
+        $imagenS = $rowSlider['fotoSlider'];
+    
+        $categoria = $rowSlider['categoria'];
+        $id = $rowSlider['idpublicaciones'];
+        if($categoria == 'cita'){
+            $enlace = 'index.php?seccion=cita';
+        }else if($categoria == 'Padopta'){
+            $enlace = 'index.php?seccion=adopta';
+        }else if($categoria == 'Pservicio'){
+            $enlace = 'index.php?seccion=servicio&id' . $id;
+        }
+       
+    ?>
+                       <a class="slider-slide active" href="<?php echo $enlace; ?>">
+                            <img class="sliderImg" src="admin/<?php echo $imagenS ; ?>" alt="">
                         </a>
-                        <a class="slider-slide" href="index.php?seccion=cita">
+    <?php
+    };
+    ?>
+                        <!-- <a class="slider-slide" href="index.php?seccion=cita">
                             <img class="sliderImg" src="assets/images/slider_cita.png" alt="ddfd">
                         </a>
                         <a class="slider-slide" href="index.php?seccion=adopta">
                             <img class="sliderImg" src="assets/images/AdoptaPoster.png" alt="rrrrr">
-                        </a>
+                        </a> -->
 </section>
-<section class="container poster">   
+<section class="container poster poster__1"> 
+<img class="cruz cruz_2" src="assets/ilustracion/cruzbg.png" alt="cruz" >
+    <img class="cruz cruz_1" src="assets/ilustracion/cruzbg.png" alt="cruz" >
+    <img class="huella huella_1" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_2" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_3" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_4" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_5--bottom" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_6--bottom" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_7--bottom" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
+    <img class="huella huella_8--bottom" src="assets/ilustracion/huella-bg.png" alt="huella" srcset="">
 <input type="hidden" id="home">
         <div class="poster__description">
             <div class="">
                 <h1 class="poster__description--h1 poster__description--h1--canva"><span class="poster__description--span poster__description--h1--canva">M</span><span class="poster__description--span2 poster__description--h1--canva">undo</span><br>Canino</h1>
             </div>
-            <img class="poster__img poster__img--menor" src="assets/images/lococatHome.png" alt="gato">
-            <p class="poster__description--p">Nuestra clinica veterinaria ofrece sus productos  y servicios con calidad en la ciudad de Cucuta, contactanos y conocenos como trabajamos para la salud y  bienestar de tu mascota. </p>
-            <div class="bottom">
-                <a class="bottom" href="index.php?seccion=cita">Hacer una cita</a>
-            </div>
+            <img class="poster__description--img poster__img--menor" src="assets/images/lococatHome.png" alt="gato">
+            
+            <p class="poster__description--p">Nuestra clinica veterinaria ofrece sus productos  y servicios con calidad en la ciudad de Cúcuta, nuestra amplia experiencia de nuestro médico certificado y  grupo  de trabajo sabemos darle a tu mascota lo mejor cuando lo  necesita, ven y contáctanos , conocénos como trabajamos para la salud y  bienestar de tu mascota.</p>
+         
+            
+            <a class=" bottom bottom--orange bottom__serv" href="index.php?seccion=cita">Hacer una cita</a>
         </div>
-    <img class="poster__img poster__img--mayor" src="assets/images/lococatHome.png" alt="gato">
+
+        <img class="poster__description--img poster__img--mayor" src="assets/images/lococatHome.png" alt="gato">
+        <!-- <div class="poster__description--box">
+           
+            <img class="poster__description--img" src="assets/images/lococatHome.png" alt="gato">
+        </div> -->
 </section>
 <?php
 $cTextosProductos = <<<SQL
@@ -31,7 +87,7 @@ SELECT
 	*
 FROM
     productos
- WHERE espacio=?
+ WHERE espacio=? AND estado=1
 SQL;
 $stmtProd = $pdo->prepare($cTextosProductos);
 // Especificamos el fetch mode antes de llamar a fetch()
@@ -48,14 +104,15 @@ $stmtProd->execute([$dato_consulta]);
         <div class="carrusell">
 <?php
 $imagen_oferta = 'assets/iconos/oferta.png';
+$box = 0;
 while ($rowProductos = $stmtProd->fetch()) {
-
+$box = $box + 1;
     $precio = $rowProductos["precio"];
     $descuento = $rowProductos["descuento"];
     $img = $rowProductos["foto"];
     $id = $rowProductos["idproductos"];
 ?>
-            <div class="add__container--box add__containerBox--width"   id="box1">
+            <div class="add__container--box add__containerBox--width"   id="box<?php echo $box; ?>">
                 <img class="oferta__descuento--img ad__oferta" src="<?php echo $imagen_oferta; ?>" alt="oferta">
                 <p class="oferta__descuento ad__desc" >
                 <?php echo $descuento;?></p>
@@ -190,23 +247,59 @@ try {
 } catch (\Throwable $th) {
     echo $th;
 }
+$valueP;
 while ($rowpreview = $stmtpreview->fetch()){
     $tituloP = $rowpreview['titulo'];
     $descripcionP = $rowpreview['descripcion'];
+    if(strlen($descripcionP) > 70) {
+        $valueP = substr($descripcionP, 0, 200) . '...';
+    }
+    $foto = $rowpreview['foto'];
     $idP = $rowpreview['idpublicaciones'];
 ?>
     <section class="container poster poster__vacunacion"> 
-        <div class="poster__description">
-            <h2 class="h2"><?php echo $tituloP; ?></h2>
-            <p class="poster__description--p"><?php echo $descripcionP; ?></p>
-            <div class="bottom bottom--orange">
-                <a class="bottom bottom--orange" href="index.php?seccion=servicio&id=<?php echo $idP; ?>">Saber Mas</a>
+    <img class="responsiveDiv img__servicio-prevM" src="admin<?php echo $foto; ?>" alt="gato">
+        <div class="poster__description--servicio">
+            <h2 class="poster__description--h1 poster__description--h1--canva poster__p--servicio"><?php echo $tituloP; ?></h2>
+            <img class="responsiveDiv img__servicio-prevm" src="admin<?php echo $foto; ?>" alt="gato">
+            <p class="poster__description--p "><?php echo $valueP; ?></p> 
+            
+            <div class="bottom bottom__big--div bottom__big bottom--orange">
+                <a class="bottom bottom__big--a bottom__big bottom--orange" href="index.php?seccion=servicio&id=<?php echo $idP; ?>">Saber Mas</a>
             </div>
         </div>
+        
     </section>
 <?php
 };
 ?>
+<section class="position__section">
+
+    <div class="box--serv">
+        <div class="box__serv--tittle">
+            <img class="icon__serv" src="assets/iconos/emergencia.png" alt="emergencia" srcset="">
+            <div>
+                <h1 class="poster__description--span size__h1--serv" >Emergencias</h1>
+                <h2 class="poster__description--span2 h2__serv" >Atencion Inmediata</h2>
+            </div>
+        </div>
+        <div class="description--emer">
+            <p class="p__serv--e" >En nuestra Clinica Mundo Canino siempre estaremos dispuesto a atender a tu mascota cuando mas  lo necesita, por lo que nuestro servicio de urgencias de 24 horas sigue abierto. Antes de venir llamar a los siguientes numeros: </p>
+            <div class="box--serv__phone">
+                <img class="icon__phone" src="assets/iconos/phone.png" alt="phone" srcset="">
+                <p class=" p__serv--e" >3153704398 - 3002130903</p>
+            </div>
+         
+                    <a class="bottom bottom__big--a bottom__big bottom--orange bottom__serv" href="index.php?seccion=servicio&id=<?php echo $idP; ?>">Agendar Cita</a>
+            
+        </div>
+        
+    </div>
+    <div class="poster_3 urgencias__none">
+
+</div>
+<img class=" img__urgencias urgencias__block urgencias__none" src="assets/images/revicion.jpg" alt="urgencias">
+</section>
 <section>
     <div class="ifrem">
         <div>
@@ -217,3 +310,4 @@ while ($rowpreview = $stmtpreview->fetch()){
             </div>
         </div>
 </section>
+

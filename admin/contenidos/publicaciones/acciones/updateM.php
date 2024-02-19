@@ -32,13 +32,17 @@
                     $titulo = $_POST['tittle'];
                     $especie = $_POST['especie'];
                     $raza = $_POST['raza'];
-                    $edadAnios = $_POST['edad'];
-                    $edadMeses = $_POST['edadMes'];
+                    $fechaN = $_POST['fechaN'];
                     $color = $_POST['color'];
                     $sexo = $_POST['sexo'];
                     $talla = $_POST['talla'];
                     $esterilizado = $_POST['esterilizado'];
                     $publicacion = 55;
+                    if(isset($_POST['eliminar'])){
+                        $estado = $_POST['eliminar'];
+                    }else{
+                        $estado = 1;
+                    }
                     $imagenuno;
                     $tmp1_dir;
                     //si  va a tener una imagen de slider
@@ -55,7 +59,7 @@
                     $_SESSION['rta_admin'] = "img_big";
                     echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarm&id=$id'</script>";
                 }else{
-                    $c = "UPDATE PAdopta set nombre=:nombre, especie=:especie, raza=:raza, edad=:edad, sexo=:sexo, talla=:talla, esterilizado=:esterilizado, color=:color";
+                    $c = "UPDATE PAdopta set nombre=:nombre, especie=:especie, raza=:raza, sexo=:sexo, talla=:talla, esterilizado=:esterilizado, color=:color, fechaNac=:fechaN, estado=:estado";
                     if(($_FILES['imagen']['size'][0] > 0)){
                         //hay imagen de Pservicio cargada 
                         $imagenuno = $_FILES['imagen']['name'][0];
@@ -85,18 +89,15 @@
                             //ejecutar la consulta:
                             //vincular los dats con bimparams(recomendado):
                             //primer argumento es el argumento  que especifico  en la consulta, el segundo parametro es la variable recibida  en el formuario, y  el tercer parametro es el tipo  de dato(PDO::PARAM_STR(es dato string)):
-                                echo '<br>';
-                                echo 'titulo' . $titulo . 'descripcion' . $descripcion . 'estado' . $estado . 'id' . $id . 'espacio' . $espacio;
-                                echo '<br>';
-                                echo $c;
                                 $stm->bindParam(':nombre', $titulo, PDO::PARAM_STR);
                                 $stm->bindParam(':especie', $especie, PDO::PARAM_STR);
-                                $stm->bindParam(':raza', $raza);
-                                $stm->bindParam(':edad', $edad);
+                                $stm->bindParam(':raza', $raza, PDO::PARAM_STR);
+                                $stm->bindParam(':fechaN', $fechaN, PDO::PARAM_STR);
                                 $stm->bindParam(':sexo', $sexo, PDO::PARAM_STR);
                                 $stm->bindParam(':talla', $talla, PDO::PARAM_STR);
                                 $stm->bindParam(':esterilizado', $esterilizado, PDO::PARAM_STR);
                                 $stm->bindParam(':color', $color, PDO::PARAM_STR);
+                                $stm->bindParam(':estado', $estado, PDO::PARAM_STR);
                                 $stm->bindParam(':idP', $id, PDO::PARAM_STR);
                             if($_FILES['imagen']['size'][0] > 0){
                                 $stm->bindParam(':foto', $path1DB);
@@ -119,7 +120,7 @@
                 }
             }
         }else{
-            $_SESSION['rta_admin'] = "DateNull";
+            //$_SESSION['rta_admin'] = "DateNull";
             echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarm&id=$id'</script>";
         }
        

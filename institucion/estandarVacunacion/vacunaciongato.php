@@ -80,7 +80,15 @@
                             <p>Fecha: <?php echo $rowV['fechaProxima']; ?></p>
                             <input name="fechaP" type="hidden" value="<?php echo $rowV['fechaProxima'];?>"/>
                             <input name="Dosis" type="hidden" value="<?php echo $rowV['ProximaDosis'];?>"/>
+                            <?php
+                   if($_SESSION['nivel_usuario'] == 'administrador'){
+                    if($_SESSION['seguridad_modificar'] == 'true'){
+                ?>
                             <input class="input_vacunacion<?php echo $rowM["idpacientes"];  ?> none__filter aplicarPlan" type="submit" value="Aplicar">
+                            <?php
+                    };
+                }
+                            ?>
                         </td>
                     </tr>
                     <tr class="trVac">

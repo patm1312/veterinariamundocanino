@@ -26,15 +26,17 @@ session_start();
             </div>
         </div>
         <div class="form__body">    
-                <h2 class="form__h2" >Iniciar Sesion</h2>
-                <span class="form__span" >¿Eres nuevo? <a class="form--text form--text1 enlace" href="index.php?seccion=logout"> Registrate</a></span>
+                <h2 class="form__h2 poster__description--h1" >Iniciar Sesion</h2>
+                <span class="form__span poster__description--h1" >¿Eres nuevo? <a class="form--text form--text1 enlace poster__description--h1 enlace__form" href="index.php?seccion=logout"> Registrate</a></span>
                 
                 <input name="email" class="input" type="email" placeholder="Ingresa tu correo" title="Email incorrecto" pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?" required>
-                <input name="password" class="input" type="password" placeholder="Ingresa tu contraseña" required >
-                <div class="bottom box__bottom box__bottom--login">
-                    <input class="" type="submit" value="Continuar">
-                </div>
-                <span class="form__span form__span-password" ><a class="form--text form--text1 enlace" href="index.php?seccion=logadd">Recuperar contraseña</a></span>
+                <input name="password" class="input " type="password" placeholder="Ingresa tu contraseña" required >
+                <!-- <div class="bottom box__bottom box__bottom--login"> -->
+                    <!-- <a class="bottom bottom__big--a bottom__big bottom--orange bottom__serv" href="index.php?seccion=servicio&id=<?php echo $idP; ?>">Agendar Cita</a>
+                    <input class=" bottom box__bottom box__bottom--login" type="submit" value="Continuar">
+                </div> -->
+                <input class="bottom bottom__big--a bottom__big bottom--orange " type="submit" value="Continuar">
+                <span class="form__span form__span-password" ><a class="form--text form--text1 enlace poster__description--h1 enlace__form" href="index.php?seccion=logadd">Recuperar contraseña</a></span>
                 <a class="" href="">
                     <div class="form__boxayuda">
                         <img class="form__boxayuda--img" src="assets/images/whatsapp.png" alt="whatsapp">

@@ -32,6 +32,7 @@ echo 'estoy en editar h';
              $documentos =  $r->documentos;
              $prescripciones =  $r->prescripciones;
             }
+            $_SESSION['documento'] =  $documentos;
 ?>
 <input type="hidden" id="homeAdmin">
 <form enctype="multipart/form-data" class="form contact-form" action="contenidos/usuarios/acciones/updateH.php?idH=<?php echo $dato_consultaHistoria;?>" method="post">
@@ -58,8 +59,8 @@ echo 'estoy en editar h';
                 <p>Edita fecha de alta de Mascota:</p>
                 <input name="fechaA" class="input" type="datetime-local" value="<?php echo $fechaAlta; ?>" placeholder="fecha INvalida">
                 <div id="input_file" class="">
-                    <p>Actualiza documentos:</p>
-                    <input class="" id="archivoDefault" type="file" name="doc[]" accept="" tittle="debe ser documento en pdf">
+                    <p>Actualiza documentos (subir en pdf):</p>
+                    <input class="" id="archivoDefault" type="file" name="doc" accept="application/pdf" tittle="debe ser documento en pdf">
                     <div>
                         <a href="" class="openImg">
                             <img class="openImg" src="contenidos/publicaciones/assets/default/img.png" alt="foto">

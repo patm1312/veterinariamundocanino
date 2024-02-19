@@ -26,7 +26,7 @@
 ?>
 <div class="description_service--box">
         <img class="oferta__descuento--img" src="<?php echo $imagen_oferta; ?>" alt="oferta">
-        <p class="oferta__descuento" >
+        <p class="oferta__descuento poster__description--h1" >
         <?php echo $descuento;?><br>
         </p>
         <span class="oferta__descuento--dto">D.to</span>
@@ -35,9 +35,9 @@
             <img class="img_preview-poster" src="<?php echo $imagen_producto; ?>" alt="imagen">
         </div>
             <div class="description_services--descr">
-                <h2 class="h2_producto nav__item nav__item--color"><?php echo $rowProductos['nombre']; ?></h2>
-                <p class="p_posterPreview"><?php echo $rowProductos['descripcion']; ?></p>
-                <h2 class="precio nav__item nav__item--products nav__item--color"><?php echo $rowProductos['precio']; ?></h2>
+                <h2 class="h2_producto nav__itemp nav__item--color"><?php echo $rowProductos['nombre']; ?></h2>
+                <p class="p_posterPreview poster__description--h1"><?php echo $rowProductos['descripcion']; ?></p>
+                <h2 class="precio nav__itemp nav__item--products nav__item--color"><?php echo $rowProductos['precio']; ?></h2>
             </div>
     </a>
    
@@ -47,7 +47,6 @@
 
  }
         if(($_SESSION['nivel_usuario'] == 'administrador') && ($dominio) && ($var_accion_producto)){
-       
 ?>
 <div class="description_service--box">
     <a href="<?php echo $accion_enlace_add; ?>"> 

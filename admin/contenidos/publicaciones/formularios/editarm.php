@@ -7,7 +7,7 @@
         echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarM'</script>";
     }
     //consulto la bd con la publicacion a la que quiero editar para autocomplear en el formulario:
-    $c = "SELECT nombre, especie, raza, edad, sexo, talla, esterilizado, color, foto FROM PAdopta WHERE idPAdopta=?";
+    $c = "SELECT nombre, especie, raza, sexo, talla, esterilizado, color, foto, fechaNac, estado FROM PAdopta WHERE idPAdopta=?";
     //preparar la consulta:
     try {
             $stmt = $pdo->prepare($c);
@@ -22,7 +22,6 @@
     $nombre;
     $especie;
     $raza;
-    $edad;
     $sexo;
     $talla;
     $esterilizado;
@@ -32,14 +31,16 @@
         $nombre =  $r->nombre;;
         $especie =  $r->especie;;
         $raza =  $r->raza;
-        $edad =  $r->edad;
+        $fechaN =  $r->fechaNac;
         $sexo =  $r->sexo;
         $talla=  $r->talla;
         $esterilizado=  $r->esterilizado;
         $color=  $r->color;
         $foto =  $r->foto;
+        $estado =  $r->estado;
     }
     echo '<br>';
+    echo ' el estado es ' .  $estado;
     $_SESSION['foto'] =  $foto;
 
 ?>
@@ -59,31 +60,35 @@
                 <input value="<?php echo $nombre; ?>" name="tittle" class="input" type="name"  placeholder="Titulo de Publicacion" title="Nombre Invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>
                     Especie:<br>
-                    <input <?php echo $resultado =  $especie == 'gato' ? 'checked' : ''; ?> type="radio" name="especie" value="gato"> Gato<br>
-                    <input <?php echo $resultado =  $especie == 'perro' ? 'checked' : ''; ?> type="radio" name="especie" value="perro"> Perro
+                    <input <?php echo $resultado =  $especie == 'gato' ? 'checked' : ''; ?> type="radio" name="especie" value="gato" required> Gato<br>
+                    <input <?php echo $resultado =  $especie == 'perro' ? 'checked' : ''; ?> type="radio" name="especie" value="perro" required> Perro
                 </p>
                 <p>Raza de mascota:</p>
                 <input value="<?php echo $raza; ?>" name="raza" class="input" type="name"  placeholder="Titulo de Publicacion" title="Raza Invalida" pattern="[a-zA-Z ]{1,40}$" required>
-                <p>Edad de mascota:</p>
-                <input value="<?php echo $edad; ?>" name="edad" class="input" type="text" pattern="^(0|[1-9]|d\d|20)$" placeholder="Años" title="año Invalido" required>
-                <input value="<?php echo $edad; ?>" name="edadMes" class="input" type="text" pattern="^(0?[1-9]|1[0-2])$" placeholder="Meses" title="Mes invalido" required>
+                <p>Fecha Nacimiento:</p>
+                <input name="fechaN" class="input" type="datetime-local" value="<?php echo $fechaN ;?>" required>
                 <input value="<?php echo $color; ?>" name="color" class="input" type="name"  placeholder="Color" title="color invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>
                     sexo:<br>
-                    <input <?php echo $resultado = $sexo == 'macho' ? 'checked' : ''; ?> type="radio" name="sexo" value="macho">Macho<br>
-                    <input <?php echo $resultado =  $especie == 'hembra' ? 'checked' : ''; ?> type="radio" name="sexo" value="hembra">Hembra
+                    <input <?php echo $resultado = $sexo == 'macho' ? 'checked' : ''; ?> type="radio" name="sexo" value="macho" required>Macho<br>
+                    <input <?php echo $resultado =  $sexo == 'hembra' ? 'checked' : ''; ?> type="radio" name="sexo" value="hembra" required>Hembra
                 </p>
                 <p>
                     Talla:<br>
-                    <input <?php echo $resultado =  $talla == 'pequeño' ? 'checked' : ''; ?> type="radio" name="talla" value="pequeño">Pequeño<br>
-                    <input <?php echo $resultado =  $talla == 'mediano' ? 'checked' : ''; ?> type="radio" name="talla" value="mediano">Mediano<br>
-                    <input <?php echo $resultado =  $talla == 'grande' ? 'checked' : ''; ?> type="radio" name="talla" value="grande">Grande
+                    <input <?php echo $resultado =  $talla == 'pequeño' ? 'checked' : ''; ?> type="radio" name="talla" value="pequeño" required >Pequeño<br>
+                    <input <?php echo $resultado =  $talla == 'mediano' ? 'checked' : ''; ?> type="radio" name="talla" value="mediano" required >Mediano<br>
+                    <input <?php echo $resultado =  $talla == 'grande' ? 'checked' : ''; ?> type="radio" name="talla" value="grande" required>Grande
                 </p>
                 <p>
                     Esterilizado:<br>
-                    <input <?php echo $resultado =  $esterilizado == 'si' ? 'checked' : ''; ?> type="radio" name="esterilizado" value="si">Si<br>
-                    <input <?php echo $resultado =  $esterilizado == 'no' ? 'checked' : ''; ?> type="radio" name="esterilizado" value="no">No<br>
+                    <input <?php echo $resultado =  $esterilizado == 'si' ? 'checked' : ''; ?> type="radio" name="esterilizado" value="si" required>Si<br>
+                    <input <?php echo $resultado =  $esterilizado == 'no' ? 'checked' : ''; ?> type="radio" name="esterilizado" value="no" required>No<br>
                 </p>
+                <p>
+                    Elimanar Producto:<br>
+                    <input <?php echo $resultadoP =  $estado == 0 ? 'checked' : ''; ?> type="radio" name="eliminar" value="0"> Borrar<br>
+                    <input <?php echo $resultadoP =  $estado == 1 ? 'checked' : ''; ?> type="radio" name="eliminar" value="1"> Conservar<br>
+                 </p>
                 <div id="input_file" class="">
                     <p>Actualiza imagen de tu publicacion:</p>
                     <input class="" id="archivoDefault" type="file" name="imagen[]" accept=".png, .jpg, .jpeg" tittle="La imagen debe ser cuadrada como minimo">

@@ -33,13 +33,18 @@
             $titulo = $_POST['tittle'];
             $descripcion = $_POST['textarea'];
             $espacio = $_POST['espacio'];
+            if(isset($_POST['eliminar'])){
+                $estado = $_POST['eliminar'];
+            }else{
+                $estado = 1;
+            }
             $id = $_GET['id'];
 
             if(($_FILES['imagen']['size'][0] > $maximo) || ($_FILES['imagen']['size'][1] > $maximo)){
                 $_SESSION['rta_admin'] = "img_big";
                 echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";
             }else{
-                $c = "UPDATE publicaciones set titulo=:titulo, fechaAlta=now(), descripcion=:descripcion, espacio=:espacio";
+                $c = "UPDATE publicaciones set titulo=:titulo, fechaAlta=now(), descripcion=:descripcion, espacio=:espacio, estado=:estado";
                 if(($_FILES['imagen']['size'][0] > 0)){
                     //hay imagen de Pservicio cargada 
                     $imagenuno = $_FILES['imagen']['name'][0];
@@ -73,8 +78,8 @@
                     $fileImg2 = time( ).rand(1,1000).".".$img2Ext;
                     $path2DB = '/contenidos/publicaciones/assets/ContenidoPServ/'. $fileImg2;
                     $fotoEraseS = $upload_dir2 . $fotoSDB;
-                    //unlink($fotoEraseS);
-                    //move_uploaded_file($tmp2_dir,$upload_dir2.$fileImg2);
+                    unlink($fotoEraseS);
+                    move_uploaded_file($tmp2_dir,$upload_dir2.$fileImg2);
                 }
                $c = $c .  " WHERE idpublicaciones=:idP";
                     try {
@@ -85,6 +90,7 @@
                         //primer argumento es el argumento  que especifico  en la consulta, el segundo parametro es la variable recibida  en el formuario, y  el tercer parametro es el tipo  de dato(PDO::PARAM_STR(es dato string)):
                         $stm->bindParam(':titulo', $titulo, PDO::PARAM_STR);
                         $stm->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+                        $stm->bindParam(':estado', $estado, PDO::PARAM_STR);
                         $stm->bindParam(':espacio', $espacio, PDO::PARAM_STR);
                         $stm->bindParam(':idP', $id);
                         if($_FILES['imagen']['size'][0] > 0){
@@ -102,7 +108,7 @@
                 $count = $stm->rowCount();
                 if($count > 0){
                     $_SESSION['rta_admin'] = "ok_form";
-                    //echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";
+                    echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";
                 }else{
                     $_SESSION['rta_admin'] = "error";
                     echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarp&id=$id'</script>";

@@ -53,7 +53,13 @@ try {
                     </tr>
                     <tr class="tr">
                         <th class="th">Edad</th>
-                        <td class="td" ><?php echo $rowM['edad'] . ' años y ' . $rowM['edad'] . ' meses';?></td>
+                        <td class="td" >
+                            <?php 
+                                $fecha_nacimiento = $rowM["fechaNac"];
+                                $e = busca_edad($fecha_nacimiento);
+                                echo $e[0] . ' años ' . ' y ' .  $e[1]  . ' meses';
+                            ?>
+                        </td>
                     </tr>
                     <tr class="tr">
                         <th class="th">Raza</th>
@@ -69,7 +75,7 @@ try {
                     </tr>
                     <tr class="tr">
                         <th class="th">Tamaño</th>
-                        <td class="td" ><?php echo $rowM['tamanio'];?></td>
+                        <td class="td" ><?php echo $rowM['talla'];?></td>
                     </tr>
                     <tr class="tr">
                         <th class="th">Especie:</th>

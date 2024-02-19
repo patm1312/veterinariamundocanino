@@ -33,6 +33,11 @@
             $titulo = $_POST['tittle'];
             $titulo = $_POST['subtittle'];
             $descripcion = $_POST['textarea'];
+            if(isset($_POST['eliminar'])){
+                $estado = $_POST['eliminar'];
+            }else{
+                $estado = 1;
+            }
         }else{
             $_SESSION['rta_admin'] = "error";
             echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS&idp=$idp&idPS=$idPS'</script>";
@@ -41,7 +46,7 @@
             $_SESSION['rta_admin'] = "img_big";
             echo "<script>window.location.href='../../../index.php?seccion=AdminPublicaciones&accion=editarpS&idp=$idp&idPS=$idPS'</script>";
         }else{
-            $c = "UPDATE PServicio set titulo=:titulo, subtitulo=:subtitulo, fechaAlta=now(), parrafo=:descripcion, estado=1";
+            $c = "UPDATE PServicio set titulo=:titulo, subtitulo=:subtitulo, fechaAlta=now(), parrafo=:descripcion, estado=:estado";
             if(($_FILES['imagen']['size'][0] > $maximo)){
                 //hay imagen de Pservicio cargada 
                 $imagenuno = $_FILES['imagen']['name'][0];
@@ -74,6 +79,7 @@
                     $stm->bindParam(':titulo', $titulo, PDO::PARAM_STR);
                     $stm->bindParam(':subtitulo', $titulo, PDO::PARAM_STR);
                     $stm->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+                    $stm->bindParam(':estado', $estado, PDO::PARAM_STR);
                     $stm->bindParam(':idPS', $idPS);
                     $stm->bindParam(':idp', $idp);
                     if($_FILES['imagen']['size'][0] > 0){

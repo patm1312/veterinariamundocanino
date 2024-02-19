@@ -1,5 +1,6 @@
 <?php
     include('../../../../configuracion/conexion.php');
+    echo 'publicacion p slider';
     //este scrip es para procesar los datos enviados por formulario para crear nueva publicacion: no esta inlcuida en el index, por lo  que la seguridad la repito aqui:
     $_SESSION['rta_admin'];
     if(isset($_SESSION['user_id'])){
@@ -66,7 +67,13 @@
                 $img2Ext = strtolower(pathinfo($imagendos,PATHINFO_EXTENSION)); 
                 $fileImg2 = time( ).rand(1,1000).".".$img2Ext;
                 $path2DB = '/contenidos/publicaciones/assets/imgSlider/'. $fileImg2;
-                move_uploaded_file($tmp2_dir,$upload_dir2.$fileImg2);
+                try {
+                    move_uploaded_file($tmp2_dir,$upload_dir2.$fileImg2);
+                    //code...
+                    echo 'se cargo bimagen en :  ' . $upload_dir2;
+                } catch (\Throwable $th) {
+                    echo  $th;
+                }
             }else{
                 $path2DB = 'contenidos/publicaciones/assets/default/slider.png';
             }

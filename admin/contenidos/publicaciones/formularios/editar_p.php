@@ -58,7 +58,13 @@
                 <input name="tittle" class="input" type="text" value=" <?php echo $titulo; ?>" placeholder="Titulo de Publicacion" title="Titulo  Invalido" pattern="[a-zA-Z ]{1,40}$" required>
                 <p>Edita la descripcion de tu  publicacion:</p>
                 <textarea placeholder="Descripcion" name="textarea" rows="10" cols=""><?php echo $descripcion;?></textarea>
+                <p>
+                    Elimanar Producto:<br>
+                    <input <?php echo $resultadoP =  $estado == 0 ? 'checked' : ''; ?> type="radio" name="eliminar" value="0"> Borrar<br>
+                    <input <?php echo $resultadoP =  $estado == 1 ? 'checked' : ''; ?> type="radio" name="eliminar" value="1"> Conservar<br>
+                 </p>
                 <div id="input_file" class="">
+
                     <p>Actualiza imagen de tu publicacion:</p>
                     <input class="" id="archivoDefault" type="file" name="imagen[]" accept=".png, .jpg, .jpeg" tittle="La imagen debe ser cuadrada como minimo">
                     <div>

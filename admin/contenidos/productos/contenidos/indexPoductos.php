@@ -1,21 +1,51 @@
 <?php
     //pagina quese envia a travez de get cuando plso sobre la numeracion de  lapagina al final. (pag.1, pag.2 ...)
-    $pagina_actual = isset( $_GET['p'] ) ? $_GET['p'] : 1;
-    $cantPorPagina = 9;
-    //devuelve la cantidad de usuarios 
-    $cTextos2 = "SELECT COUNT(idproductos) AS TOTAL FROM productos";
+    $search;
+    if(isset($_POST['search']) || (isset($_SESSION['search']))){
+        if((!empty($_POST['search'])) || (!empty($_SESSION['search']))){
+            if(!empty($_POST['search'])){
+                $search = $_POST['search'];
+                $_SESSION['search'] = $search;
+                $search = '%' . $search . '%';
+            }
+            if(!empty($_SESSION['search'])){
+                $search = $_SESSION['search'];
+                $search = '%' . $search . '%';
+            }
+            $_SESSION['search'] = $search;
+            $cTextos2 = <<<SQL
+                SELECT COUNT(idproductos) AS TOTAL FROM productos
+                WHERE nombre LIKE :descripcion
+                OR categoria LIKE :descripcion
+                OR  precio LIKE :descripcion
+                OR  descripcion LIKE :descripcion
+            SQL;
+        }else{
+            $cTextos2 = <<<SQL
+            SELECT COUNT(idproductos) AS TOTAL FROM productos WHERE estado=1
+            SQL;
+        }
+    }else{
+        $cTextos2 = <<<SQL
+            SELECT COUNT(idproductos) AS TOTAL FROM productos WHERE estado=1
+            SQL;
+    }
+try {
     $stmt2 = $pdo->prepare($cTextos2);
     // Especificamos el fetch mode antes de llamar a fetch()
     $stmt2->setFetchMode(PDO::FETCH_ASSOC);
     // Ejecutamos
-    try {
-        $stmt2->execute();
-    } catch (\Throwable $th) {
-        echo  $th;
+    if(!empty($search)){
+        $stmt2->bindParam(':descripcion', $search, PDO::PARAM_STR);
     }
-   
+    $stmt2->execute();
+} catch (\Throwable $th) {
+    echo $th;
+}
     $row2 = $stmt2->fetch();
     $cantResultados = $row2['TOTAL'];
+    $pagina_actual = isset( $_GET['p'] ) ? $_GET['p'] : 1;
+    $cantPorPagina = 2;
     //cuantas paginas son que debo mostar de acuerdo  a la cantidad de usuarios dividido  entre la cantidad por pagina que quiero mostrar
     $cantPaginas = ceil($cantResultados / $cantPorPagina);
     if( $pagina_actual > $cantPaginas ){
@@ -26,26 +56,58 @@
     }
     $dondeInicio = ($pagina_actual - 1) * $cantPorPagina;
 ?>
-<div class="info__personal border_prueba--contenedor"> 
+<div id="search" class="info__personal border_prueba--contenedor"> 
     <div class="producto">
         <div class="description_services">
             <?php
-                $cTextosProd = <<<SQL
-                SELECT * FROM productos
-                LIMIT $dondeInicio, $cantPorPagina
+                // Ejecutamos
+                if(isset($_POST['search']) || (isset($_SESSION['search']))){
+                    if((!empty($_POST['search'])) || (!empty($_SESSION['search']))){
+                        if(!empty($_POST['search'])){
+                            $search = $_POST['search'];
+                            $_SESSION['search'] = $search;
+                        }
+                        if(!empty($_SESSION['search'])){
+                            $search = $_SESSION['search'];
+                        }
+                        $_SESSION['search'] = $search;
+                        $search = '%' . $search . '%';
+                        $cTextos = <<<SQL
+                           SELECT 
+                            * FROM productos
+                            WHERE nombre LIKE :descripcion
+                            OR categoria LIKE :descripcion
+                            OR  precio LIKE :descripcion
+                            OR  descripcion LIKE :descripcion
+                            LIMIT $dondeInicio, $cantPorPagina
+                        SQL;
+                    }else{
+                        $cTextos = <<<SQL
+                            SELECT * FROM productos WHERE estado=1
+                            LIMIT $dondeInicio, $cantPorPagina
+                        SQL;
+                    }
+                }else{
+                    $cTextos = <<<SQL
+                        SELECT * FROM productos WHERE estado=1
+                        LIMIT $dondeInicio, $cantPorPagina
                 SQL;
-                $stmtProd = $pdo->prepare($cTextosProd);
+                }
+                try{
+                $stmtProd = $pdo->prepare($cTextos);
                 // Especificamos el fetch mode antes de llamar a fetch()
                 $stmtProd->setFetchMode(PDO::FETCH_ASSOC);
                 // Ejecutamos
-                try {
-                    $stmtProd->execute();
-                } catch (\Throwable $th) {
-                   
-                    echo $th;
-                   
+                if(!empty($search)){
+                    $stmtProd->bindParam(':descripcion', $search, PDO::PARAM_STR);
+                    $stmtProd->bindParam(':descripcion', $search, PDO::PARAM_STR);
+                    $stmtProd->bindParam(':descripcion', $search, PDO::PARAM_STR);
                 }
-                //$rowProd = $stmtProd->fetch();
+                    $stmtProd->execute();
+                    //code...
+                } catch (\Throwable $th) {
+                    echo $th;
+                }
 
                 if($stmtProd){
                     echo '<section class="container container__block">';

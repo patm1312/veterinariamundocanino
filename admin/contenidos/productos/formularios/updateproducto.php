@@ -11,7 +11,7 @@ echo 'estoy en actualizar producto';
         echo "<script>window.location.href='../../../veterinaria/admin/index.php?seccion=AdminProductos'</script>";
     }
     //consulto la bd con la publicacion a la que quiero editar para autocomplear en el formulario:
-    $c = "SELECT nombre, categoria, descripcion, precio, color, material, marca, foto, descuento,estado FROM productos WHERE idproductos=?";
+    $c = "SELECT nombre, categoria, descripcion, precio, color, material, marca, foto, descuento,estado, espacio FROM productos WHERE idproductos=?";
     //preparar la consulta:
     try {
             $stmt = $pdo->prepare($c);
@@ -33,6 +33,7 @@ echo 'estoy en actualizar producto';
     $material;
     $marca;
     $descuento;
+    $espacio;
      foreach($p as $r){
              $nombre =  $r->nombre;
              $descripcion =  $r->descripcion;
@@ -44,6 +45,7 @@ echo 'estoy en actualizar producto';
              $material =  $r->material;
              $marca =  $r->marca;
              $descuento =  $r->descuento;
+             $espacio =  $r->espacio;
             }
     echo '<br>';
     $_SESSION['foto'] =  $foto;
@@ -75,6 +77,11 @@ echo 'estoy en actualizar producto';
                     <input type="radio" name="categoria" value="accesorios/juguetes" <?php echo $resultado =  $categoria == 'accesorios/juguetes' ? 'checked' : ''; ?>> Accesorios/juguetes<br>
                     <input <?php echo $resultado =  $categoria == 'ropa' ? 'checked' : ''; ?> type="radio" name="categoria" value="ropa"> Ropa
                  </p>
+                 <p>
+                    Espacio en carrusel de anuncios:<br>
+                    <input type="radio" name="espacio" value="ad" <?php echo $resultado =  $espacio == 'ad' ? 'checked' : ''; ?>> Anuncios<br>
+                    <input type="radio" name="espacio" value="none" <?php echo $resultado =  $espacio == 'none' ? 'checked' : ''; ?>>No<br>
+                 </p>
                  
                  <p>Elige una descripcion acorde  para tu producto:</p>
                     <textarea placeholder="Descripcion" name="textarea" rows="10" cols="">
@@ -94,8 +101,8 @@ echo 'estoy en actualizar producto';
                 </div>
                 <p>
                     Elimanar Producto:<br>
-                    <input <?php echo $resultadoP =  $estado == 0 ? 'checked' : ''; ?> type="radio" name="eliminar" value="elimianr"> Borrar<br>
-                    <input <?php echo $resultadoP =  $estado == 1 ? 'checked' : ''; ?> type="radio" name="eliminar" value="conservar"> Conservar<br>
+                    <input <?php echo $resultadoP =  $estado == 0 ? 'checked' : ''; ?> type="radio" name="eliminar" value="0"> Borrar<br>
+                    <input <?php echo $resultadoP =  $estado == 1 ? 'checked' : ''; ?> type="radio" name="eliminar" value="1"> Conservar<br>
                  </p>
                 <div class="bottom box__bottom box__bottom--login">
                     <input id="submit" class="" type="submit" value="Continuar">        

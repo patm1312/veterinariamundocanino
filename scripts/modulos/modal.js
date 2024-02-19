@@ -15,7 +15,7 @@ openModal = function (a,b,c,fz){
             f.showModal();
             //di click en enviar solicitud de formulario de filtro,  cierro modal, igual en la x de ababjo
         }else if(e.target.matches(b)){
-            e.preventDefault();
+            //e.preventDefault();
             //console.log("di click en cerrar modal");
             f.close();
         }else if(e.target.matches(c)){

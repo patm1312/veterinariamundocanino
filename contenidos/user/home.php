@@ -65,7 +65,7 @@ SELECT
     *
 FROM
     pacientes
-WHERE usuario_idusuario =?
+WHERE usuario_idusuario =? AND estado = 1
 SQL;
 
 $stmtM = $pdo->prepare($cTextosMascota);
@@ -82,11 +82,12 @@ $stmtM->execute([$idU]);
     while ($rowM = $stmtM->fetch()){
         $id = $rowM['idpacientes'];
 ?>
-               <a class="box__flex-item" href="index.php?seccion=perfil&seccionUser=pets&id=<?php echo $id; ?>">
+               <a class="box__flex-item box__flex-item--t" href="index.php?seccion=perfil&seccionUser=pets&id=<?php echo $id; ?>">
                     <div class="preview_mascota">
                         <img class="mascota_previewimg"  src="admin<?php echo $rowM["foto"]; ?>" alt="preview_mascota">
-                        <h1><?php echo $rowM["nombre"];  ?></h1>
+                        
                     </div>
+                    <h1 class="preview_mascota--h1"><?php echo $rowM["nombre"];  ?></h1>
                 </a>
                 <?php
     };
@@ -95,7 +96,7 @@ $stmtM->execute([$idU]);
                 <a class="box__flex-item" href="index.php?seccion=perfil&seccionUser=petsAdd">
                     <div class="preview_mascota">
                         <img class="mascota_previewimg"  src="assets/images/addpet.png" alt="preview_mascota">
-                        <h1>Registrar mascota</h1>
+                        <h1>Registrar</h1>
                     </div>
                 </a>
     

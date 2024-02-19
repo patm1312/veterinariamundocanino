@@ -1,8 +1,26 @@
 <?php
 //por defecto muestro el listado  de las publicaciones
 $accion = isset( $_GET['accion'] ) ?  $_GET['accion'] : 'listadoP';
+if(isset($_GET['s'])){
+    if($_GET['s'] == 0){
+        unset($_SESSION['search']);
+    }
+ }
 echo "<a href='index.php?seccion=AdminPublicaciones&accion=listadoP'><h2 class='h2 h2--servicios inline' >Listado de Publicaciones</h2></a>";
 echo "<a href='index.php?seccion=AdminPublicaciones&accion=listadoM'><h2 class='h2 h2--servicios inline' >Listado de Mascotas</h2></a>";
+if(isset($_GET['s'])){
+    echo 'si existe get s';
+    if($_GET['s'] == 0){
+        echo' elimina s';
+        unset($_SESSION['search']);
+    }else{
+        echo' NOelimina s';
+    }
+ }else{
+    echo 'NO existe get s';
+ }
+ echo 'la session search es';
+ echo $_SESSION['search'];
 switch( $accion ){
 	//formulario para borrar una publicacion
 	case 'eraseP': include( 'formularios/deleteP.php' ); break;

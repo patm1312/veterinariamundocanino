@@ -1,9 +1,16 @@
 <?php
+
+// try {
+//     //code...
+//     include('function/function.php');
+// } catch (\Throwable $th) {
+//     echo $th;
+// }
 //pagina quese envia a travez de get cuando plso sobre la numeracion de  lapagina al final. (pag.1, pag.2 ...)
 $pagina_actual = isset( $_GET['p'] ) ? $_GET['p'] : 1;
 $cantPorPagina = 2;
 //devuelve la cantidad de usuarios 
-$cTextos2 = "SELECT COUNT(idpublicaciones) AS TOTAL FROM publicaciones WHERE categoria = 'Pservicio'";
+$cTextos2 = "SELECT COUNT(idpublicaciones) AS TOTAL FROM publicaciones WHERE categoria = 'Pservicio' AND estado=1";
 $stmt2 = $pdo->prepare($cTextos2);
 // Especificamos el fetch mode antes de llamar a fetch()
 $stmt2->setFetchMode(PDO::FETCH_ASSOC);
@@ -31,6 +38,7 @@ SELECT
 FROM
     publicaciones
 WHERE categoria = ?
+AND estado=1
 LIMIT $dondeInicio, $cantPorPagina
 
 SQL;
@@ -61,15 +69,21 @@ try {
         ?>
         <div class="servicios__box">
             <div class="servicios__img--box">
-                <img class="servicios__img" src="admin/<?php echo $row['foto'];?>" alt="perro">
+                <img class="servicios__img " src="admin/<?php echo $row['foto'];?>" alt="perro">
 
             </div>
             <div class="servicios__box--container">
-                <h2 class="h2 h2--servicios"><?php echo $row['titulo'];?></h2>
+                <h2 class="h2 h2--servicios "><?php echo $row['titulo'];?></h2>
                 <div class="box__preview">
-                    <p class="preview"><?php echo $row['descripcion'];?></p>
+                    <p class="preview poster__description--h1">
+                        <?php 
+                            $descripcion = $row['descripcion'];
+                            //echo  $descripcion;
+                             $preview = recortar_cadena($descripcion, 150);
+                              echo $preview;
+                        ?></p>
                 </div>
-                    <a class="bottom bottom--servicios" href="index.php?seccion=servicio&id=<?php echo $id; ?>">Saber Mas</a>
+                    <a class="bottom bottom--servicios bottom--orange" href="index.php?seccion=servicio&id=<?php echo $id; ?>">Saber Mas</a>
                 
             </div>
         </div>

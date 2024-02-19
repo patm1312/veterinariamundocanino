@@ -2,7 +2,7 @@ const d = document;
 console.log("resice square");
 // Capturamos todos los elementos que tengan la clase
 const responsiveDiv = document.querySelectorAll('.responsiveDiv');
-export default function resizeForSquareAppearance(e){
+export default function resizeForSquareAppearance(){
     console.log("res");
     responsiveDiv.forEach((element) => {
         console.log(element);
